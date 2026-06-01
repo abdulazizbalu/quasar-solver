@@ -2,6 +2,10 @@
 [![License MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Tests passing](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/abdulazizbalu/quasar-solver/actions)
 
+<p align="center">
+  <strong><a href="https://abdulazizbalu.github.io/quasar-solver/demos/web_demo.html">🚀 Live Demo</a></strong>
+</p>
+
 # Quasar Solver
 
 Quasar Solver is a pure Python, quantum-inspired optimizer for quadratic unconstrained binary optimization (QUBO) problems. It provides a compact QUBO model, a NumPy-based simulated annealing solver, and converters for practical optimization examples.
@@ -20,7 +24,9 @@ pip install -e ".[dev]"
 
 ## Web Demo
 
-Open `demos/web_demo.html` in your browser — no server required. Click to place cities, hit Solve, watch the optimizer find the shortest route.
+🚀 Live Demo — open in browser, no install needed.
+
+Click to place cities, hit Solve, watch the optimizer find the shortest route.
 
 ## Quick Usage
 
