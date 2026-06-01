@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quasar Solver Web Demo</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111318;
+      --panel: #181b23;
+      --panel-soft: #1f2430;
+      --border: #313746;
+      --text: #f7f8fb;
+      --muted: #9aa3b2;
+      --accent: #6366f1;
+      --accent-strong: #818cf8;
+      --danger: #f87171;
+      --canvas: #0f1117;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 800px;
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.18), transparent 32rem),
+        linear-gradient(135deg, #111318 0%, #171923 42%, #101218 100%);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(1120px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding: 38px 0 42px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.05;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 660px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .stage-wrap,
+    .panel {
+      background: rgba(24, 27, 35, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 24px 60px rgba(0, 0, 0, 0.22);
+    }
+
+    .stage-wrap {
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .stage {
+      width: 600px;
+      height: 400px;
+      display: block;
+      border-radius: 6px;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        var(--canvas);
+      background-size: 40px 40px;
+      border: 1px solid var(--border);
+      cursor: crosshair;
+      overflow: hidden;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .route {
+      fill: none;
+      stroke: var(--accent-strong);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 12 9;
+      animation: dash 1.2s linear infinite;
+      filter: drop-shadow(0 5px 12px rgba(99, 102, 241, 0.28));
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -42;
+      }
+    }
+
+    .city-dot {
+      fill: #ffffff;
+      stroke: #111318;
+      stroke-width: 2;
+    }
+
+    .city-dot.solved {
+      fill: var(--accent);
+      stroke: #dfe1ff;
+    }
+
+    .city-label {
+      fill: #111318;
+      font-size: 12px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .city-label.solved {
+      fill: #ffffff;
+    }
+
+    .panel {
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 7px;
+      padding: 12px 14px;
+      background: var(--panel-soft);
+      color: var(--text);
+      font: inherit;
+      font-weight: 720;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, opacity 160ms ease;
+    }
+
+    button:hover:not(:disabled) {
+      border-color: rgba(129, 140, 248, 0.72);
+      background: #252a38;
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px) scale(0.99);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .primary {
+      background: var(--accent);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .primary:hover:not(:disabled) {
+      background: #5558dd;
+    }
+
+    .danger {
+      color: #fecaca;
+    }
+
+    .metrics {
+      display: grid;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .metric {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .metric:last-child {
+      border-bottom: 0;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .metric strong {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 15px;
+      font-weight: 740;
+    }
+
+    .status {
+      min-height: 42px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    @media (max-width: 899px) {
+      body {
+        min-width: 800px;
+      }
+
+      main {
+        width: 760px;
+      }
+
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Quasar Solver Route Lab</h1>
+        <p class="lede">Place cities on the board, then let a browser-native 2-opt annealer search for a short closed tour.</p>
+      </div>
+    </header>
+
+    <section class="shell" aria-label="Interactive route solver">
+      <div class="stage-wrap">
+        <svg id="stage" class="stage" viewBox="0 0 600 400" role="img" aria-label="Click canvas to place cities">
+          <g id="routeLayer"></g>
+          <g id="cityLayer"></g>
+        </svg>
+        <div class="legend">
+          <span>Click to add city &bull; Max 15</span>
+          <span id="hint">Ready</span>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Solver controls and metrics">
+        <div class="controls">
+          <button id="solveBtn" class="primary" type="button">Solve Route</button>
+          <button id="randomBtn" type="button">Random 8 cities</button>
+          <button id="clearBtn" class="danger" type="button">Clear</button>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <span>Number of cities</span>
+            <strong id="cityCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>Best energy</span>
+            <strong id="bestEnergy">-</strong>
+          </div>
+          <div class="metric">
+            <span>Total distance</span>
+            <strong id="totalDistance">-</strong>
+          </div>
+          <div class="metric">
+            <span>Solve time (ms)</span>
+            <strong id="solveTime">-</strong>
+          </div>
+        </div>
+
+        <p id="status" class="status">Add at least three cities to solve a route.</p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const MAX_CITIES = 15;
+    const WIDTH = 600;
+    const HEIGHT = 400;
+    const ITERATIONS = 5000;
+    const TEMP_START = 100;
+    const TEMP_END = 0.1;
+
+    const stage = document.getElementById("stage");
+    const routeLayer = document.getElementById("routeLayer");
+    const cityLayer = document.getElementById("cityLayer");
+    const solveBtn = document.getElementById("solveBtn");
+    const randomBtn = document.getElementById("randomBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const hint = document.getElementById("hint");
+    const statusEl = document.getElementById("status");
+    const cityCountEl = document.getElementById("cityCount");
+    const bestEnergyEl = document.getElementById("bestEnergy");
+    const totalDistanceEl = document.getElementById("totalDistance");
+    const solveTimeEl = document.getElementById("solveTime");
+
+    let cities = [];
+    let route = [];
+    let bestEnergy = null;
+    let totalDistance = null;
+    let solveTime = null;
+    let solving = false;
+
+    stage.addEventListener("click", (event) => {
+      if (solving || cities.length >= MAX_CITIES) {
+        return;
+      }
+
+      const point = clientPointToSvg(event.clientX, event.clientY);
+      cities.push({ x: point.x, y: point.y });
+      clearSolution();
+      render();
+    });
+
+    solveBtn.addEventListener("click", solveRoute);
+    randomBtn.addEventListener("click", () => {
+      cities = Array.from({ length: 8 }, () => ({
+        x: 32 + Math.random() * (WIDTH - 64),
+        y: 32 + Math.random() * (HEIGHT - 64),
+      }));
+      clearSolution();
+      render();
+    });
+    clearBtn.addEventListener("click", () => {
+      cities = [];
+      clearSolution();
+      render();
+    });
+
+    render();
+
+    function clientPointToSvg(clientX, clientY) {
+      const rect = stage.getBoundingClientRect();
+      return {
+        x: ((clientX - rect.left) / rect.width) * WIDTH,
+        y: ((clientY - rect.top) / rect.height) * HEIGHT,
+      };
+    }
+
+    function clearSolution() {
+      route = [];
+      bestEnergy = null;
+      totalDistance = null;
+      solveTime = null;
+      statusEl.classList.remove("error");
+    }
+
+    function render() {
+      renderRoute();
+      renderCities();
+      renderMetrics();
+      solveBtn.disabled = solving || cities.length < 3;
+      randomBtn.disabled = solving;
+      clearBtn.disabled = solving;
+      solveBtn.textContent = solving ? "Solving..." : "Solve Route";
+      hint.textContent = cities.length >= MAX_CITIES ? "City limit reached" : "Ready";
+    }
+
+    function renderRoute() {
+      routeLayer.replaceChildren();
+      if (route.length < 3) {
+        return;
+      }
+
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const first = cities[route[0]];
+      const commands = [`M ${first.x.toFixed(2)} ${first.y.toFixed(2)}`];
+      for (let index = 1; index < route.length; index += 1) {
+        const city = cities[route[index]];
+        commands.push(`L ${city.x.toFixed(2)} ${city.y.toFixed(2)}`);
+      }
+      commands.push("Z");
+      path.setAttribute("class", "route");
+      path.setAttribute("d", commands.join(" "));
+      routeLayer.appendChild(path);
+    }
+
+    function renderCities() {
+      cityLayer.replaceChildren();
+      const solved = route.length > 0;
+
+      cities.forEach((city, index) => {
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", city.x);
+        circle.setAttribute("cy", city.y);
+        circle.setAttribute("r", 13);
+        circle.setAttribute("class", solved ? "city-dot solved" : "city-dot");
+
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("x", city.x);
+        label.setAttribute("y", city.y + 0.5);
+        label.setAttribute("class", solved ? "city-label solved" : "city-label");
+        label.textContent = String(index + 1);
+
+        cityLayer.append(circle, label);
+      });
+    }
+
+    function renderMetrics() {
+      cityCountEl.textContent = String(cities.length);
+      bestEnergyEl.textContent = bestEnergy === null ? "-" : formatNumber(bestEnergy);
+      totalDistanceEl.textContent = totalDistance === null ? "-" : formatNumber(totalDistance);
+      solveTimeEl.textContent = solveTime === null ? "-" : String(Math.round(solveTime));
+
+      if (solving) {
+        statusEl.textContent = "Searching route space with 2-opt simulated annealing.";
+      } else if (cities.length < 3) {
+        statusEl.textContent = "Add at least three cities to solve a route.";
+      } else if (route.length > 0) {
+        statusEl.textContent = "Route solved. Add, clear, or randomize cities to run again.";
+      } else if (cities.length >= MAX_CITIES) {
+        statusEl.textContent = "Maximum city count reached. Solve or clear the board.";
+      } else {
+        statusEl.textContent = "Ready to solve.";
+      }
+    }
+
+    function formatNumber(value) {
+      return Number(value).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      });
+    }
+
+    function solveRoute() {
+      if (cities.length < 3 || solving) {
+        return;
+      }
+
+      solving = true;
+      statusEl.classList.remove("error");
+      render();
+
+      runSolver(cities)
+        .then((result) => {
+          route = result.route;
+          bestEnergy = result.energy;
+          totalDistance = result.distance;
+          solveTime = result.elapsed;
+        })
+        .catch((error) => {
+          statusEl.textContent = error.message || "Solver failed.";
+          statusEl.classList.add("error");
+        })
+        .finally(() => {
+          solving = false;
+          render();
+        });
+    }
+
+    function runSolver(points) {
+      if (window.Worker && window.Blob && window.URL) {
+        return runInWorker(points);
+      }
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(solveTsp(points));
+        }, 20);
+      });
+    }
+
+    function runInWorker(points) {
+      return new Promise((resolve, reject) => {
+        const workerSource = `
+          const ITERATIONS = ${ITERATIONS};
+          const TEMP_START = ${TEMP_START};
+          const TEMP_END = ${TEMP_END};
+
+          ${distance.toString()}
+          ${buildDistanceMatrix.toString()}
+          ${routeDistance.toString()}
+          ${twoOptCandidate.toString()}
+          ${solveTsp.toString()}
+
+          self.onmessage = function(event) {
+            try {
+              self.postMessage(solveTsp(event.data.points));
+            } catch (error) {
+              self.postMessage({ error: error.message || "Worker solver failed." });
+            }
+          };
+        `;
+        const blob = new Blob([workerSource], { type: "text/javascript" });
+        const url = URL.createObjectURL(blob);
+        const worker = new Worker(url);
+
+        worker.onmessage = (event) => {
+          worker.terminate();
+          URL.revokeObjectURL(url);
+          if (event.data && event.data.error) {
+            reject(new Error(event.data.error));
+          } else {
+            resolve(event.data);
+          }
+        };
+
+        worker.onerror = () => {
+          worker.terminate();
+          URL.revokeObjectURL(url);
+          setTimeout(() => {
+            try {
+              resolve(solveTsp(points));
+            } catch (error) {
+              reject(error);
+            }
+          }, 20);
+        };
+
+        worker.postMessage({ points });
+      });
+    }
+
+    function solveTsp(points) {
+      const start = performance.now();
+      const distances = buildDistanceMatrix(points);
+      const n = points.length;
+      let route = Array.from({ length: n }, (_, index) => index);
+
+      for (let index = n - 1; index > 0; index -= 1) {
+        const other = Math.floor(Math.random() * (index + 1));
+        [route[index], route[other]] = [route[other], route[index]];
+      }
+
+      let energy = routeDistance(route, distances);
+      let bestRoute = route.slice();
+      let bestEnergy = energy;
+      const cooling = Math.pow(TEMP_END / TEMP_START, 1 / ITERATIONS);
+      let temperature = TEMP_START;
+
+      for (let iteration = 0; iteration < ITERATIONS; iteration += 1) {
+        const candidate = twoOptCandidate(route);
+        const candidateEnergy = routeDistance(candidate, distances);
+        const delta = candidateEnergy - energy;
+
+        if (delta < 0 || Math.random() < Math.exp(-delta / temperature)) {
+          route = candidate;
+          energy = candidateEnergy;
+          if (energy < bestEnergy) {
+            bestEnergy = energy;
+            bestRoute = route.slice();
+          }
+        }
+
+        temperature *= cooling;
+      }
+
+      return {
+        route: bestRoute,
+        energy: bestEnergy,
+        distance: bestEnergy,
+        elapsed: performance.now() - start,
+      };
+    }
+
+    function twoOptCandidate(route) {
+      const candidate = route.slice();
+      let a = Math.floor(Math.random() * candidate.length);
+      let b = Math.floor(Math.random() * candidate.length);
+      if (a > b) {
+        [a, b] = [b, a];
+      }
+      if (a === b) {
+        b = (b + 1) % candidate.length;
+        if (a > b) {
+          [a, b] = [b, a];
+        }
+      }
+
+      while (a < b) {
+        [candidate[a], candidate[b]] = [candidate[b], candidate[a]];
+        a += 1;
+        b -= 1;
+      }
+      return candidate;
+    }
+
+    function buildDistanceMatrix(points) {
+      return points.map((from) => points.map((to) => distance(from, to)));
+    }
+
+    function distance(from, to) {
+      const dx = from.x - to.x;
+      const dy = from.y - to.y;
+      return Math.hypot(dx, dy);
+    }
+
+    function routeDistance(route, distances) {
+      let total = 0;
+      for (let index = 0; index < route.length; index += 1) {
+        const current = route[index];
+        const next = route[(index + 1) % route.length];
+        total += distances[current][next];
+      }
+      return total;
+    }
+  </script>
+</body>
+</html>

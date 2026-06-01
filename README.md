@@ -18,6 +18,10 @@ For development:
 pip install -e ".[dev]"
 ```
 
+## Web Demo
+
+Open `demos/web_demo.html` in your browser — no server required. Click to place cities, hit Solve, watch the optimizer find the shortest route.
+
 ## Quick Usage
 
 ```python
