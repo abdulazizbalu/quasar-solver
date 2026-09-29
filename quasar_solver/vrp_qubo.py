@@ -106,15 +106,19 @@ def decode_cvrp_sample(sample: np.ndarray, problem: CVRPInstance) -> list[list[i
 class QuboSACVRPSolver:
     name = "qubo_sa"
 
-    def __init__(self, num_sweeps: int = 100, num_reads: int = 1):
+    def __init__(self, num_sweeps: int = 100, num_reads: int = 1,
+                 schedule: str = "coefficient_scaled_linear"):
         self.num_sweeps, self.num_reads = num_sweeps, num_reads
+        self.schedule = schedule
 
     def solve(self, problem: CVRPInstance, time_limit: float | None = None, seed: int | None = None,
               budget_mode: str = "iterations") -> Solution:
         start = perf_counter()
         qubo, meta = build_cvrp_qubo(problem)
         remaining = None if time_limit is None else max(1e-9, time_limit - (perf_counter() - start))
-        result = SimulatedAnnealingSolver(self.num_reads, self.num_sweeps, seed=seed).solve(
+        result = SimulatedAnnealingSolver(self.num_reads, self.num_sweeps, seed=seed,
+                                          schedule=self.schedule, schedule_scale=meta["penalty"]
+                                          if self.schedule == "penalty_scaled_geometric" else None).solve(
             qubo, time_limit=remaining, budget_mode=budget_mode)
         routes = decode_cvrp_sample(result.best_sample, problem)
         feasible = is_feasible_vrp(routes, problem)
@@ -122,4 +126,5 @@ class QuboSACVRPSolver:
                         perf_counter()-start, self.name,
                         {**meta, "attempts": result.flips_attempted, "seed": seed,
                          "num_sweeps": self.num_sweeps, "num_reads": self.num_reads,
-                         "budget_mode": budget_mode, "qubo_energy": result.best_energy}, routes)
+                         "budget_mode": budget_mode, "schedule": self.schedule,
+                         "qubo_energy": result.best_energy}, routes)
