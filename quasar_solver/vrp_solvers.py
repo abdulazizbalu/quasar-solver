@@ -66,8 +66,10 @@ class ORToolsVRPSolver:
         params.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
         params.time_limit.FromMilliseconds(max(1, int(1000 * time_limit)))
         params.log_search = False
-        if seed is not None and hasattr(params, "random_seed"):
-            params.random_seed = int(seed)
+        if seed is not None:
+            # RoutingSearchParameters has no top-level random_seed in OR-Tools
+            # 9.15; seed the SAT component when it is used by the search.
+            params.sat_parameters.random_seed = int(seed)
         assignment = model.SolveWithParameters(params)
         routes: list[list[int]] = []
         if assignment:

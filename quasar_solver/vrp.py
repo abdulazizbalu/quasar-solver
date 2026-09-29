@@ -25,12 +25,16 @@ class CVRPInstance:
         q = np.asarray(self.demands, dtype=int)
         if d.ndim != 2 or d.shape[0] < 2 or d.shape[0] != d.shape[1] or not np.isfinite(d).all() or (d < 0).any():
             raise ValueError("distance_matrix must be finite, nonnegative and square")
+        if not np.allclose(np.diag(d), 0):
+            raise ValueError("distance_matrix diagonal must be zero")
         if q.shape != (len(d),) or (q < 0).any() or q[0] != 0:
             raise ValueError("demands must have one nonnegative entry per node and zero at depot")
         if self.depot != 0 or self.capacity <= 0 or (q[1:] > self.capacity).any():
             raise ValueError("depot must be node zero and each demand must fit capacity")
         if self.num_vehicles is not None and self.num_vehicles <= 0:
             raise ValueError("num_vehicles must be positive")
+        if self.known_optimum is not None and (not np.isfinite(self.known_optimum) or self.known_optimum < 0):
+            raise ValueError("known_optimum must be finite and nonnegative")
         self.distance_matrix, self.demands = d, q
 
     @property

@@ -35,6 +35,8 @@ def test_qubo_hand_checked_energy(tiny):
     assert decode_cvrp_sample(x, tiny) == routes
     assert q.energy(x) + info["constant_offset"] == routes_distance(routes, tiny) == 4
     assert q.energy(x) < q.energy(np.zeros_like(x))
+    split = [[0, 1, 0], [0, 2, 0]]
+    assert q.energy(encode_cvrp_routes(split, tiny)) + info["constant_offset"] == routes_distance(split, tiny)
     with pytest.raises(ValueError, match="at most six"):
         build_cvrp_qubo(CVRPInstance("large", np.zeros((8, 8)), [0] + [1]*7, 4, 2))
 

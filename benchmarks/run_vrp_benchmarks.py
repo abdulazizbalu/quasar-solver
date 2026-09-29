@@ -50,7 +50,8 @@ def _record(group: str, size: int, instance_seed: str, solver_seed: int, solver,
                 "objective": result.objective if result.objective is not None else "",
                 "routes": route_count, "reference": reference, "reference_vehicles": reference_vehicles or "",
                 "reference_type": "proven optimum" if group == "tiny" else "published reference",
-                "gap_percent": 100*(result.objective/reference-1) if comparable else "",
+                "gap_percent": (0.0 if abs(result.objective-reference) < 1e-9 else
+                                100*(result.objective/reference-1)) if comparable else "",
                 "runtime_seconds": result.runtime, "attempts": result.metadata.get("attempts", ""),
                 "variable_count": result.metadata.get("variable_count", ""),
                 "status": result.metadata.get("status", ""), "time_limit_seconds": limit or ""}
@@ -108,8 +109,11 @@ def chart(rows: list[dict]) -> None:
         axes[1].plot(sizes, [float(_ci_instance(group, "gap_percent")[0]) if _ci_instance(group, "gap_percent") else np.nan for group in subset], marker="o", label=solver)
     axes[0].set(ylabel="Feasible runs (%)", xlabel="Customers", ylim=(-5, 105))
     axes[1].set(ylabel="Mean gap to proven optimum (%)", xlabel="Customers")
+    for axis in axes:
+        axis.set_xticks([4, 6])
     axes[0].legend(fontsize=8)
-    fig.tight_layout()
+    fig.text(.5, .01, "Six-customer QUBO gap uses one feasible run; CI unavailable.", ha="center", fontsize=8)
+    fig.tight_layout(rect=(0, .04, 1, 1))
     target = ROOT / "docs" / "vrp_benchmark.png"
     target.parent.mkdir(exist_ok=True)
     fig.savefig(target, dpi=150)
