@@ -1,0 +1,921 @@
+group,size,instance,instance_seed,solver_seed,solver,feasible,objective,routes,reference,reference_vehicles,reference_type,gap_percent,runtime_seconds,attempts,variable_count,status,time_limit_seconds
+tiny,4,tiny-4-203000,0,0,qubo_sa,0,,0,250.0,,proven optimum,,0.0179162999993423,4400,44,,5.0
+tiny,4,tiny-4-203000,0,0,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.005637999998725718,400,,,5.0
+tiny,4,tiny-4-203000,0,0,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.2090752000003704,,,1,0.2
+tiny,4,tiny-4-203000,0,0,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,1,qubo_sa,1,261.0,2,250.0,,proven optimum,4.400000000000004,0.01820629999929224,4400,44,,5.0
+tiny,4,tiny-4-203000,0,1,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.005331400001523434,400,,,5.0
+tiny,4,tiny-4-203000,0,1,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20104709999941406,,,1,0.2
+tiny,4,tiny-4-203000,0,1,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,2,qubo_sa,0,,0,250.0,,proven optimum,,0.017655600000580307,4400,44,,5.0
+tiny,4,tiny-4-203000,0,2,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.005551100000957376,400,,,5.0
+tiny,4,tiny-4-203000,0,2,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20108110000001034,,,1,0.2
+tiny,4,tiny-4-203000,0,2,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,3,qubo_sa,0,,0,250.0,,proven optimum,,0.016809099999591126,4400,44,,5.0
+tiny,4,tiny-4-203000,0,3,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.005369700000301236,400,,,5.0
+tiny,4,tiny-4-203000,0,3,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.2010831000006874,,,1,0.2
+tiny,4,tiny-4-203000,0,3,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,4,qubo_sa,1,277.0,2,250.0,,proven optimum,10.80000000000001,0.01600479999979143,4400,44,,5.0
+tiny,4,tiny-4-203000,0,4,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.006592999998247251,400,,,5.0
+tiny,4,tiny-4-203000,0,4,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20105660000081116,,,1,0.2
+tiny,4,tiny-4-203000,0,4,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,5,qubo_sa,1,250.0,2,250.0,,proven optimum,0.0,0.023590700000568177,4400,44,,5.0
+tiny,4,tiny-4-203000,0,5,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.007001199999649543,400,,,5.0
+tiny,4,tiny-4-203000,0,5,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20109379999848898,,,1,0.2
+tiny,4,tiny-4-203000,0,5,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,6,qubo_sa,0,,0,250.0,,proven optimum,,0.018312199999854784,4400,44,,5.0
+tiny,4,tiny-4-203000,0,6,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.0055310000007011695,400,,,5.0
+tiny,4,tiny-4-203000,0,6,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20101409999915631,,,1,0.2
+tiny,4,tiny-4-203000,0,6,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,7,qubo_sa,0,,0,250.0,,proven optimum,,0.018227100001240615,4400,44,,5.0
+tiny,4,tiny-4-203000,0,7,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.0058208999998896616,400,,,5.0
+tiny,4,tiny-4-203000,0,7,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20220549999976356,,,1,0.2
+tiny,4,tiny-4-203000,0,7,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,8,qubo_sa,1,261.0,2,250.0,,proven optimum,4.400000000000004,0.04932910000025004,4400,44,,5.0
+tiny,4,tiny-4-203000,0,8,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.017818299998907605,400,,,5.0
+tiny,4,tiny-4-203000,0,8,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.201558800001294,,,1,0.2
+tiny,4,tiny-4-203000,0,8,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203000,0,9,qubo_sa,0,,2,250.0,,proven optimum,,0.03611289999935252,4400,44,,5.0
+tiny,4,tiny-4-203000,0,9,vrp_sa,1,250.0,2,250.0,,proven optimum,0.0,0.015208099999654223,400,,,5.0
+tiny,4,tiny-4-203000,0,9,ortools,1,250.0,2,250.0,,proven optimum,0.0,0.20236790000126348,,,1,0.2
+tiny,4,tiny-4-203000,0,9,exact_small,1,250.0,2,250.0,,proven optimum,0.0,0.01138840000021446,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,0,qubo_sa,0,,0,299.0,,proven optimum,,0.04882050000014715,4400,44,,5.0
+tiny,4,tiny-4-203001,1,0,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.014013099998919643,400,,,5.0
+tiny,4,tiny-4-203001,1,0,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20185140000103274,,,1,0.2
+tiny,4,tiny-4-203001,1,0,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,1,qubo_sa,0,,0,299.0,,proven optimum,,0.05987490000006801,4400,44,,5.0
+tiny,4,tiny-4-203001,1,1,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.016085600000224076,400,,,5.0
+tiny,4,tiny-4-203001,1,1,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20167289999881177,,,1,0.2
+tiny,4,tiny-4-203001,1,1,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,2,qubo_sa,0,,0,299.0,,proven optimum,,0.035253000000011525,4400,44,,5.0
+tiny,4,tiny-4-203001,1,2,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.01454369999919436,400,,,5.0
+tiny,4,tiny-4-203001,1,2,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.2021593000008579,,,1,0.2
+tiny,4,tiny-4-203001,1,2,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,3,qubo_sa,1,311.0,2,299.0,,proven optimum,4.013377926421402,0.026832600000489037,4400,44,,5.0
+tiny,4,tiny-4-203001,1,3,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.008299900000565685,400,,,5.0
+tiny,4,tiny-4-203001,1,3,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20109969999975874,,,1,0.2
+tiny,4,tiny-4-203001,1,3,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,4,qubo_sa,0,,0,299.0,,proven optimum,,0.020460600000660634,4400,44,,5.0
+tiny,4,tiny-4-203001,1,4,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.011704499998813844,400,,,5.0
+tiny,4,tiny-4-203001,1,4,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20139849999941362,,,1,0.2
+tiny,4,tiny-4-203001,1,4,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,5,qubo_sa,0,,0,299.0,,proven optimum,,0.023624299999937648,4400,44,,5.0
+tiny,4,tiny-4-203001,1,5,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.014884299998811912,400,,,5.0
+tiny,4,tiny-4-203001,1,5,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20164250000016182,,,1,0.2
+tiny,4,tiny-4-203001,1,5,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,6,qubo_sa,1,312.0,2,299.0,,proven optimum,4.347826086956519,0.044570599999133265,4400,44,,5.0
+tiny,4,tiny-4-203001,1,6,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.018220300000393763,400,,,5.0
+tiny,4,tiny-4-203001,1,6,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.2016842999983055,,,1,0.2
+tiny,4,tiny-4-203001,1,6,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,7,qubo_sa,0,,0,299.0,,proven optimum,,0.04716119999829971,4400,44,,5.0
+tiny,4,tiny-4-203001,1,7,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.006363300000884919,400,,,5.0
+tiny,4,tiny-4-203001,1,7,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20121389999985695,,,1,0.2
+tiny,4,tiny-4-203001,1,7,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,8,qubo_sa,0,,0,299.0,,proven optimum,,0.017257499999686843,4400,44,,5.0
+tiny,4,tiny-4-203001,1,8,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.0052941000012651784,400,,,5.0
+tiny,4,tiny-4-203001,1,8,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20104340000034426,,,1,0.2
+tiny,4,tiny-4-203001,1,8,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203001,1,9,qubo_sa,0,,1,299.0,,proven optimum,,0.022201600000698818,4400,44,,5.0
+tiny,4,tiny-4-203001,1,9,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.005023499999879277,400,,,5.0
+tiny,4,tiny-4-203001,1,9,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20158140000057756,,,1,0.2
+tiny,4,tiny-4-203001,1,9,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.01976489999833575,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,0,qubo_sa,0,,0,239.0,,proven optimum,,0.05043450000084704,4400,44,,5.0
+tiny,4,tiny-4-203002,2,0,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.00485599999956321,400,,,5.0
+tiny,4,tiny-4-203002,2,0,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.20144339999933436,,,1,0.2
+tiny,4,tiny-4-203002,2,0,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,1,qubo_sa,0,,0,239.0,,proven optimum,,0.046977699999843026,4400,44,,5.0
+tiny,4,tiny-4-203002,2,1,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.013218900001447764,400,,,5.0
+tiny,4,tiny-4-203002,2,1,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.2016418999992311,,,1,0.2
+tiny,4,tiny-4-203002,2,1,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,2,qubo_sa,1,239.0,2,239.0,,proven optimum,0.0,0.0483141999993677,4400,44,,5.0
+tiny,4,tiny-4-203002,2,2,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.015074000000822707,400,,,5.0
+tiny,4,tiny-4-203002,2,2,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.20166219999919122,,,1,0.2
+tiny,4,tiny-4-203002,2,2,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,3,qubo_sa,1,239.0,2,239.0,,proven optimum,0.0,0.04430560000037076,4400,44,,5.0
+tiny,4,tiny-4-203002,2,3,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.013700599998628604,400,,,5.0
+tiny,4,tiny-4-203002,2,3,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.2016485999993165,,,1,0.2
+tiny,4,tiny-4-203002,2,3,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,4,qubo_sa,0,,0,239.0,,proven optimum,,0.015551000000414206,4400,44,,5.0
+tiny,4,tiny-4-203002,2,4,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.0054971999998087995,400,,,5.0
+tiny,4,tiny-4-203002,2,4,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.20113270000001648,,,1,0.2
+tiny,4,tiny-4-203002,2,4,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,5,qubo_sa,0,,2,239.0,,proven optimum,,0.017443699998693774,4400,44,,5.0
+tiny,4,tiny-4-203002,2,5,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.005328100000042468,400,,,5.0
+tiny,4,tiny-4-203002,2,5,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.20141659999899275,,,1,0.2
+tiny,4,tiny-4-203002,2,5,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,6,qubo_sa,1,337.0,2,239.0,,proven optimum,41.00418410041841,0.0166704999992362,4400,44,,5.0
+tiny,4,tiny-4-203002,2,6,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.005545799998799339,400,,,5.0
+tiny,4,tiny-4-203002,2,6,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.20101729999987583,,,1,0.2
+tiny,4,tiny-4-203002,2,6,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,7,qubo_sa,1,239.0,2,239.0,,proven optimum,0.0,0.01583089999985532,4400,44,,5.0
+tiny,4,tiny-4-203002,2,7,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.0051937999996880535,400,,,5.0
+tiny,4,tiny-4-203002,2,7,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.2009983000007196,,,1,0.2
+tiny,4,tiny-4-203002,2,7,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,8,qubo_sa,0,,0,239.0,,proven optimum,,0.01728519999960554,4400,44,,5.0
+tiny,4,tiny-4-203002,2,8,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.0056667999997443985,400,,,5.0
+tiny,4,tiny-4-203002,2,8,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.2010524000015721,,,1,0.2
+tiny,4,tiny-4-203002,2,8,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203002,2,9,qubo_sa,0,,2,239.0,,proven optimum,,0.016637900000205263,4400,44,,5.0
+tiny,4,tiny-4-203002,2,9,vrp_sa,1,239.0,2,239.0,,proven optimum,0.0,0.005021199998736847,400,,,5.0
+tiny,4,tiny-4-203002,2,9,ortools,1,239.0,2,239.0,,proven optimum,0.0,0.2011913000005734,,,1,0.2
+tiny,4,tiny-4-203002,2,9,exact_small,1,239.0,2,239.0,,proven optimum,0.0,0.011181399999259156,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,0,qubo_sa,1,390.0,2,316.0,,proven optimum,23.417721518987335,0.020712600000479142,4400,44,,5.0
+tiny,4,tiny-4-203003,3,0,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.005056899999544839,400,,,5.0
+tiny,4,tiny-4-203003,3,0,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.20176630000059959,,,1,0.2
+tiny,4,tiny-4-203003,3,0,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,1,qubo_sa,1,364.0,2,316.0,,proven optimum,15.189873417721511,0.019068800000241026,4400,44,,5.0
+tiny,4,tiny-4-203003,3,1,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.00490199999876495,400,,,5.0
+tiny,4,tiny-4-203003,3,1,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.20108849999996892,,,1,0.2
+tiny,4,tiny-4-203003,3,1,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,2,qubo_sa,1,364.0,2,316.0,,proven optimum,15.189873417721511,0.017992099999901257,4400,44,,5.0
+tiny,4,tiny-4-203003,3,2,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.00565189999906579,400,,,5.0
+tiny,4,tiny-4-203003,3,2,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.2018487000004825,,,1,0.2
+tiny,4,tiny-4-203003,3,2,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,3,qubo_sa,0,,0,316.0,,proven optimum,,0.016949299999396317,4400,44,,5.0
+tiny,4,tiny-4-203003,3,3,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.005304899999828194,400,,,5.0
+tiny,4,tiny-4-203003,3,3,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.2016208999993978,,,1,0.2
+tiny,4,tiny-4-203003,3,3,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,4,qubo_sa,0,,2,316.0,,proven optimum,,0.04893600000104925,4400,44,,5.0
+tiny,4,tiny-4-203003,3,4,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.006345399999190704,400,,,5.0
+tiny,4,tiny-4-203003,3,4,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.20149399999900197,,,1,0.2
+tiny,4,tiny-4-203003,3,4,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,5,qubo_sa,1,390.0,2,316.0,,proven optimum,23.417721518987335,0.04191589999936696,4400,44,,5.0
+tiny,4,tiny-4-203003,3,5,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.01702379999915138,400,,,5.0
+tiny,4,tiny-4-203003,3,5,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.2013472999988153,,,1,0.2
+tiny,4,tiny-4-203003,3,5,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,6,qubo_sa,0,,0,316.0,,proven optimum,,0.05529879999994591,4400,44,,5.0
+tiny,4,tiny-4-203003,3,6,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.016801200001282268,400,,,5.0
+tiny,4,tiny-4-203003,3,6,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.20194059999994352,,,1,0.2
+tiny,4,tiny-4-203003,3,6,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,7,qubo_sa,0,,0,316.0,,proven optimum,,0.04664580000098795,4400,44,,5.0
+tiny,4,tiny-4-203003,3,7,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.020116099998631398,400,,,5.0
+tiny,4,tiny-4-203003,3,7,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.2011765999995987,,,1,0.2
+tiny,4,tiny-4-203003,3,7,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,8,qubo_sa,0,,2,316.0,,proven optimum,,0.03527650000069116,4400,44,,5.0
+tiny,4,tiny-4-203003,3,8,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.007254800000737305,400,,,5.0
+tiny,4,tiny-4-203003,3,8,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.20157669999935024,,,1,0.2
+tiny,4,tiny-4-203003,3,8,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203003,3,9,qubo_sa,1,316.0,2,316.0,,proven optimum,0.0,0.02527900000131922,4400,44,,5.0
+tiny,4,tiny-4-203003,3,9,vrp_sa,1,316.0,2,316.0,,proven optimum,0.0,0.010663099999874248,400,,,5.0
+tiny,4,tiny-4-203003,3,9,ortools,1,316.0,2,316.0,,proven optimum,0.0,0.2015430000010383,,,1,0.2
+tiny,4,tiny-4-203003,3,9,exact_small,1,316.0,2,316.0,,proven optimum,0.0,0.008941699999923003,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,0,qubo_sa,0,,0,365.0,,proven optimum,,0.028057900000931113,4400,44,,5.0
+tiny,4,tiny-4-203004,4,0,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.010575000000244472,400,,,5.0
+tiny,4,tiny-4-203004,4,0,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.2015375999999378,,,1,0.2
+tiny,4,tiny-4-203004,4,0,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,1,qubo_sa,1,382.0,2,365.0,,proven optimum,4.657534246575334,0.0516248000003543,4400,44,,5.0
+tiny,4,tiny-4-203004,4,1,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.014363799999046023,400,,,5.0
+tiny,4,tiny-4-203004,4,1,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.2019044999997277,,,1,0.2
+tiny,4,tiny-4-203004,4,1,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,2,qubo_sa,0,,2,365.0,,proven optimum,,0.03714810000019497,4400,44,,5.0
+tiny,4,tiny-4-203004,4,2,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.014690199999677134,400,,,5.0
+tiny,4,tiny-4-203004,4,2,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.2018117000006896,,,1,0.2
+tiny,4,tiny-4-203004,4,2,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,3,qubo_sa,1,382.0,2,365.0,,proven optimum,4.657534246575334,0.025954599999749917,4400,44,,5.0
+tiny,4,tiny-4-203004,4,3,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.005055499999798485,400,,,5.0
+tiny,4,tiny-4-203004,4,3,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20099240000126883,,,1,0.2
+tiny,4,tiny-4-203004,4,3,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,4,qubo_sa,0,,0,365.0,,proven optimum,,0.04290140000011888,4400,44,,5.0
+tiny,4,tiny-4-203004,4,4,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.014937199999621953,400,,,5.0
+tiny,4,tiny-4-203004,4,4,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20152730000154406,,,1,0.2
+tiny,4,tiny-4-203004,4,4,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,5,qubo_sa,1,382.0,2,365.0,,proven optimum,4.657534246575334,0.016170699998838245,4400,44,,5.0
+tiny,4,tiny-4-203004,4,5,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.009913300000334857,400,,,5.0
+tiny,4,tiny-4-203004,4,5,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20182980000026873,,,1,0.2
+tiny,4,tiny-4-203004,4,5,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,6,qubo_sa,1,365.0,2,365.0,,proven optimum,0.0,0.02315219999945839,4400,44,,5.0
+tiny,4,tiny-4-203004,4,6,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.006024899999829358,400,,,5.0
+tiny,4,tiny-4-203004,4,6,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20135669999945094,,,1,0.2
+tiny,4,tiny-4-203004,4,6,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,7,qubo_sa,0,,0,365.0,,proven optimum,,0.01767409999956726,4400,44,,5.0
+tiny,4,tiny-4-203004,4,7,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.005042900000262307,400,,,5.0
+tiny,4,tiny-4-203004,4,7,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20165629999974044,,,1,0.2
+tiny,4,tiny-4-203004,4,7,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,8,qubo_sa,0,,0,365.0,,proven optimum,,0.019942400000218186,4400,44,,5.0
+tiny,4,tiny-4-203004,4,8,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.01584270000057586,400,,,5.0
+tiny,4,tiny-4-203004,4,8,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20165730000007898,,,1,0.2
+tiny,4,tiny-4-203004,4,8,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203004,4,9,qubo_sa,0,,0,365.0,,proven optimum,,0.02528379999967001,4400,44,,5.0
+tiny,4,tiny-4-203004,4,9,vrp_sa,1,365.0,2,365.0,,proven optimum,0.0,0.005091600000014296,400,,,5.0
+tiny,4,tiny-4-203004,4,9,ortools,1,365.0,2,365.0,,proven optimum,0.0,0.20116150000103517,,,1,0.2
+tiny,4,tiny-4-203004,4,9,exact_small,1,365.0,2,365.0,,proven optimum,0.0,0.007814000000507804,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,0,qubo_sa,0,,0,349.0,,proven optimum,,0.03533479999896372,4400,44,,5.0
+tiny,4,tiny-4-203005,5,0,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.013562300000558025,400,,,5.0
+tiny,4,tiny-4-203005,5,0,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20173699999941164,,,1,0.2
+tiny,4,tiny-4-203005,5,0,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,1,qubo_sa,1,367.0,2,349.0,,proven optimum,5.157593123209159,0.048688700000639074,4400,44,,5.0
+tiny,4,tiny-4-203005,5,1,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.010160600000745035,400,,,5.0
+tiny,4,tiny-4-203005,5,1,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20181679999950575,,,1,0.2
+tiny,4,tiny-4-203005,5,1,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,2,qubo_sa,0,,0,349.0,,proven optimum,,0.043321999999534455,4400,44,,5.0
+tiny,4,tiny-4-203005,5,2,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.014786599998842576,400,,,5.0
+tiny,4,tiny-4-203005,5,2,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20224529999904917,,,1,0.2
+tiny,4,tiny-4-203005,5,2,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,3,qubo_sa,1,349.0,2,349.0,,proven optimum,0.0,0.026095199998962926,4400,44,,5.0
+tiny,4,tiny-4-203005,5,3,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.013643199999933131,400,,,5.0
+tiny,4,tiny-4-203005,5,3,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20170260000122653,,,1,0.2
+tiny,4,tiny-4-203005,5,3,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,4,qubo_sa,1,349.0,2,349.0,,proven optimum,0.0,0.028665200001341873,4400,44,,5.0
+tiny,4,tiny-4-203005,5,4,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.009507299999313545,400,,,5.0
+tiny,4,tiny-4-203005,5,4,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20106910000140488,,,1,0.2
+tiny,4,tiny-4-203005,5,4,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,5,qubo_sa,0,,0,349.0,,proven optimum,,0.02212169999984326,4400,44,,5.0
+tiny,4,tiny-4-203005,5,5,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.005076499999631778,400,,,5.0
+tiny,4,tiny-4-203005,5,5,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20134839999991527,,,1,0.2
+tiny,4,tiny-4-203005,5,5,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,6,qubo_sa,0,,0,349.0,,proven optimum,,0.05324049999944691,4400,44,,5.0
+tiny,4,tiny-4-203005,5,6,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.014787200001592282,400,,,5.0
+tiny,4,tiny-4-203005,5,6,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.2009939999989001,,,1,0.2
+tiny,4,tiny-4-203005,5,6,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,7,qubo_sa,0,,0,349.0,,proven optimum,,0.06355330000042159,4400,44,,5.0
+tiny,4,tiny-4-203005,5,7,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.017672600000878447,400,,,5.0
+tiny,4,tiny-4-203005,5,7,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20265350000045146,,,1,0.2
+tiny,4,tiny-4-203005,5,7,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,8,qubo_sa,0,,2,349.0,,proven optimum,,0.05516220000026806,4400,44,,5.0
+tiny,4,tiny-4-203005,5,8,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.018744399998467998,400,,,5.0
+tiny,4,tiny-4-203005,5,8,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20298889999867242,,,1,0.2
+tiny,4,tiny-4-203005,5,8,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203005,5,9,qubo_sa,1,349.0,2,349.0,,proven optimum,0.0,0.058888900000965805,4400,44,,5.0
+tiny,4,tiny-4-203005,5,9,vrp_sa,1,349.0,2,349.0,,proven optimum,0.0,0.014830900001470582,400,,,5.0
+tiny,4,tiny-4-203005,5,9,ortools,1,349.0,2,349.0,,proven optimum,0.0,0.20232709999982035,,,1,0.2
+tiny,4,tiny-4-203005,5,9,exact_small,1,349.0,2,349.0,,proven optimum,0.0,0.012397799999234849,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,0,qubo_sa,1,395.0,2,291.0,,proven optimum,35.73883161512028,0.061066600001140614,4400,44,,5.0
+tiny,4,tiny-4-203006,6,0,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.016477999999551685,400,,,5.0
+tiny,4,tiny-4-203006,6,0,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.201738399999158,,,1,0.2
+tiny,4,tiny-4-203006,6,0,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,1,qubo_sa,1,291.0,2,291.0,,proven optimum,0.0,0.04576509999969858,4400,44,,5.0
+tiny,4,tiny-4-203006,6,1,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.009172500000204309,400,,,5.0
+tiny,4,tiny-4-203006,6,1,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.20109969999975874,,,1,0.2
+tiny,4,tiny-4-203006,6,1,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,2,qubo_sa,0,,0,291.0,,proven optimum,,0.0253272999998444,4400,44,,5.0
+tiny,4,tiny-4-203006,6,2,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.019664999999804422,400,,,5.0
+tiny,4,tiny-4-203006,6,2,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.20188620000044466,,,1,0.2
+tiny,4,tiny-4-203006,6,2,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,3,qubo_sa,1,291.0,2,291.0,,proven optimum,0.0,0.06296970000039437,4400,44,,5.0
+tiny,4,tiny-4-203006,6,3,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.01686379999955534,400,,,5.0
+tiny,4,tiny-4-203006,6,3,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.2028561000006448,,,1,0.2
+tiny,4,tiny-4-203006,6,3,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,4,qubo_sa,0,,0,291.0,,proven optimum,,0.04668620000120427,4400,44,,5.0
+tiny,4,tiny-4-203006,6,4,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.012601999998878455,400,,,5.0
+tiny,4,tiny-4-203006,6,4,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.2022584000005736,,,1,0.2
+tiny,4,tiny-4-203006,6,4,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,5,qubo_sa,0,,0,291.0,,proven optimum,,0.05050440000013623,4400,44,,5.0
+tiny,4,tiny-4-203006,6,5,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.009951899999578018,400,,,5.0
+tiny,4,tiny-4-203006,6,5,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.20294410000133212,,,1,0.2
+tiny,4,tiny-4-203006,6,5,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,6,qubo_sa,0,,0,291.0,,proven optimum,,0.06181099999957951,4400,44,,5.0
+tiny,4,tiny-4-203006,6,6,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.01626369999939925,400,,,5.0
+tiny,4,tiny-4-203006,6,6,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.2010470000004716,,,1,0.2
+tiny,4,tiny-4-203006,6,6,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,7,qubo_sa,0,,0,291.0,,proven optimum,,0.06137239999952726,4400,44,,5.0
+tiny,4,tiny-4-203006,6,7,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.013318100000105915,400,,,5.0
+tiny,4,tiny-4-203006,6,7,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.203172600000471,,,1,0.2
+tiny,4,tiny-4-203006,6,7,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,8,qubo_sa,1,395.0,2,291.0,,proven optimum,35.73883161512028,0.048778299998957664,4400,44,,5.0
+tiny,4,tiny-4-203006,6,8,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.015605399999913061,400,,,5.0
+tiny,4,tiny-4-203006,6,8,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.20173979999890435,,,1,0.2
+tiny,4,tiny-4-203006,6,8,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203006,6,9,qubo_sa,1,411.0,2,291.0,,proven optimum,41.237113402061865,0.06138920000012149,4400,44,,5.0
+tiny,4,tiny-4-203006,6,9,vrp_sa,1,291.0,2,291.0,,proven optimum,0.0,0.015048600000227452,400,,,5.0
+tiny,4,tiny-4-203006,6,9,ortools,1,291.0,2,291.0,,proven optimum,0.0,0.20168440000088594,,,1,0.2
+tiny,4,tiny-4-203006,6,9,exact_small,1,291.0,2,291.0,,proven optimum,0.0,0.013951699998870026,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,0,qubo_sa,0,,2,352.0,,proven optimum,,0.018425600001137354,4400,44,,5.0
+tiny,4,tiny-4-203007,7,0,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.004894100000456092,400,,,5.0
+tiny,4,tiny-4-203007,7,0,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20100019999881624,,,1,0.2
+tiny,4,tiny-4-203007,7,0,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,1,qubo_sa,0,,0,352.0,,proven optimum,,0.016831599999932223,4400,44,,5.0
+tiny,4,tiny-4-203007,7,1,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.007349999999860302,400,,,5.0
+tiny,4,tiny-4-203007,7,1,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20147859999997308,,,1,0.2
+tiny,4,tiny-4-203007,7,1,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,2,qubo_sa,0,,0,352.0,,proven optimum,,0.02990499999941676,4400,44,,5.0
+tiny,4,tiny-4-203007,7,2,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.014771299998756149,400,,,5.0
+tiny,4,tiny-4-203007,7,2,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.2020118000000366,,,1,0.2
+tiny,4,tiny-4-203007,7,2,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,3,qubo_sa,1,443.0,2,352.0,,proven optimum,25.85227272727273,0.024362199999814038,4400,44,,5.0
+tiny,4,tiny-4-203007,7,3,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.005759900001066853,400,,,5.0
+tiny,4,tiny-4-203007,7,3,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20149940000010247,,,1,0.2
+tiny,4,tiny-4-203007,7,3,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,4,qubo_sa,1,437.0,2,352.0,,proven optimum,24.14772727272727,0.025558600000294973,4400,44,,5.0
+tiny,4,tiny-4-203007,7,4,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.01185290000103123,400,,,5.0
+tiny,4,tiny-4-203007,7,4,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20147429999997257,,,1,0.2
+tiny,4,tiny-4-203007,7,4,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,5,qubo_sa,1,352.0,2,352.0,,proven optimum,0.0,0.016231499999776133,4400,44,,5.0
+tiny,4,tiny-4-203007,7,5,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.005350999999791384,400,,,5.0
+tiny,4,tiny-4-203007,7,5,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.2012643999987631,,,1,0.2
+tiny,4,tiny-4-203007,7,5,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,6,qubo_sa,1,352.0,2,352.0,,proven optimum,0.0,0.059865199998967,4400,44,,5.0
+tiny,4,tiny-4-203007,7,6,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.015085199998793541,400,,,5.0
+tiny,4,tiny-4-203007,7,6,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20162669999990612,,,1,0.2
+tiny,4,tiny-4-203007,7,6,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,7,qubo_sa,0,,0,352.0,,proven optimum,,0.034706300000834744,4400,44,,5.0
+tiny,4,tiny-4-203007,7,7,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.013864500000636326,400,,,5.0
+tiny,4,tiny-4-203007,7,7,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20170990000042366,,,1,0.2
+tiny,4,tiny-4-203007,7,7,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,8,qubo_sa,0,,2,352.0,,proven optimum,,0.050427700000000186,4400,44,,5.0
+tiny,4,tiny-4-203007,7,8,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.012468599999920116,400,,,5.0
+tiny,4,tiny-4-203007,7,8,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20114159999866388,,,1,0.2
+tiny,4,tiny-4-203007,7,8,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203007,7,9,qubo_sa,0,,0,352.0,,proven optimum,,0.06303660000048694,4400,44,,5.0
+tiny,4,tiny-4-203007,7,9,vrp_sa,1,352.0,2,352.0,,proven optimum,0.0,0.016133699999045348,400,,,5.0
+tiny,4,tiny-4-203007,7,9,ortools,1,352.0,2,352.0,,proven optimum,0.0,0.20155829999930575,,,1,0.2
+tiny,4,tiny-4-203007,7,9,exact_small,1,352.0,2,352.0,,proven optimum,0.0,0.009467800000493298,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,0,qubo_sa,0,,0,155.0,,proven optimum,,0.04921439999998256,4400,44,,5.0
+tiny,4,tiny-4-203008,8,0,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.014276199999585515,400,,,5.0
+tiny,4,tiny-4-203008,8,0,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20132419999936246,,,1,0.2
+tiny,4,tiny-4-203008,8,0,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,1,qubo_sa,0,,0,155.0,,proven optimum,,0.05068730000130017,4400,44,,5.0
+tiny,4,tiny-4-203008,8,1,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.01335319999998319,400,,,5.0
+tiny,4,tiny-4-203008,8,1,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20158260000062,,,1,0.2
+tiny,4,tiny-4-203008,8,1,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,2,qubo_sa,1,175.0,2,155.0,,proven optimum,12.903225806451623,0.02509730000019772,4400,44,,5.0
+tiny,4,tiny-4-203008,8,2,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.010781999999380787,400,,,5.0
+tiny,4,tiny-4-203008,8,2,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20121000000108324,,,1,0.2
+tiny,4,tiny-4-203008,8,2,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,3,qubo_sa,1,155.0,2,155.0,,proven optimum,0.0,0.028853200001321966,4400,44,,5.0
+tiny,4,tiny-4-203008,8,3,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.008910500000638422,400,,,5.0
+tiny,4,tiny-4-203008,8,3,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20143459999962943,,,1,0.2
+tiny,4,tiny-4-203008,8,3,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,4,qubo_sa,1,163.0,2,155.0,,proven optimum,5.161290322580636,0.01999420000174723,4400,44,,5.0
+tiny,4,tiny-4-203008,8,4,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.005679900001268834,400,,,5.0
+tiny,4,tiny-4-203008,8,4,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20112630000039644,,,1,0.2
+tiny,4,tiny-4-203008,8,4,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,5,qubo_sa,1,155.0,2,155.0,,proven optimum,0.0,0.024309499998707906,4400,44,,5.0
+tiny,4,tiny-4-203008,8,5,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.01150229999984731,400,,,5.0
+tiny,4,tiny-4-203008,8,5,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20235919999868202,,,1,0.2
+tiny,4,tiny-4-203008,8,5,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,6,qubo_sa,0,,2,155.0,,proven optimum,,0.019762999998420128,4400,44,,5.0
+tiny,4,tiny-4-203008,8,6,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.0054270000000542495,400,,,5.0
+tiny,4,tiny-4-203008,8,6,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.2011649000014586,,,1,0.2
+tiny,4,tiny-4-203008,8,6,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,7,qubo_sa,0,,0,155.0,,proven optimum,,0.02448260000164737,4400,44,,5.0
+tiny,4,tiny-4-203008,8,7,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.007245400000101654,400,,,5.0
+tiny,4,tiny-4-203008,8,7,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20104069999979401,,,1,0.2
+tiny,4,tiny-4-203008,8,7,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,8,qubo_sa,1,175.0,2,155.0,,proven optimum,12.903225806451623,0.016594400000030873,4400,44,,5.0
+tiny,4,tiny-4-203008,8,8,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.006910500000230968,400,,,5.0
+tiny,4,tiny-4-203008,8,8,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.2013247999984742,,,1,0.2
+tiny,4,tiny-4-203008,8,8,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203008,8,9,qubo_sa,0,,0,155.0,,proven optimum,,0.01862030000120285,4400,44,,5.0
+tiny,4,tiny-4-203008,8,9,vrp_sa,1,155.0,2,155.0,,proven optimum,0.0,0.0062099999995552935,400,,,5.0
+tiny,4,tiny-4-203008,8,9,ortools,1,155.0,2,155.0,,proven optimum,0.0,0.20159740000053716,,,1,0.2
+tiny,4,tiny-4-203008,8,9,exact_small,1,155.0,2,155.0,,proven optimum,0.0,0.011863599998832797,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,0,qubo_sa,0,,0,409.0,,proven optimum,,0.026058899999043206,4400,44,,5.0
+tiny,4,tiny-4-203009,9,0,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.006372400001055212,400,,,5.0
+tiny,4,tiny-4-203009,9,0,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20117279999976745,,,1,0.2
+tiny,4,tiny-4-203009,9,0,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,1,qubo_sa,0,,0,409.0,,proven optimum,,0.025070199999390752,4400,44,,5.0
+tiny,4,tiny-4-203009,9,1,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.004961999999068212,400,,,5.0
+tiny,4,tiny-4-203009,9,1,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20109169999886944,,,1,0.2
+tiny,4,tiny-4-203009,9,1,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,2,qubo_sa,0,,2,409.0,,proven optimum,,0.017917600000146194,4400,44,,5.0
+tiny,4,tiny-4-203009,9,2,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.007751400000415742,400,,,5.0
+tiny,4,tiny-4-203009,9,2,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20129960000122082,,,1,0.2
+tiny,4,tiny-4-203009,9,2,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,3,qubo_sa,0,,2,409.0,,proven optimum,,0.018471399998816196,4400,44,,5.0
+tiny,4,tiny-4-203009,9,3,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.005496899999343441,400,,,5.0
+tiny,4,tiny-4-203009,9,3,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20110079999903974,,,1,0.2
+tiny,4,tiny-4-203009,9,3,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,4,qubo_sa,1,409.0,2,409.0,,proven optimum,0.0,0.01849890000084997,4400,44,,5.0
+tiny,4,tiny-4-203009,9,4,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.006201599999258178,400,,,5.0
+tiny,4,tiny-4-203009,9,4,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20146460000069055,,,1,0.2
+tiny,4,tiny-4-203009,9,4,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,5,qubo_sa,1,445.0,2,409.0,,proven optimum,8.801955990220044,0.020068899999387213,4400,44,,5.0
+tiny,4,tiny-4-203009,9,5,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.00634409999838681,400,,,5.0
+tiny,4,tiny-4-203009,9,5,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20116039999993518,,,1,0.2
+tiny,4,tiny-4-203009,9,5,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,6,qubo_sa,0,,2,409.0,,proven optimum,,0.027225699999689823,4400,44,,5.0
+tiny,4,tiny-4-203009,9,6,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.007891199998994125,400,,,5.0
+tiny,4,tiny-4-203009,9,6,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20109929999853193,,,1,0.2
+tiny,4,tiny-4-203009,9,6,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,7,qubo_sa,0,,0,409.0,,proven optimum,,0.019671100000778097,4400,44,,5.0
+tiny,4,tiny-4-203009,9,7,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.00671419999889622,400,,,5.0
+tiny,4,tiny-4-203009,9,7,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.20126689999960945,,,1,0.2
+tiny,4,tiny-4-203009,9,7,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,8,qubo_sa,1,445.0,2,409.0,,proven optimum,8.801955990220044,0.019400200000745826,4400,44,,5.0
+tiny,4,tiny-4-203009,9,8,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.005747299999711686,400,,,5.0
+tiny,4,tiny-4-203009,9,8,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.201184600000488,,,1,0.2
+tiny,4,tiny-4-203009,9,8,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,4,tiny-4-203009,9,9,qubo_sa,0,,0,409.0,,proven optimum,,0.01780010000038601,4400,44,,5.0
+tiny,4,tiny-4-203009,9,9,vrp_sa,1,409.0,2,409.0,,proven optimum,0.0,0.008659400000397,400,,,5.0
+tiny,4,tiny-4-203009,9,9,ortools,1,409.0,2,409.0,,proven optimum,0.0,0.2010986999994202,,,1,0.2
+tiny,4,tiny-4-203009,9,9,exact_small,1,409.0,2,409.0,,proven optimum,0.0,0.009896899999148445,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,0,qubo_sa,0,,0,299.0,,proven optimum,,0.054611600000498584,8800,88,,5.0
+tiny,6,tiny-6-203000,0,0,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.027322100000674254,600,,,5.0
+tiny,6,tiny-6-203000,0,0,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20104879999962577,,,1,0.2
+tiny,6,tiny-6-203000,0,0,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,1,qubo_sa,0,,0,299.0,,proven optimum,,0.04097689999980503,8800,88,,5.0
+tiny,6,tiny-6-203000,0,1,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.014288599999417784,600,,,5.0
+tiny,6,tiny-6-203000,0,1,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.2008605000009993,,,1,0.2
+tiny,6,tiny-6-203000,0,1,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,2,qubo_sa,0,,0,299.0,,proven optimum,,0.03935549999914656,8800,88,,5.0
+tiny,6,tiny-6-203000,0,2,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.015090799999597948,600,,,5.0
+tiny,6,tiny-6-203000,0,2,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.2010948000006465,,,1,0.2
+tiny,6,tiny-6-203000,0,2,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,3,qubo_sa,0,,0,299.0,,proven optimum,,0.03689900000063062,8800,88,,5.0
+tiny,6,tiny-6-203000,0,3,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.01875070000096457,600,,,5.0
+tiny,6,tiny-6-203000,0,3,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20118019999972603,,,1,0.2
+tiny,6,tiny-6-203000,0,3,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,4,qubo_sa,0,,0,299.0,,proven optimum,,0.036080100000617676,8800,88,,5.0
+tiny,6,tiny-6-203000,0,4,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.018708000001424807,600,,,5.0
+tiny,6,tiny-6-203000,0,4,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20185719999972207,,,1,0.2
+tiny,6,tiny-6-203000,0,4,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,5,qubo_sa,0,,0,299.0,,proven optimum,,0.03705599999921105,8800,88,,5.0
+tiny,6,tiny-6-203000,0,5,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.01485080000020389,600,,,5.0
+tiny,6,tiny-6-203000,0,5,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20124240000041027,,,1,0.2
+tiny,6,tiny-6-203000,0,5,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,6,qubo_sa,0,,0,299.0,,proven optimum,,0.041563099999621045,8800,88,,5.0
+tiny,6,tiny-6-203000,0,6,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.01577720000022964,600,,,5.0
+tiny,6,tiny-6-203000,0,6,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.2010920000011538,,,1,0.2
+tiny,6,tiny-6-203000,0,6,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,7,qubo_sa,0,,0,299.0,,proven optimum,,0.03744189999997616,8800,88,,5.0
+tiny,6,tiny-6-203000,0,7,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.016422900000179652,600,,,5.0
+tiny,6,tiny-6-203000,0,7,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.2013877000008506,,,1,0.2
+tiny,6,tiny-6-203000,0,7,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,8,qubo_sa,0,,0,299.0,,proven optimum,,0.039058700000168756,8800,88,,5.0
+tiny,6,tiny-6-203000,0,8,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.013811299999360926,600,,,5.0
+tiny,6,tiny-6-203000,0,8,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20100600000114355,,,1,0.2
+tiny,6,tiny-6-203000,0,8,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203000,0,9,qubo_sa,0,,0,299.0,,proven optimum,,0.13714029999937338,8800,88,,5.0
+tiny,6,tiny-6-203000,0,9,vrp_sa,1,299.0,2,299.0,,proven optimum,0.0,0.041330699999889475,600,,,5.0
+tiny,6,tiny-6-203000,0,9,ortools,1,299.0,2,299.0,,proven optimum,0.0,0.20206570000118518,,,1,0.2
+tiny,6,tiny-6-203000,0,9,exact_small,1,299.0,2,299.0,,proven optimum,0.0,0.016241100000115694,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,0,qubo_sa,0,,0,355.0,,proven optimum,,0.05200999999942724,8800,88,,5.0
+tiny,6,tiny-6-203001,1,0,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.016132699998706812,600,,,5.0
+tiny,6,tiny-6-203001,1,0,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20169239999995625,,,1,0.2
+tiny,6,tiny-6-203001,1,0,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,1,qubo_sa,0,,0,355.0,,proven optimum,,0.05419310000070254,8800,88,,5.0
+tiny,6,tiny-6-203001,1,1,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.016528199999811477,600,,,5.0
+tiny,6,tiny-6-203001,1,1,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20156280000082916,,,1,0.2
+tiny,6,tiny-6-203001,1,1,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,2,qubo_sa,0,,0,355.0,,proven optimum,,0.06545829999959096,8800,88,,5.0
+tiny,6,tiny-6-203001,1,2,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.02422870000009425,600,,,5.0
+tiny,6,tiny-6-203001,1,2,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.2015056000000186,,,1,0.2
+tiny,6,tiny-6-203001,1,2,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,3,qubo_sa,0,,0,355.0,,proven optimum,,0.03832779999902414,8800,88,,5.0
+tiny,6,tiny-6-203001,1,3,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.016506300000401097,600,,,5.0
+tiny,6,tiny-6-203001,1,3,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20198340000024473,,,1,0.2
+tiny,6,tiny-6-203001,1,3,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,4,qubo_sa,0,,0,355.0,,proven optimum,,0.04855649999990419,8800,88,,5.0
+tiny,6,tiny-6-203001,1,4,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.015417399999932968,600,,,5.0
+tiny,6,tiny-6-203001,1,4,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20133720000012545,,,1,0.2
+tiny,6,tiny-6-203001,1,4,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,5,qubo_sa,0,,0,355.0,,proven optimum,,0.03428660000099626,8800,88,,5.0
+tiny,6,tiny-6-203001,1,5,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.013988099999551196,600,,,5.0
+tiny,6,tiny-6-203001,1,5,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.201456099999632,,,1,0.2
+tiny,6,tiny-6-203001,1,5,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,6,qubo_sa,0,,0,355.0,,proven optimum,,0.21693409999897995,8800,88,,5.0
+tiny,6,tiny-6-203001,1,6,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.05777880000096047,600,,,5.0
+tiny,6,tiny-6-203001,1,6,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20410230000015872,,,1,0.2
+tiny,6,tiny-6-203001,1,6,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,7,qubo_sa,0,,0,355.0,,proven optimum,,0.05372260000149254,8800,88,,5.0
+tiny,6,tiny-6-203001,1,7,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.016536199998881784,600,,,5.0
+tiny,6,tiny-6-203001,1,7,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20191659999909461,,,1,0.2
+tiny,6,tiny-6-203001,1,7,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,8,qubo_sa,0,,0,355.0,,proven optimum,,0.041139799999655224,8800,88,,5.0
+tiny,6,tiny-6-203001,1,8,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.017993199999182252,600,,,5.0
+tiny,6,tiny-6-203001,1,8,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.2012139999987994,,,1,0.2
+tiny,6,tiny-6-203001,1,8,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203001,1,9,qubo_sa,0,,0,355.0,,proven optimum,,0.05751309999868681,8800,88,,5.0
+tiny,6,tiny-6-203001,1,9,vrp_sa,1,355.0,2,355.0,,proven optimum,0.0,0.02928290000090783,600,,,5.0
+tiny,6,tiny-6-203001,1,9,ortools,1,355.0,2,355.0,,proven optimum,0.0,0.20119859999977052,,,1,0.2
+tiny,6,tiny-6-203001,1,9,exact_small,1,355.0,2,355.0,,proven optimum,0.0,0.01605560000098194,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,0,qubo_sa,1,401.0,2,254.0,,proven optimum,57.8740157480315,0.0433816000004299,8800,88,,5.0
+tiny,6,tiny-6-203002,2,0,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.025785800000448944,600,,,5.0
+tiny,6,tiny-6-203002,2,0,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.2011211999997613,,,1,0.2
+tiny,6,tiny-6-203002,2,0,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,1,qubo_sa,0,,0,254.0,,proven optimum,,0.042076299998370814,8800,88,,5.0
+tiny,6,tiny-6-203002,2,1,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.017975499999010935,600,,,5.0
+tiny,6,tiny-6-203002,2,1,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.201289500000712,,,1,0.2
+tiny,6,tiny-6-203002,2,1,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,2,qubo_sa,0,,0,254.0,,proven optimum,,0.048596599999655155,8800,88,,5.0
+tiny,6,tiny-6-203002,2,2,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.016632999999274034,600,,,5.0
+tiny,6,tiny-6-203002,2,2,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.20112960000005842,,,1,0.2
+tiny,6,tiny-6-203002,2,2,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,3,qubo_sa,0,,0,254.0,,proven optimum,,0.037387200000011944,8800,88,,5.0
+tiny,6,tiny-6-203002,2,3,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.016291900001306203,600,,,5.0
+tiny,6,tiny-6-203002,2,3,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.20104989999890677,,,1,0.2
+tiny,6,tiny-6-203002,2,3,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,4,qubo_sa,0,,0,254.0,,proven optimum,,0.043375199998990865,8800,88,,5.0
+tiny,6,tiny-6-203002,2,4,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.016756299999542534,600,,,5.0
+tiny,6,tiny-6-203002,2,4,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.2010976000001392,,,1,0.2
+tiny,6,tiny-6-203002,2,4,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,5,qubo_sa,0,,0,254.0,,proven optimum,,0.03947050000169838,8800,88,,5.0
+tiny,6,tiny-6-203002,2,5,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.016584299999522045,600,,,5.0
+tiny,6,tiny-6-203002,2,5,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.20153009999921778,,,1,0.2
+tiny,6,tiny-6-203002,2,5,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,6,qubo_sa,0,,0,254.0,,proven optimum,,0.04199940000034985,8800,88,,5.0
+tiny,6,tiny-6-203002,2,6,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.01709590000064054,600,,,5.0
+tiny,6,tiny-6-203002,2,6,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.2008810999996058,,,1,0.2
+tiny,6,tiny-6-203002,2,6,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,7,qubo_sa,0,,0,254.0,,proven optimum,,0.04701249999925494,8800,88,,5.0
+tiny,6,tiny-6-203002,2,7,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.017070399999283836,600,,,5.0
+tiny,6,tiny-6-203002,2,7,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.20129540000016277,,,1,0.2
+tiny,6,tiny-6-203002,2,7,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,8,qubo_sa,0,,0,254.0,,proven optimum,,0.03992860000107612,8800,88,,5.0
+tiny,6,tiny-6-203002,2,8,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.015235099999699742,600,,,5.0
+tiny,6,tiny-6-203002,2,8,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.20133779999923718,,,1,0.2
+tiny,6,tiny-6-203002,2,8,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203002,2,9,qubo_sa,0,,0,254.0,,proven optimum,,0.037860899999941466,8800,88,,5.0
+tiny,6,tiny-6-203002,2,9,vrp_sa,1,254.0,2,254.0,,proven optimum,0.0,0.014461799999480718,600,,,5.0
+tiny,6,tiny-6-203002,2,9,ortools,1,254.0,2,254.0,,proven optimum,0.0,0.20107760000064445,,,1,0.2
+tiny,6,tiny-6-203002,2,9,exact_small,1,254.0,2,254.0,,proven optimum,0.0,0.0248554999998305,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,0,qubo_sa,0,,0,358.0,,proven optimum,,0.03772650000064459,8800,88,,5.0
+tiny,6,tiny-6-203003,3,0,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.01544100000137405,600,,,5.0
+tiny,6,tiny-6-203003,3,0,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20089829999960784,,,1,0.2
+tiny,6,tiny-6-203003,3,0,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,1,qubo_sa,0,,0,358.0,,proven optimum,,0.03531140000086452,8800,88,,5.0
+tiny,6,tiny-6-203003,3,1,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.016695300000719726,600,,,5.0
+tiny,6,tiny-6-203003,3,1,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.2011581999995542,,,1,0.2
+tiny,6,tiny-6-203003,3,1,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,2,qubo_sa,0,,0,358.0,,proven optimum,,0.037353399999119574,8800,88,,5.0
+tiny,6,tiny-6-203003,3,2,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.01412490000075195,600,,,5.0
+tiny,6,tiny-6-203003,3,2,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20125550000011572,,,1,0.2
+tiny,6,tiny-6-203003,3,2,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,3,qubo_sa,0,,0,358.0,,proven optimum,,0.03661880000072415,8800,88,,5.0
+tiny,6,tiny-6-203003,3,3,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.015043799998238683,600,,,5.0
+tiny,6,tiny-6-203003,3,3,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20114900000044145,,,1,0.2
+tiny,6,tiny-6-203003,3,3,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,4,qubo_sa,0,,0,358.0,,proven optimum,,0.08268320000024687,8800,88,,5.0
+tiny,6,tiny-6-203003,3,4,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.03183829999943555,600,,,5.0
+tiny,6,tiny-6-203003,3,4,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20132310000008147,,,1,0.2
+tiny,6,tiny-6-203003,3,4,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,5,qubo_sa,0,,0,358.0,,proven optimum,,0.03929760000028182,8800,88,,5.0
+tiny,6,tiny-6-203003,3,5,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.015393700001368416,600,,,5.0
+tiny,6,tiny-6-203003,3,5,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20086989999981597,,,1,0.2
+tiny,6,tiny-6-203003,3,5,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,6,qubo_sa,0,,0,358.0,,proven optimum,,0.04972579999957816,8800,88,,5.0
+tiny,6,tiny-6-203003,3,6,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.01750940000056289,600,,,5.0
+tiny,6,tiny-6-203003,3,6,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.2009180999993987,,,1,0.2
+tiny,6,tiny-6-203003,3,6,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,7,qubo_sa,0,,0,358.0,,proven optimum,,0.03738020000128017,8800,88,,5.0
+tiny,6,tiny-6-203003,3,7,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.015064699999129516,600,,,5.0
+tiny,6,tiny-6-203003,3,7,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20090829999935522,,,1,0.2
+tiny,6,tiny-6-203003,3,7,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,8,qubo_sa,0,,0,358.0,,proven optimum,,0.03686139999990701,8800,88,,5.0
+tiny,6,tiny-6-203003,3,8,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.015901599999779137,600,,,5.0
+tiny,6,tiny-6-203003,3,8,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20084889999998268,,,1,0.2
+tiny,6,tiny-6-203003,3,8,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203003,3,9,qubo_sa,0,,0,358.0,,proven optimum,,0.03702699999848846,8800,88,,5.0
+tiny,6,tiny-6-203003,3,9,vrp_sa,1,358.0,2,358.0,,proven optimum,0.0,0.015001399999164278,600,,,5.0
+tiny,6,tiny-6-203003,3,9,ortools,1,358.0,2,358.0,,proven optimum,0.0,0.20105640000110725,,,1,0.2
+tiny,6,tiny-6-203003,3,9,exact_small,1,358.0,2,358.0,,proven optimum,0.0,0.01536620000115363,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,0,qubo_sa,0,,0,366.0,,proven optimum,,0.037914799999271054,8800,88,,5.0
+tiny,6,tiny-6-203004,4,0,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.01597129999936442,600,,,5.0
+tiny,6,tiny-6-203004,4,0,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20079400000031455,,,1,0.2
+tiny,6,tiny-6-203004,4,0,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,1,qubo_sa,0,,0,366.0,,proven optimum,,0.03622489999906975,8800,88,,5.0
+tiny,6,tiny-6-203004,4,1,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.014849799999865354,600,,,5.0
+tiny,6,tiny-6-203004,4,1,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20092490000024554,,,1,0.2
+tiny,6,tiny-6-203004,4,1,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,2,qubo_sa,0,,0,366.0,,proven optimum,,0.045369199999186094,8800,88,,5.0
+tiny,6,tiny-6-203004,4,2,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.018227599999590893,600,,,5.0
+tiny,6,tiny-6-203004,4,2,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20094869999957155,,,1,0.2
+tiny,6,tiny-6-203004,4,2,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,3,qubo_sa,0,,0,366.0,,proven optimum,,0.03706939999938186,8800,88,,5.0
+tiny,6,tiny-6-203004,4,3,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.013896599999497994,600,,,5.0
+tiny,6,tiny-6-203004,4,3,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20095229999969888,,,1,0.2
+tiny,6,tiny-6-203004,4,3,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,4,qubo_sa,0,,0,366.0,,proven optimum,,0.04246109999985492,8800,88,,5.0
+tiny,6,tiny-6-203004,4,4,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.013732100000197534,600,,,5.0
+tiny,6,tiny-6-203004,4,4,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20081329999993613,,,1,0.2
+tiny,6,tiny-6-203004,4,4,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,5,qubo_sa,0,,0,366.0,,proven optimum,,0.0357836999992287,8800,88,,5.0
+tiny,6,tiny-6-203004,4,5,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.0168733999998949,600,,,5.0
+tiny,6,tiny-6-203004,4,5,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20119870000053197,,,1,0.2
+tiny,6,tiny-6-203004,4,5,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,6,qubo_sa,0,,0,366.0,,proven optimum,,0.037619500000801054,8800,88,,5.0
+tiny,6,tiny-6-203004,4,6,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.014049299999896903,600,,,5.0
+tiny,6,tiny-6-203004,4,6,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20112909999988915,,,1,0.2
+tiny,6,tiny-6-203004,4,6,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,7,qubo_sa,0,,0,366.0,,proven optimum,,0.036900300001434516,8800,88,,5.0
+tiny,6,tiny-6-203004,4,7,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.01566110000021581,600,,,5.0
+tiny,6,tiny-6-203004,4,7,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.2010491999990336,,,1,0.2
+tiny,6,tiny-6-203004,4,7,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,8,qubo_sa,0,,0,366.0,,proven optimum,,0.03710990000035963,8800,88,,5.0
+tiny,6,tiny-6-203004,4,8,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.015285899999071262,600,,,5.0
+tiny,6,tiny-6-203004,4,8,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20132160000139265,,,1,0.2
+tiny,6,tiny-6-203004,4,8,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203004,4,9,qubo_sa,0,,0,366.0,,proven optimum,,0.11544150000008813,8800,88,,5.0
+tiny,6,tiny-6-203004,4,9,vrp_sa,1,366.0,2,366.0,,proven optimum,0.0,0.034243800000695046,600,,,5.0
+tiny,6,tiny-6-203004,4,9,ortools,1,366.0,2,366.0,,proven optimum,0.0,0.20091710000087915,,,1,0.2
+tiny,6,tiny-6-203004,4,9,exact_small,1,366.0,2,366.0,,proven optimum,0.0,0.011538900000232388,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,0,qubo_sa,0,,0,414.0,,proven optimum,,0.054911600000195904,8800,88,,5.0
+tiny,6,tiny-6-203005,5,0,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.01488930000050459,600,,,5.0
+tiny,6,tiny-6-203005,5,0,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20095450000007986,,,1,0.2
+tiny,6,tiny-6-203005,5,0,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,1,qubo_sa,0,,0,414.0,,proven optimum,,0.03827070000079402,8800,88,,5.0
+tiny,6,tiny-6-203005,5,1,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.01680810000107158,600,,,5.0
+tiny,6,tiny-6-203005,5,1,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20122550000087358,,,1,0.2
+tiny,6,tiny-6-203005,5,1,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,2,qubo_sa,0,,0,414.0,,proven optimum,,0.07738979999885487,8800,88,,5.0
+tiny,6,tiny-6-203005,5,2,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.019302000000607222,600,,,5.0
+tiny,6,tiny-6-203005,5,2,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20096919999923557,,,1,0.2
+tiny,6,tiny-6-203005,5,2,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,3,qubo_sa,0,,0,414.0,,proven optimum,,0.11065339999913704,8800,88,,5.0
+tiny,6,tiny-6-203005,5,3,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.03517389999979059,600,,,5.0
+tiny,6,tiny-6-203005,5,3,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.2011136000000988,,,1,0.2
+tiny,6,tiny-6-203005,5,3,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,4,qubo_sa,0,,0,414.0,,proven optimum,,0.06934230000115349,8800,88,,5.0
+tiny,6,tiny-6-203005,5,4,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.026559799998722156,600,,,5.0
+tiny,6,tiny-6-203005,5,4,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20134279999911087,,,1,0.2
+tiny,6,tiny-6-203005,5,4,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,5,qubo_sa,0,,0,414.0,,proven optimum,,0.08775140000034298,8800,88,,5.0
+tiny,6,tiny-6-203005,5,5,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.03576199999952223,600,,,5.0
+tiny,6,tiny-6-203005,5,5,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20163959999990766,,,1,0.2
+tiny,6,tiny-6-203005,5,5,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,6,qubo_sa,0,,0,414.0,,proven optimum,,0.07734549999986484,8800,88,,5.0
+tiny,6,tiny-6-203005,5,6,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.019120300001304713,600,,,5.0
+tiny,6,tiny-6-203005,5,6,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.201135900000736,,,1,0.2
+tiny,6,tiny-6-203005,5,6,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,7,qubo_sa,0,,0,414.0,,proven optimum,,0.04722039999978733,8800,88,,5.0
+tiny,6,tiny-6-203005,5,7,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.04402939999999944,600,,,5.0
+tiny,6,tiny-6-203005,5,7,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20089850000113074,,,1,0.2
+tiny,6,tiny-6-203005,5,7,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,8,qubo_sa,0,,0,414.0,,proven optimum,,0.07161249999990105,8800,88,,5.0
+tiny,6,tiny-6-203005,5,8,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.021925900000496767,600,,,5.0
+tiny,6,tiny-6-203005,5,8,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.20076930000141147,,,1,0.2
+tiny,6,tiny-6-203005,5,8,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203005,5,9,qubo_sa,0,,0,414.0,,proven optimum,,0.04002819999914209,8800,88,,5.0
+tiny,6,tiny-6-203005,5,9,vrp_sa,1,414.0,2,414.0,,proven optimum,0.0,0.016697400000339258,600,,,5.0
+tiny,6,tiny-6-203005,5,9,ortools,1,414.0,2,414.0,,proven optimum,0.0,0.2010472000001755,,,1,0.2
+tiny,6,tiny-6-203005,5,9,exact_small,1,414.0,2,414.0,,proven optimum,0.0,0.021818299999722512,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,0,qubo_sa,0,,0,306.0,,proven optimum,,0.04759599999852071,8800,88,,5.0
+tiny,6,tiny-6-203006,6,0,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.03319999999985157,600,,,5.0
+tiny,6,tiny-6-203006,6,0,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.20123890000104439,,,1,0.2
+tiny,6,tiny-6-203006,6,0,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,1,qubo_sa,0,,0,306.0,,proven optimum,,0.07980039999893052,8800,88,,5.0
+tiny,6,tiny-6-203006,6,1,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.02624680000008084,600,,,5.0
+tiny,6,tiny-6-203006,6,1,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.2008473000005324,,,1,0.2
+tiny,6,tiny-6-203006,6,1,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,2,qubo_sa,0,,0,306.0,,proven optimum,,0.0359891999996762,8800,88,,5.0
+tiny,6,tiny-6-203006,6,2,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.014559100000042235,600,,,5.0
+tiny,6,tiny-6-203006,6,2,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.20102070000029926,,,1,0.2
+tiny,6,tiny-6-203006,6,2,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,3,qubo_sa,0,,0,306.0,,proven optimum,,0.03561649999937799,8800,88,,5.0
+tiny,6,tiny-6-203006,6,3,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.01489930000025197,600,,,5.0
+tiny,6,tiny-6-203006,6,3,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.20087919999969017,,,1,0.2
+tiny,6,tiny-6-203006,6,3,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,4,qubo_sa,0,,0,306.0,,proven optimum,,0.04071810000095866,8800,88,,5.0
+tiny,6,tiny-6-203006,6,4,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.01577240000005986,600,,,5.0
+tiny,6,tiny-6-203006,6,4,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.20079360000090674,,,1,0.2
+tiny,6,tiny-6-203006,6,4,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,5,qubo_sa,0,,0,306.0,,proven optimum,,0.03797430000122404,8800,88,,5.0
+tiny,6,tiny-6-203006,6,5,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.015524400001595495,600,,,5.0
+tiny,6,tiny-6-203006,6,5,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.2010857000004762,,,1,0.2
+tiny,6,tiny-6-203006,6,5,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,6,qubo_sa,0,,0,306.0,,proven optimum,,0.03518590000021504,8800,88,,5.0
+tiny,6,tiny-6-203006,6,6,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.014880500000799657,600,,,5.0
+tiny,6,tiny-6-203006,6,6,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.2007859000004828,,,1,0.2
+tiny,6,tiny-6-203006,6,6,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,7,qubo_sa,0,,0,306.0,,proven optimum,,0.03893749999951979,8800,88,,5.0
+tiny,6,tiny-6-203006,6,7,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.015308900001400616,600,,,5.0
+tiny,6,tiny-6-203006,6,7,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.2011287999994238,,,1,0.2
+tiny,6,tiny-6-203006,6,7,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,8,qubo_sa,0,,0,306.0,,proven optimum,,0.03556410000055621,8800,88,,5.0
+tiny,6,tiny-6-203006,6,8,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.013388399998802925,600,,,5.0
+tiny,6,tiny-6-203006,6,8,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.20077049999963492,,,1,0.2
+tiny,6,tiny-6-203006,6,8,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203006,6,9,qubo_sa,0,,0,306.0,,proven optimum,,0.04037590000007185,8800,88,,5.0
+tiny,6,tiny-6-203006,6,9,vrp_sa,1,306.0,2,306.0,,proven optimum,0.0,0.015219999999317224,600,,,5.0
+tiny,6,tiny-6-203006,6,9,ortools,1,306.0,2,306.0,,proven optimum,0.0,0.20085190000099828,,,1,0.2
+tiny,6,tiny-6-203006,6,9,exact_small,1,306.0,2,306.0,,proven optimum,0.0,0.018123899999409332,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,0,qubo_sa,0,,0,402.0,,proven optimum,,0.03733939999983704,8800,88,,5.0
+tiny,6,tiny-6-203007,7,0,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.014983099999881233,600,,,5.0
+tiny,6,tiny-6-203007,7,0,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20165079999969748,,,1,0.2
+tiny,6,tiny-6-203007,7,0,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,1,qubo_sa,0,,0,402.0,,proven optimum,,0.05874220000077912,8800,88,,5.0
+tiny,6,tiny-6-203007,7,1,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.01595860000088578,600,,,5.0
+tiny,6,tiny-6-203007,7,1,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20078990000001795,,,1,0.2
+tiny,6,tiny-6-203007,7,1,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,2,qubo_sa,0,,0,402.0,,proven optimum,,0.04056999999920663,8800,88,,5.0
+tiny,6,tiny-6-203007,7,2,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.013767800001005526,600,,,5.0
+tiny,6,tiny-6-203007,7,2,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20093099999940023,,,1,0.2
+tiny,6,tiny-6-203007,7,2,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,3,qubo_sa,0,,0,402.0,,proven optimum,,0.05751429999872926,8800,88,,5.0
+tiny,6,tiny-6-203007,7,3,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.032560599998760154,600,,,5.0
+tiny,6,tiny-6-203007,7,3,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20121040000049106,,,1,0.2
+tiny,6,tiny-6-203007,7,3,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,4,qubo_sa,0,,0,402.0,,proven optimum,,0.03775409999980184,8800,88,,5.0
+tiny,6,tiny-6-203007,7,4,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.019542600000931998,600,,,5.0
+tiny,6,tiny-6-203007,7,4,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.2020974999995815,,,1,0.2
+tiny,6,tiny-6-203007,7,4,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,5,qubo_sa,0,,0,402.0,,proven optimum,,0.0368769999986398,8800,88,,5.0
+tiny,6,tiny-6-203007,7,5,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.013704500001040287,600,,,5.0
+tiny,6,tiny-6-203007,7,5,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20101729999987583,,,1,0.2
+tiny,6,tiny-6-203007,7,5,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,6,qubo_sa,0,,0,402.0,,proven optimum,,0.03659779999907187,8800,88,,5.0
+tiny,6,tiny-6-203007,7,6,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.017143400000350084,600,,,5.0
+tiny,6,tiny-6-203007,7,6,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20087509999939357,,,1,0.2
+tiny,6,tiny-6-203007,7,6,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,7,qubo_sa,0,,0,402.0,,proven optimum,,0.04983899999933783,8800,88,,5.0
+tiny,6,tiny-6-203007,7,7,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.02181879999989178,600,,,5.0
+tiny,6,tiny-6-203007,7,7,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.2008323999998538,,,1,0.2
+tiny,6,tiny-6-203007,7,7,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,8,qubo_sa,0,,0,402.0,,proven optimum,,0.03981039999962377,8800,88,,5.0
+tiny,6,tiny-6-203007,7,8,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.015613599998687278,600,,,5.0
+tiny,6,tiny-6-203007,7,8,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20082100000036007,,,1,0.2
+tiny,6,tiny-6-203007,7,8,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203007,7,9,qubo_sa,0,,0,402.0,,proven optimum,,0.037234400000670576,8800,88,,5.0
+tiny,6,tiny-6-203007,7,9,vrp_sa,1,402.0,2,402.0,,proven optimum,0.0,0.014638599999670987,600,,,5.0
+tiny,6,tiny-6-203007,7,9,ortools,1,402.0,2,402.0,,proven optimum,0.0,0.20083019999947282,,,1,0.2
+tiny,6,tiny-6-203007,7,9,exact_small,1,402.0,2,402.0,,proven optimum,0.0,0.03525649999937741,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,0,qubo_sa,0,,0,220.0,,proven optimum,,0.03885450000052515,8800,88,,5.0
+tiny,6,tiny-6-203008,8,0,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.033629499999733525,600,,,5.0
+tiny,6,tiny-6-203008,8,0,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.20150749999993423,,,1,0.2
+tiny,6,tiny-6-203008,8,0,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,1,qubo_sa,0,,0,220.0,,proven optimum,,0.044894499998918036,8800,88,,5.0
+tiny,6,tiny-6-203008,8,1,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.016008700000384124,600,,,5.0
+tiny,6,tiny-6-203008,8,1,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.2009951000000001,,,1,0.2
+tiny,6,tiny-6-203008,8,1,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,2,qubo_sa,0,,0,220.0,,proven optimum,,0.03608180000082939,8800,88,,5.0
+tiny,6,tiny-6-203008,8,2,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.014029999998456333,600,,,5.0
+tiny,6,tiny-6-203008,8,2,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.2011839000006148,,,1,0.2
+tiny,6,tiny-6-203008,8,2,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,3,qubo_sa,0,,0,220.0,,proven optimum,,0.03663050000068324,8800,88,,5.0
+tiny,6,tiny-6-203008,8,3,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.015560399999230867,600,,,5.0
+tiny,6,tiny-6-203008,8,3,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.2009316999992734,,,1,0.2
+tiny,6,tiny-6-203008,8,3,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,4,qubo_sa,0,,0,220.0,,proven optimum,,0.03957300000001851,8800,88,,5.0
+tiny,6,tiny-6-203008,8,4,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.01728999999977532,600,,,5.0
+tiny,6,tiny-6-203008,8,4,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.20082240000010643,,,1,0.2
+tiny,6,tiny-6-203008,8,4,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,5,qubo_sa,0,,0,220.0,,proven optimum,,0.04120890000012878,8800,88,,5.0
+tiny,6,tiny-6-203008,8,5,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.016310499999235617,600,,,5.0
+tiny,6,tiny-6-203008,8,5,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.20104119999996328,,,1,0.2
+tiny,6,tiny-6-203008,8,5,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,6,qubo_sa,0,,0,220.0,,proven optimum,,0.05114590000084718,8800,88,,5.0
+tiny,6,tiny-6-203008,8,6,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.01599259999966307,600,,,5.0
+tiny,6,tiny-6-203008,8,6,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.20096700000067358,,,1,0.2
+tiny,6,tiny-6-203008,8,6,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,7,qubo_sa,0,,0,220.0,,proven optimum,,0.10211639999943145,8800,88,,5.0
+tiny,6,tiny-6-203008,8,7,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.03827420000015991,600,,,5.0
+tiny,6,tiny-6-203008,8,7,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.20059310000033292,,,1,0.2
+tiny,6,tiny-6-203008,8,7,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,8,qubo_sa,0,,0,220.0,,proven optimum,,0.04326319999927364,8800,88,,5.0
+tiny,6,tiny-6-203008,8,8,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.021168999999645166,600,,,5.0
+tiny,6,tiny-6-203008,8,8,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.2011361000004399,,,1,0.2
+tiny,6,tiny-6-203008,8,8,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203008,8,9,qubo_sa,0,,0,220.0,,proven optimum,,0.06302639999921666,8800,88,,5.0
+tiny,6,tiny-6-203008,8,9,vrp_sa,1,220.0,2,220.0,,proven optimum,0.0,0.04759609999928216,600,,,5.0
+tiny,6,tiny-6-203008,8,9,ortools,1,220.0,2,220.0,,proven optimum,0.0,0.20053680000091845,,,1,0.2
+tiny,6,tiny-6-203008,8,9,exact_small,1,220.0,2,220.0,,proven optimum,0.0,0.01547969999955967,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,0,qubo_sa,0,,0,448.0,,proven optimum,,0.0837005000012141,8800,88,,5.0
+tiny,6,tiny-6-203009,9,0,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.027440500000011525,600,,,5.0
+tiny,6,tiny-6-203009,9,0,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20084230000065872,,,1,0.2
+tiny,6,tiny-6-203009,9,0,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,1,qubo_sa,0,,0,448.0,,proven optimum,,0.06791309999971418,8800,88,,5.0
+tiny,6,tiny-6-203009,9,1,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.016360999999960768,600,,,5.0
+tiny,6,tiny-6-203009,9,1,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20079330000044138,,,1,0.2
+tiny,6,tiny-6-203009,9,1,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,2,qubo_sa,0,,0,448.0,,proven optimum,,0.04432409999935771,8800,88,,5.0
+tiny,6,tiny-6-203009,9,2,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.018872399999963818,600,,,5.0
+tiny,6,tiny-6-203009,9,2,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20095250000122178,,,1,0.2
+tiny,6,tiny-6-203009,9,2,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,3,qubo_sa,0,,0,448.0,,proven optimum,,0.08277369999996154,8800,88,,5.0
+tiny,6,tiny-6-203009,9,3,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.03291239999998652,600,,,5.0
+tiny,6,tiny-6-203009,9,3,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20119240000167338,,,1,0.2
+tiny,6,tiny-6-203009,9,3,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,4,qubo_sa,0,,0,448.0,,proven optimum,,0.046295399999507936,8800,88,,5.0
+tiny,6,tiny-6-203009,9,4,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.03086790000088513,600,,,5.0
+tiny,6,tiny-6-203009,9,4,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20153140000002168,,,1,0.2
+tiny,6,tiny-6-203009,9,4,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,5,qubo_sa,0,,0,448.0,,proven optimum,,0.038178400000106194,8800,88,,5.0
+tiny,6,tiny-6-203009,9,5,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.013711600000533508,600,,,5.0
+tiny,6,tiny-6-203009,9,5,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20132399999965855,,,1,0.2
+tiny,6,tiny-6-203009,9,5,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,6,qubo_sa,0,,0,448.0,,proven optimum,,0.07267600000159291,8800,88,,5.0
+tiny,6,tiny-6-203009,9,6,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.02297080000062124,600,,,5.0
+tiny,6,tiny-6-203009,9,6,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.2010604000006424,,,1,0.2
+tiny,6,tiny-6-203009,9,6,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,7,qubo_sa,0,,0,448.0,,proven optimum,,0.09215579999909096,8800,88,,5.0
+tiny,6,tiny-6-203009,9,7,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.01647939999929804,600,,,5.0
+tiny,6,tiny-6-203009,9,7,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20083859999976994,,,1,0.2
+tiny,6,tiny-6-203009,9,7,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,8,qubo_sa,0,,0,448.0,,proven optimum,,0.08142080000106944,8800,88,,5.0
+tiny,6,tiny-6-203009,9,8,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.015149799999562674,600,,,5.0
+tiny,6,tiny-6-203009,9,8,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.2009183000009216,,,1,0.2
+tiny,6,tiny-6-203009,9,8,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+tiny,6,tiny-6-203009,9,9,qubo_sa,0,,0,448.0,,proven optimum,,0.03782090000095195,8800,88,,5.0
+tiny,6,tiny-6-203009,9,9,vrp_sa,1,448.0,2,448.0,,proven optimum,0.0,0.019046899999011657,600,,,5.0
+tiny,6,tiny-6-203009,9,9,ortools,1,448.0,2,448.0,,proven optimum,0.0,0.20106239999950049,,,1,0.2
+tiny,6,tiny-6-203009,9,9,exact_small,1,448.0,2,448.0,,proven optimum,0.0,0.017581899999640882,,,OPTIMAL (reused),60
+CVRPLIB,31,A-n32-k5,published,0,vrp_sa,1,1027.0,5,784.0,,published reference,30.994897959183664,0.24724439999954484,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,0,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0012264999986655,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,1,vrp_sa,1,1097.0,5,784.0,,published reference,39.923469387755105,0.22975439999936498,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,1,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.001002499999231,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,2,vrp_sa,1,924.0,5,784.0,,published reference,17.85714285714286,0.21028569999907631,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,2,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0015298000016628,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,3,vrp_sa,1,1113.0,5,784.0,,published reference,41.96428571428572,0.23604939999859198,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,3,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0020677000011347,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,4,vrp_sa,1,1032.0,5,784.0,,published reference,31.63265306122449,0.20941950000087672,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,4,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0008754999998928,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,5,vrp_sa,1,1109.0,5,784.0,,published reference,41.45408163265305,0.23998849999952654,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,5,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0015966999999364,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,6,vrp_sa,1,1083.0,5,784.0,,published reference,38.13775510204083,0.3587831999993796,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,6,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0018292000004294,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,7,vrp_sa,1,1111.0,5,784.0,,published reference,41.70918367346938,0.3348476999999548,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,7,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0012756000014633,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,8,vrp_sa,1,1077.0,5,784.0,,published reference,37.372448979591844,0.35182999999960884,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,8,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.0013199000004533,,,1,1.0
+CVRPLIB,31,A-n32-k5,published,9,vrp_sa,1,1061.0,5,784.0,,published reference,35.33163265306123,0.2886631999990641,3100,,,1.0
+CVRPLIB,31,A-n32-k5,published,9,ortools,1,796.0,5,784.0,,published reference,1.5306122448979664,1.001635200000237,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,0,vrp_sa,1,902.0,5,661.0,,published reference,36.45990922844176,0.2585951999990357,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,0,ortools,1,671.0,5,661.0,,published reference,1.5128593040847127,1.0016380999986723,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,1,vrp_sa,1,906.0,5,661.0,,published reference,37.06505295007565,0.23155489999953716,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,1,ortools,1,661.0,5,661.0,,published reference,0.0,1.0008617000003142,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,2,vrp_sa,1,812.0,5,661.0,,published reference,22.844175491679273,0.20699720000084199,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,2,ortools,1,661.0,5,661.0,,published reference,0.0,1.0016981000007945,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,3,vrp_sa,1,1006.0,5,661.0,,published reference,52.193645990922846,0.33417670000017097,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,3,ortools,1,661.0,5,661.0,,published reference,0.0,1.0012413999993441,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,4,vrp_sa,1,1013.0,5,661.0,,published reference,53.25264750378216,0.21719490000032238,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,4,ortools,1,661.0,5,661.0,,published reference,0.0,1.0014635999996244,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,5,vrp_sa,1,814.0,5,661.0,,published reference,23.14674735249622,0.24227609999979904,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,5,ortools,1,661.0,5,661.0,,published reference,0.0,1.0017468000005465,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,6,vrp_sa,1,944.0,5,661.0,,published reference,42.813918305597575,0.2510196999992331,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,6,ortools,1,661.0,5,661.0,,published reference,0.0,1.00070389999928,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,7,vrp_sa,1,972.0,5,661.0,,published reference,47.04992435703479,0.2821133999987069,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,7,ortools,1,671.0,5,661.0,,published reference,1.5128593040847127,1.0026517000005697,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,8,vrp_sa,1,988.0,5,661.0,,published reference,49.470499243570345,0.3203744000002189,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,8,ortools,1,661.0,5,661.0,,published reference,0.0,1.0018648999994184,,,1,1.0
+CVRPLIB,32,A-n33-k5,published,9,vrp_sa,1,913.0,5,661.0,,published reference,38.12405446293494,0.2197570000007545,3200,,,1.0
+CVRPLIB,32,A-n33-k5,published,9,ortools,1,661.0,5,661.0,,published reference,0.0,1.0013687999999092,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,0,vrp_sa,1,991.0,5,669.0,,published reference,48.13153961136023,0.3448854999987816,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,0,ortools,1,671.0,5,669.0,,published reference,0.2989536621823552,1.0016078999997262,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,1,vrp_sa,1,873.0,5,669.0,,published reference,30.493273542600896,0.3667286999989301,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,1,ortools,1,671.0,5,669.0,,published reference,0.2989536621823552,1.0018608000009408,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,2,vrp_sa,1,1039.0,5,669.0,,published reference,55.30642750373691,0.2997317000008479,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,2,ortools,1,669.0,5,669.0,,published reference,0.0,1.000728099999833,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,3,vrp_sa,1,1063.0,5,669.0,,published reference,58.893871449925264,0.3068267000016931,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,3,ortools,1,669.0,5,669.0,,published reference,0.0,1.0025071000000025,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,4,vrp_sa,1,1013.0,5,669.0,,published reference,51.42002989536623,0.3549765000007028,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,4,ortools,1,669.0,5,669.0,,published reference,0.0,1.0012079999996786,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,5,vrp_sa,1,1081.0,5,669.0,,published reference,61.584454409566526,0.210820700000113,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,5,ortools,1,669.0,5,669.0,,published reference,0.0,1.0009238999991794,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,6,vrp_sa,1,1033.0,5,669.0,,published reference,54.409566517189845,0.3220231999985117,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,6,ortools,1,669.0,5,669.0,,published reference,0.0,1.0016144000001077,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,7,vrp_sa,1,989.0,5,669.0,,published reference,47.832585949177876,0.29828749999978754,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,7,ortools,1,669.0,5,669.0,,published reference,0.0,1.0014326000000437,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,8,vrp_sa,1,1032.0,5,669.0,,published reference,54.26008968609865,0.34179239999866695,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,8,ortools,1,671.0,5,669.0,,published reference,0.2989536621823552,1.0013361000001169,,,1,1.0
+CVRPLIB,36,A-n37-k5,published,9,vrp_sa,1,913.0,5,669.0,,published reference,36.47234678624813,0.29623849999916274,3600,,,1.0
+CVRPLIB,36,A-n37-k5,published,9,ortools,1,671.0,5,669.0,,published reference,0.2989536621823552,1.0014403000004677,,,1,1.0
+Solomon25,25,C101-25,published,0,vrp_sa,1,266.9,3,191.3,3,published reference,39.51907997909041,0.10929249999935564,2500,,,1.0
+Solomon25,25,C101-25,published,0,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0015510000012,,,1,1.0
+Solomon25,25,C101-25,published,1,vrp_sa,1,307.4,4,191.3,3,published reference,,0.102845299999899,2500,,,1.0
+Solomon25,25,C101-25,published,1,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0016490999987582,,,1,1.0
+Solomon25,25,C101-25,published,2,vrp_sa,1,335.8,6,191.3,3,published reference,,0.11489640000036161,2500,,,1.0
+Solomon25,25,C101-25,published,2,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0017735000001267,,,1,1.0
+Solomon25,25,C101-25,published,3,vrp_sa,1,343.7000000000001,5,191.3,3,published reference,,0.18313800000032643,2500,,,1.0
+Solomon25,25,C101-25,published,3,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.001820499999667,,,1,1.0
+Solomon25,25,C101-25,published,4,vrp_sa,1,315.6,5,191.3,3,published reference,,0.12298860000009881,2500,,,1.0
+Solomon25,25,C101-25,published,4,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0030718999987585,,,1,1.0
+Solomon25,25,C101-25,published,5,vrp_sa,1,340.8,5,191.3,3,published reference,,0.13516549999985727,2500,,,1.0
+Solomon25,25,C101-25,published,5,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0011687999995047,,,1,1.0
+Solomon25,25,C101-25,published,6,vrp_sa,1,350.3000000000001,5,191.3,3,published reference,,0.10932649999995192,2500,,,1.0
+Solomon25,25,C101-25,published,6,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0017745999994077,,,1,1.0
+Solomon25,25,C101-25,published,7,vrp_sa,1,279.8,4,191.3,3,published reference,,0.1224184000002424,2500,,,1.0
+Solomon25,25,C101-25,published,7,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0017992000011873,,,1,1.0
+Solomon25,25,C101-25,published,8,vrp_sa,1,291.9,4,191.3,3,published reference,,0.16900519999944663,2500,,,1.0
+Solomon25,25,C101-25,published,8,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0060795000008511,,,1,1.0
+Solomon25,25,C101-25,published,9,vrp_sa,1,313.5,5,191.3,3,published reference,,0.1449042999993253,2500,,,1.0
+Solomon25,25,C101-25,published,9,ortools,1,191.29999999999993,3,191.3,3,published reference,0.0,1.0054215999989538,,,1,1.0
+Solomon25,25,R101-25,published,0,vrp_sa,1,656.3999999999999,9,617.1,8,published reference,,0.17339910000009695,2500,,,1.0
+Solomon25,25,R101-25,published,0,ortools,1,631.6,8,617.1,8,published reference,2.3497002106627862,1.001822299998821,,,1,1.0
+Solomon25,25,R101-25,published,1,vrp_sa,1,706.8999999999999,10,617.1,8,published reference,,0.13271850000091945,2500,,,1.0
+Solomon25,25,R101-25,published,1,ortools,1,617.1,8,617.1,8,published reference,0.0,1.0018051999995805,,,1,1.0
+Solomon25,25,R101-25,published,2,vrp_sa,1,688.8,9,617.1,8,published reference,,0.137554300001284,2500,,,1.0
+Solomon25,25,R101-25,published,2,ortools,1,617.1,8,617.1,8,published reference,0.0,1.0020862000001216,,,1,1.0
+Solomon25,25,R101-25,published,3,vrp_sa,1,697.8999999999999,8,617.1,8,published reference,13.093501863555312,0.11539690000063274,2500,,,1.0
+Solomon25,25,R101-25,published,3,ortools,1,631.6,8,617.1,8,published reference,2.3497002106627862,1.00317559999894,,,1,1.0
+Solomon25,25,R101-25,published,4,vrp_sa,1,699.6000000000003,9,617.1,8,published reference,,0.13135929999953078,2500,,,1.0
+Solomon25,25,R101-25,published,4,ortools,1,617.1,8,617.1,8,published reference,0.0,1.0032461999999214,,,1,1.0
+Solomon25,25,R101-25,published,5,vrp_sa,1,711.3999999999999,8,617.1,8,published reference,15.28115378382755,0.15975620000062918,2500,,,1.0
+Solomon25,25,R101-25,published,5,ortools,1,631.6,8,617.1,8,published reference,2.3497002106627862,1.0019627000001492,,,1,1.0
+Solomon25,25,R101-25,published,6,vrp_sa,1,751.2,9,617.1,8,published reference,,0.12235529999998107,2500,,,1.0
+Solomon25,25,R101-25,published,6,ortools,1,617.1,8,617.1,8,published reference,0.0,1.0047565000004397,,,1,1.0
+Solomon25,25,R101-25,published,7,vrp_sa,1,654.0000000000001,8,617.1,8,published reference,5.979581915410814,0.16093329999966954,2500,,,1.0
+Solomon25,25,R101-25,published,7,ortools,1,617.1,8,617.1,8,published reference,0.0,1.0072201000002678,,,1,1.0
+Solomon25,25,R101-25,published,8,vrp_sa,1,704.6,9,617.1,8,published reference,,0.11988799999926414,2500,,,1.0
+Solomon25,25,R101-25,published,8,ortools,1,617.1,8,617.1,8,published reference,0.0,1.0050275000012334,,,1,1.0
+Solomon25,25,R101-25,published,9,vrp_sa,1,661.6000000000001,9,617.1,8,published reference,,0.13962439999886556,2500,,,1.0
+Solomon25,25,R101-25,published,9,ortools,1,631.6,8,617.1,8,published reference,2.3497002106627862,1.001521899999716,,,1,1.0
+Solomon25,25,RC101-25,published,0,vrp_sa,1,596.4,6,461.1,4,published reference,,0.16644470000028377,2500,,,1.0
+Solomon25,25,RC101-25,published,0,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0025755999995454,,,1,1.0
+Solomon25,25,RC101-25,published,1,vrp_sa,1,614.7,6,461.1,4,published reference,,0.2221198999995977,2500,,,1.0
+Solomon25,25,RC101-25,published,1,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0025975999997172,,,1,1.0
+Solomon25,25,RC101-25,published,2,vrp_sa,1,662.3000000000002,7,461.1,4,published reference,,0.25105449999864504,2500,,,1.0
+Solomon25,25,RC101-25,published,2,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0032674000012776,,,1,1.0
+Solomon25,25,RC101-25,published,3,vrp_sa,1,525.2,5,461.1,4,published reference,,0.15847690000009607,2500,,,1.0
+Solomon25,25,RC101-25,published,3,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0015330000005633,,,1,1.0
+Solomon25,25,RC101-25,published,4,vrp_sa,1,659.5,7,461.1,4,published reference,,0.14154120000057446,2500,,,1.0
+Solomon25,25,RC101-25,published,4,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0015756000011606,,,1,1.0
+Solomon25,25,RC101-25,published,5,vrp_sa,1,594.6999999999999,6,461.1,4,published reference,,0.12096799999926588,2500,,,1.0
+Solomon25,25,RC101-25,published,5,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0016611000010016,,,1,1.0
+Solomon25,25,RC101-25,published,6,vrp_sa,1,597.2000000000002,6,461.1,4,published reference,,0.1312660000003234,2500,,,1.0
+Solomon25,25,RC101-25,published,6,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.00094209999952,,,1,1.0
+Solomon25,25,RC101-25,published,7,vrp_sa,1,532.3000000000002,5,461.1,4,published reference,,0.2156409999988682,2500,,,1.0
+Solomon25,25,RC101-25,published,7,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0020904000011797,,,1,1.0
+Solomon25,25,RC101-25,published,8,vrp_sa,1,586.0000000000001,6,461.1,4,published reference,,0.2265944999999192,2500,,,1.0
+Solomon25,25,RC101-25,published,8,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0031045000014274,,,1,1.0
+Solomon25,25,RC101-25,published,9,vrp_sa,1,734.6,6,461.1,4,published reference,,0.17986310000014782,2500,,,1.0
+Solomon25,25,RC101-25,published,9,ortools,1,461.10000000000014,4,461.1,4,published reference,0.0,1.0015645000003133,,,1,1.0
