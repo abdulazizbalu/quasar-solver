@@ -2,5 +2,7 @@
 
 from quasar_solver.qubo import QUBO
 from quasar_solver.solver import SimulatedAnnealingSolver, SolverResult
+from quasar_solver.problem import Problem, TSPInstance, is_feasible_tsp, tour_length
+from quasar_solver.tsp_solver import Solver, Solution, QuboSASolver
 
-__all__ = ["QUBO", "SimulatedAnnealingSolver", "SolverResult"]
+__all__ = ["QUBO", "SimulatedAnnealingSolver", "SolverResult", "Problem", "TSPInstance", "is_feasible_tsp", "tour_length", "Solver", "Solution", "QuboSASolver"]

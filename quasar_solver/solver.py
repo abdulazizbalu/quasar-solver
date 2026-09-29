@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from time import perf_counter
 
 import numpy as np
 
@@ -43,8 +44,11 @@ class SimulatedAnnealingSolver:
         self.beta_end = float(beta_end)
         self.seed = seed
 
-    def solve(self, qubo: QUBO) -> SolverResult:
+    def solve(self, qubo: QUBO, time_limit: float | None = None) -> SolverResult:
         """Run independent annealing restarts and return the best sample found."""
+        if time_limit is not None and time_limit <= 0:
+            raise ValueError("time_limit must be positive")
+        deadline = perf_counter() + time_limit if time_limit is not None else None
         n = qubo.num_vars()
         matrix = qubo.to_matrix()
         rng = np.random.default_rng(self.seed)
@@ -55,13 +59,18 @@ class SimulatedAnnealingSolver:
         if n == 0:
             return SolverResult(best_sample=best_sample, best_energy=0.0, all_energies=[0.0])
 
-        for _ in range(self.num_reads):
+        reads = 0
+        while reads < self.num_reads or (deadline is not None and perf_counter() < deadline):
+            if deadline is not None and perf_counter() >= deadline and all_energies:
+                break
             sample = rng.integers(0, 2, size=n, dtype=int)
             energy = qubo.energy(sample)
             read_best_sample = sample.copy()
             read_best_energy = energy
 
             for sweep in range(self.num_sweeps):
+                if deadline is not None and perf_counter() >= deadline:
+                    break
                 beta = self._beta_for_sweep(sweep)
                 bit = int(rng.integers(0, n))
                 delta = self._flip_delta(matrix, sample, bit)
@@ -74,6 +83,7 @@ class SimulatedAnnealingSolver:
                         read_best_sample = sample.copy()
 
             all_energies.append(float(read_best_energy))
+            reads += 1
             if read_best_energy < best_energy:
                 best_energy = read_best_energy
                 best_sample = read_best_sample.copy()
