@@ -27,10 +27,12 @@ class Solver(Protocol):
 class QuboSASolver:
     name = "qubo_sa"
 
-    def __init__(self, num_reads: int = 8, num_sweeps: int = 800, penalty: float | None = None):
+    def __init__(self, num_reads: int = 8, num_sweeps: int = 800, penalty: float | None = None,
+                 penalty_alpha: float | None = 10.0):
         self.num_reads = num_reads
         self.num_sweeps = num_sweeps
         self.penalty = penalty
+        self.penalty_alpha = penalty_alpha
 
     def solve(self, problem: TSPInstance, time_limit: float | None = None, seed: int | None = None) -> Solution:
         if time_limit is not None and time_limit <= 0:
@@ -38,7 +40,10 @@ class QuboSASolver:
         start = perf_counter()
         # A safe sufficient penalty for nonnegative costs: it exceeds the cost
         # of every tour, so a global QUBO minimum is feasible.
-        penalty = self.penalty if self.penalty is not None else problem.size * float(problem.distance_matrix.max()) + 1.0
+        max_distance = float(problem.distance_matrix.max())
+        penalty = self.penalty if self.penalty is not None else (
+            self.penalty_alpha * max_distance if self.penalty_alpha is not None
+            else problem.size * max_distance + 1.0)
         qubo = tsp_to_qubo(problem.distance_matrix, penalty=penalty)
         remaining = max(1e-9, time_limit - (perf_counter() - start)) if time_limit is not None else None
         result = SimulatedAnnealingSolver(num_reads=self.num_reads, num_sweeps=self.num_sweeps, seed=seed).solve(qubo, time_limit=remaining)
@@ -46,5 +51,6 @@ class QuboSASolver:
         feasible = is_feasible_tsp(route, problem)
         return Solution(route, tour_length(route, problem) if feasible else None, feasible,
                         perf_counter() - start, self.name,
-                        {"qubo_energy": result.best_energy, "penalty": penalty, "seed": seed,
+                        {"qubo_energy": result.best_energy, "penalty": penalty, "penalty_alpha": self.penalty_alpha,
+                         "seed": seed,
                          "time_limit_seconds": time_limit})

@@ -59,7 +59,8 @@ class SimulatedAnnealingSolver:
         if n == 0:
             return SolverResult(best_sample=best_sample, best_energy=0.0, all_energies=[0.0])
 
-        for _ in range(self.num_reads):
+        reads = 0
+        while reads < self.num_reads or (deadline is not None and perf_counter() < deadline):
             if deadline is not None and perf_counter() >= deadline and all_energies:
                 break
             sample = rng.integers(0, 2, size=n, dtype=int)
@@ -82,6 +83,7 @@ class SimulatedAnnealingSolver:
                         read_best_sample = sample.copy()
 
             all_energies.append(float(read_best_energy))
+            reads += 1
             if read_best_energy < best_energy:
                 best_energy = read_best_energy
                 best_sample = read_best_sample.copy()
