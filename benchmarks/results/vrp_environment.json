@@ -31,9 +31,38 @@
     9
   ],
   "standard_time_limit_seconds": 1.0,
-  "tiny_sa_wall_cap_seconds": 5.0,
-  "tiny_ortools_time_limit_seconds": 0.2,
-  "tiny_vrp_sa_attempts_per_customer": 100,
   "tiny_qubo_sweeps_per_variable": 100,
-  "ortools": "9.15.6755"
+  "qubo_budget_sweep": {
+    "sweeps_per_variable": [
+      100,
+      500,
+      2000,
+      10000
+    ],
+    "schedules": [
+      "coefficient_scaled_linear",
+      "penalty_scaled_geometric"
+    ],
+    "customers": [
+      4,
+      5,
+      6
+    ],
+    "instances_per_cell": 10,
+    "solver_seeds_per_instance": 1
+  },
+  "ortools": "9.15.6755",
+  "tiny_qubo_wall_cap_seconds": 5.0,
+  "tiny_route_solver_wall_limit_seconds": 0.2,
+  "tiny_vrp_sa_cooling_reference_attempts_per_customer": 100,
+  "tiny_qubo_budget_mode": "iterations",
+  "tiny_route_solver_budget_mode": "time",
+  "ortools_first_solution_strategies": [
+    "PATH_CHEAPEST_ARC",
+    "SAVINGS",
+    "PARALLEL_CHEAPEST_INSERTION",
+    "LOCAL_CHEAPEST_INSERTION",
+    "CHRISTOFIDES",
+    "PATH_MOST_CONSTRAINED_ARC"
+  ]
 }
