@@ -3,7 +3,7 @@
 [![Tests](https://github.com/abdulazizbalu/quasar-solver/actions/workflows/tests.yml/badge.svg)](https://github.com/abdulazizbalu/quasar-solver/actions/workflows/tests.yml)
 
 <p align="center">
-  <strong><a href="https://abdulazizbalu.github.io/quasar-solver/demos/web_demo.html">🚀 Live Demo</a></strong>
+  <strong><a href="https://abdulazizbalu.github.io/quasar-solver/demos/web_demo.html">Route visualization demo</a></strong>
 </p>
 
 # Quasar Solver
@@ -22,11 +22,9 @@ For development:
 pip install -e ".[dev]"
 ```
 
-## Web Demo
+## Route visualization demo
 
-🚀 Live Demo — open in browser, no install needed.
-
-Click to place cities, hit Solve, watch the optimizer find the shortest route.
+The linked demo is a standalone JavaScript 2-opt annealer; it does not run the Python QUBO solver. Open it in a browser, place cities, and watch its route visualization.
 
 ## Quick Usage
 
@@ -63,39 +61,29 @@ Simulated annealing is a randomized search method inspired by cooling physical s
 
 ## Benchmarks
 
-Reproduce all measurements from the repository root with `python -m benchmarks.run_benchmarks`. This runs ten seeds (0–9), both 1 s and 5 s budgets, QUBO-SA penalties `alpha × max_distance` for alpha in `{1, 2, 5, 10, 50}` plus fixed 100, and the `two_opt` baseline. It writes per-run data to `benchmarks/results/raw.csv`, full grouped tables to `benchmarks/results/summary.md`, and the chart below to `docs/tsp_benchmark.png`.
+Run `python -m benchmarks.run_benchmarks` from the repository root to reproduce the data, summary, paired comparisons, and chart. The script generates ten independent Euclidean instances per size (instance seeds 202600–202609) and runs ten solver seeds (0–9) on each instance. Raw observations are in [`benchmarks/results/raw.csv`](benchmarks/results/raw.csv); the complete penalty sweep, confidence intervals, and paired tests are in [`benchmarks/results/summary.md`](benchmarks/results/summary.md) and [`benchmarks/results/paired_tests.csv`](benchmarks/results/paired_tests.csv).
 
-For n ≤ 12, the gap is measured against the proven Held–Karp optimum. For larger instances, the reference is the best feasible result found across this experiment and is explicitly not proven. The means below use feasible runs; invalid runs still count in feasibility and runtime statistics. Measurements were collected on Python 3.14.4, Intel64 Family 6 Model 186 Stepping 3, Windows 11.
+The benchmark uses a fixed iteration budget with no wall-clock cap. QUBO-SA gets one read of 100 sweeps. A sweep attempts one flip per binary variable, so each run attempts `100 × n²` flips (40,000 at 20 cities). Multi-start `two_opt` receives the same count of candidate tour evaluations. Those operations have different computational costs; the recorded runtime is a measurement, not a matched time budget. The QUBO-SA adapter defaults to eight reads of 100 sweeps for ordinary use. A wall-clock limit remains available as a secondary cap.
 
-| Cities | Budget | Solver | Penalty | Feasible | Mean gap | Mean runtime |
-| ---: | ---: | --- | --- | ---: | ---: | ---: |
-| 6 | 1 s | qubo_sa | alpha=10 | 100% | 0.000% | 1.000 s |
-| 6 | 5 s | qubo_sa | alpha=10 | 100% | 0.000% | 5.000 s |
-| 10 | 1 s | qubo_sa | alpha=10 | 100% | 32.007% | 1.001 s |
-| 10 | 5 s | qubo_sa | alpha=10 | 100% | 24.819% | 5.001 s |
-| 15 | 1 s | qubo_sa | alpha=10 | 100% | 91.381% | 1.002 s |
-| 15 | 5 s | qubo_sa | alpha=10 | 100% | 75.874% | 5.003 s |
-| 20 | 1 s | qubo_sa | alpha=10 | 0% | — | 1.019 s |
-| 20 | 5 s | qubo_sa | alpha=10 | 0% | — | 5.017 s |
-| 6 | 1 s | two_opt | — | 100% | 0.000% | 0.001 s |
-| 6 | 5 s | two_opt | — | 100% | 0.000% | 0.001 s |
-| 10 | 1 s | two_opt | — | 100% | 0.000% | 0.010 s |
-| 10 | 5 s | two_opt | — | 100% | 0.000% | 0.009 s |
-| 15 | 1 s | two_opt | — | 100% | 0.000% | 0.047 s |
-| 15 | 5 s | two_opt | — | 100% | 0.000% | 0.052 s |
-| 20 | 1 s | two_opt | — | 100% | 0.000% | 0.208 s |
-| 20 | 5 s | two_opt | — | 100% | 0.000% | 0.219 s |
+For 6 and 10 cities, the reference is the proven Held–Karp optimum. For 15 and 20 cities, each instance has one shared best feasible tour found in this experiment; it is **best found, not proven**. Mean gaps include feasible runs only. The 95% confidence intervals resample the ten independent instances. Measurements below were collected with Python 3.14.4 on an Intel64 Family 6 Model 186 Stepping 3 CPU, Windows 11.
 
-![Feasibility rate and mean gap by instance size, solver, and time budget](docs/tsp_benchmark.png)
+| Cities | Solver | Feasible | Mean gap [95% CI] | Mean runtime |
+| ---: | --- | ---: | ---: | ---: |
+| 6 | qubo_sa, alpha=1 | 100/100 | 4.14% [2.72, 5.63] | 0.0566 s |
+| 6 | two_opt | 100/100 | 0.00% [0.00, 0.00] | 0.0512 s |
+| 10 | qubo_sa, alpha=1 | 99/100 | 32.87% [29.02, 36.52] | 0.1661 s |
+| 10 | two_opt | 100/100 | 0.41% [0.00, 1.23] | 0.1335 s |
+| 15 | qubo_sa, alpha=1 | 98/100 | 65.22% [60.66, 69.76] | 0.2372 s |
+| 15 | two_opt | 100/100 | 0.00% [0.00, 0.00] | 0.2743 s |
+| 20 | qubo_sa, alpha=1 | 98/100 | 86.03% [76.10, 95.77] | 0.3658 s |
+| 20 | two_opt | 100/100 | 0.01% [0.00, 0.02] | 0.5961 s |
 
-### Penalty sweep and default
-
-The complete alpha-by-size results at both budgets are in `benchmarks/results/summary.md`. Averaged over sizes 6, 10, and 15 and both budgets, alpha=10 had 100% feasibility and the lowest mean gap (37.35%) among penalties with 100% feasibility. Alpha=1 had a slightly lower feasible-only mean gap, but missed feasibility on one 15-city, 1 s run (90% there). Every alpha had 0% feasibility on 20 cities, so larger penalties did not fix that case. The default QUBO-SA penalty is therefore `10 × max_distance`; this is an empirical choice for these seeded Euclidean instances, not a universal optimum.
+![Feasibility rate and feasible-run mean gap by number of cities, for QUBO-SA and multi-start 2-opt](docs/tsp_benchmark.png)
 
 ### Findings
 
-- `two_opt` found feasible tours on every run and matched the proven optimum at 6 and 10 cities. It completed well before its time limit on these instances.
-- QUBO-SA reached the proven 6-city optimum within either budget. At 10 and 15 cities it remained 19.5–91.4% above the reference, though the 5 s runs generally improved over 1 s. At 20 cities it returned no feasible tour for any tested penalty or budget.
-- Increasing alpha helps preserve one-hot constraints at 15 cities: alpha=1 had a 90% feasibility rate at 1 s, while alpha ≥ 2 had 100%. At 20 cities none of the tested penalties was sufficient for the annealer to find a valid assignment within five seconds. Large penalties can dominate route-cost differences; small penalties make constraint violations attractive. A single-bit-flip annealer also faces a rugged landscape with dense one-hot penalties.
-- The TSP QUBO has n² binary variables: 400 at 20 cities. The 5 s cap raises feasibility to 100% at 15 cities but does not rescue 20 cities. This points to the encoding and search neighborhood as well as available time.
-- The old README's 0.45–9.5 s figures had no reproducible script or recorded settings, so their exact origin cannot be established. The earlier `qubo_sa` adapter was configured for 8 reads × 800 sweeps (6,400 attempted flips), versus the original QUBO solver defaults of 100 × 1,000 (100,000 flips). That 15.6× reduction in nominal work likely explains part of the apparent runtime drop to 0.03–0.2 s, but it does not validate the old figures. Current timed results instead use the full stated budget.
+- Correcting the sweep definition changes the 20-city result: alpha=1 produced 98 feasible tours in 100 runs, and the other tested penalties produced 99 or 100. The earlier zero-feasibility result came from a much smaller effective flip budget.
+- Across all four sizes, alpha=1 has a lower feasible-run mean gap than alpha=2, with Holm-adjusted paired instance-level gap-test p-values of 0.029 for each size. Feasibility was 100%, 99%, 98%, and 98% for alpha=1 versus 100%, 100%, 100%, and 99% for alpha=2. Paired instance-level feasibility tests did not distinguish those rates. The default is therefore `penalty = 1 × max_distance` for this benchmark setting. Users who require a feasible tour on every run should check the feasibility flag or use the always-feasible `two_opt` baseline; this experiment does not establish a universal penalty.
+- Alpha=10 and fixed penalty 100 no longer give identical results on most seeds. The configured penalty reaches the QUBO matrix, and the annealer scales inverse temperature by the largest absolute QUBO coefficient. Larger penalties preserve one-hot feasibility in this sample but increase the feasible-run gap. They make constraint energy larger relative to route-cost differences; the table and paired tests quantify the observed effect.
+- The QUBO has `n²` binary variables (400 at 20 cities). At the tested budget, QUBO-SA's feasible tours have substantially larger gaps than multi-start 2-opt. The 15- and 20-city reference is only the best tour found here, so those gaps are lower bounds on gaps to an unknown optimum.
+- The old README's 0.45–9.5 s figures had no reproducible script or recorded settings, so their origin cannot be established. The prior adapter used eight reads of 800 so-called sweeps, but each sweep attempted only one bit flip: 6,400 flips in total. Its shorter 0.03–0.2 s measurements reflected that smaller work count. The corrected benchmark fixes flips per variable and records both effort and runtime; its numbers use different instances and cannot be directly compared with the old timed table.
