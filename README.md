@@ -8,7 +8,7 @@
 
 # Quasar Solver
 
-Quasar Solver is a pure Python, quantum-inspired optimizer for quadratic unconstrained binary optimization (QUBO) problems. It provides a compact QUBO model, a NumPy-based simulated annealing solver, and converters for practical optimization examples.
+Quasar Solver is a Python research package for QUBO simulated annealing and small routing experiments. It includes TSP, capacitated vehicle routing (CVRP), and vehicle routing with time windows (VRPTW), with independent feasibility checks and classical reference solvers. The VRP QUBO is restricted to tiny CVRP instances.
 
 ## Installation
 
@@ -48,7 +48,6 @@ The demo saves a plot of the city coordinates and decoded route to `demos/tour.p
 
 ## Roadmap
 
-- VRP support
 - Schedule optimization
 - Financial portfolio demo
 - Web UI
@@ -104,3 +103,64 @@ The `qubo_sa` bit-flip results show what a plain QUBO solver encounters. Handlin
 Multi-start 2-opt remains the stronger routing baseline in these experiments. The swap solver also took more wall time under equal attempt counts.
 
 These instances are random Euclidean TSP with at most 20 cities. The results do not establish performance on larger instances or other problem classes.
+
+## Vehicle routing (CVRP and VRPTW)
+
+`CVRPInstance` stores demands, vehicle capacity, fleet size (or unlimited), and a distance matrix with depot node 0. `VRPTWInstance` adds time windows and service times. A VRP `Solution` has `routes`, each starting and ending at node 0. `is_feasible_vrp` checks visits, capacity, fleet size, and time windows independently of the solvers. The optional `ortools` solver uses guided local search; `exact_small` uses OR-Tools CP-SAT and only claims a proven optimum when its status is `OPTIMAL`. `vrp_sa` is a classical route-structure annealer with relocate, swap, and 2-opt proposals. Tiny CVRP `qubo_sa` uses the QUBO bit-flip annealer.
+
+Run the complete experiment from the repository root:
+
+```bash
+pip install -e ".[dev,vrp]"
+python -m benchmarks.run_vrp_benchmarks
+```
+
+The command downloads six checksum-verified third-party instance files into the ignored `benchmarks/data/vrp/` directory, then writes [raw runs](benchmarks/results/vrp_raw.csv), the [full summary](benchmarks/results/vrp_summary.md), [environment details](benchmarks/results/vrp_environment.json), and the chart below. No third-party instance file is redistributed. The 4- and 6-customer cases each use 10 independently generated integer-distance Euclidean instances and 10 solver seeds per instance. The CP-SAT reference is proven optimal for every tiny instance. The standard cases use 10 solver seeds per instance. Results shown here were recorded on Windows 11, Intel64 Family 6 Model 186 Stepping 3, Python 3.14.4, NumPy 2.4.4, and OR-Tools 9.15.6755.
+
+The tiny QUBO solver makes 100 sweeps, one attempted bit flip per QUBO variable per sweep: 4,400 and 8,800 flips at 4 and 6 customers, with a 5-second secondary cap. `vrp_sa` makes 100 proposed moves per customer (400 or 600), also with a 5-second cap. Tiny OR-Tools has a 0.2-second cap. On standard cases both route methods have a 1-second cap; `vrp_sa` usually finishes its fixed 100-proposals-per-customer budget before that cap. Equal wall caps do not make their attempts equivalent. The [formulation and scaling details](docs/vrp_formulation.md) document the QUBO variables, capacity slack bits, and OR-Tools time discretization.
+
+### Tiny CVRP: gap to proven optimum
+
+| Customers | Solver | Feasible | Mean gap among feasible runs [95% CI] | QUBO variables |
+| ---: | --- | ---: | ---: | ---: |
+| 4 | qubo_sa | 40/100 | 8.67% [5.12, 12.83] | 44 |
+| 4 | vrp_sa | 100/100 | 0.00% [0.00, 0.00] | — |
+| 4 | ortools | 100/100 | 0.00% [0.00, 0.00] | — |
+| 4 | exact_small | 100/100 | 0.00% [0.00, 0.00] | — |
+| 6 | qubo_sa | 1/100 | 57.87% [CI unavailable] | 88 |
+| 6 | vrp_sa | 100/100 | 0.00% [0.00, 0.00] | — |
+| 6 | ortools | 100/100 | 0.00% [0.00, 0.00] | — |
+| 6 | exact_small | 100/100 | 0.00% [0.00, 0.00] | — |
+
+The 6-customer QUBO gap comes from one feasible run on one instance; a 95% interval cannot be estimated from it. The full table includes effort, runtime, and vehicle count. Exact results were computed once per instance and reused for the ten solver-seed comparisons.
+
+### Standard instances: gap to published reference
+
+| Instance | Reference | Solver | Feasible | Same fleet as reference | Mean distance gap on comparable runs |
+| --- | ---: | --- | ---: | ---: | ---: |
+| A-n32-k5 | 784 | ortools | 10/10 | 10/10 | 1.53% |
+| A-n32-k5 | 784 | vrp_sa | 10/10 | 10/10 | 35.64% |
+| A-n33-k5 | 661 | ortools | 10/10 | 10/10 | 0.30% |
+| A-n33-k5 | 661 | vrp_sa | 10/10 | 10/10 | 40.24% |
+| A-n37-k5 | 669 | ortools | 10/10 | 10/10 | 0.12% |
+| A-n37-k5 | 669 | vrp_sa | 10/10 | 10/10 | 49.88% |
+| C101-25 | 3 vehicles, 191.3 | ortools | 10/10 | 10/10 | 0.00% |
+| C101-25 | 3 vehicles, 191.3 | vrp_sa | 10/10 | 1/10 | 39.52% |
+| R101-25 | 8 vehicles, 617.1 | ortools | 10/10 | 10/10 | 0.94% |
+| R101-25 | 8 vehicles, 617.1 | vrp_sa | 10/10 | 3/10 | 11.45% |
+| RC101-25 | 4 vehicles, 461.1 | ortools | 10/10 | 10/10 | 0.00% |
+| RC101-25 | 4 vehicles, 461.1 | vrp_sa | 10/10 | 0/10 | n/a |
+
+The [CVRPLIB Augerat A reference table](https://galgos.inf.puc-rio.br/cvrplib/en/instances/1) supplies the three CVRP optimal values. The Solomon 25-customer distances are reported in [Pisinger and Ropke's technical report, Table 19](https://backend.orbit.dtu.dk/ws/portalfiles/portal/3154462/A%20general%20heuristic%20for%20vehicle%20routing%20problems_TechRep_Pisinger_Ropke.pdf), and the fleet sizes appear with these values in [Table 6 of a later comparison](https://pmc.ncbi.nlm.nih.gov/articles/PMC11784799/). [SINTEF describes the benchmark](https://www.sintef.no/projectweb/top/vrptw/solomon-benchmark/). These published values are cited, not independently re-proven here. The CVRPLIB downloads come from the official library; the Solomon data come from a [pinned public mirror](https://github.com/BUAAxyf/Solomon100/tree/23f7cf053cc7c0a7740de246791df3ece179c8df/data/solomon_100) because the original archive rejected automated downloads. The downloader checks SHA-256 for every file.
+
+![Tiny CVRP feasibility and gap by customer count and solver](docs/vrp_benchmark.png)
+
+### VRP findings
+
+The tiny QUBO uses 44 variables at four customers and 88 at six. Under the stated bit-flip budget, feasible runs fell from 40/100 to 1/100. Its 6-customer gap is based on one route, so the main finding there is the low feasibility rate. The implementation stops at six customers or 100 variables; these results do not support using this formulation on standard-size CVRP.
+
+Both route methods and the exact solver returned feasible tours in all tiny runs. On the three Augerat instances, OR-Tools was 0.12–1.53% above the published reference under its one-second cap; `vrp_sa` was 35.64–49.88% above it under 100 proposals per customer. On the three Solomon cases, OR-Tools matched the published fleet size in every run and its distance gaps were 0.00%, 0.94%, and 0.00%. `vrp_sa` often used more vehicles; no RC101 run matched the published four-vehicle fleet, so a comparable distance gap is unavailable. The standard benchmarks each contain one instance, so the ten solver seeds do not provide an instance-level confidence interval.
+
+### VRP scope and limits
+
+The QUBO experiment covers only tiny, integer-distance, two-vehicle CVRP. `vrp_sa` is a classical routing heuristic, not a generic QUBO solver. The published standard reference values are cited and were not re-proven. The Solomon comparison uses the first 25 customers, with Euclidean distance and travel time truncated to one decimal, matching the cited reference convention. No result here establishes performance on larger VRP instances or other problem classes.

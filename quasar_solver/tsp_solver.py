@@ -6,7 +6,7 @@ from time import perf_counter
 from typing import Any, Literal, Protocol
 
 from quasar_solver.converters.tsp import decode_tsp, tsp_to_qubo
-from quasar_solver.problem import TSPInstance, is_feasible_tsp, tour_length
+from quasar_solver.problem import Problem, TSPInstance, is_feasible_tsp, tour_length
 from quasar_solver.solver import SimulatedAnnealingSolver
 
 
@@ -18,10 +18,11 @@ class Solution:
     runtime: float
     solver_name: str
     metadata: dict[str, Any] = field(default_factory=dict)
+    routes: list[list[int]] | None = None
 
 
 class Solver(Protocol):
-    def solve(self, problem: TSPInstance, time_limit: float | None = None, seed: int | None = None) -> Solution: ...
+    def solve(self, problem: Problem, time_limit: float | None = None, seed: int | None = None) -> Solution: ...
 
 
 class QuboSASolver:

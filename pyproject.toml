@@ -6,6 +6,7 @@ dependencies = ["numpy", "matplotlib"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+vrp = ["ortools>=9.10,<10"]
 
 [build-system]
 requires = ["setuptools>=61.0"]
