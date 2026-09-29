@@ -1,6 +1,6 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Tests passing](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/abdulazizbalu/quasar-solver/actions)
+[![Tests](https://github.com/abdulazizbalu/quasar-solver/actions/workflows/tests.yml/badge.svg)](https://github.com/abdulazizbalu/quasar-solver/actions/workflows/tests.yml)
 
 <p align="center">
   <strong><a href="https://abdulazizbalu.github.io/quasar-solver/demos/web_demo.html">🚀 Live Demo</a></strong>
@@ -63,8 +63,14 @@ Simulated annealing is a randomized search method inspired by cooling physical s
 
 ## Benchmarks
 
-| Problem size (cities) | Variables (n²) | Avg solve time (ms) | Typical tour quality |
-| --- | ---: | ---: | --- |
-| 6 | 36 | 450 | Usually valid, near-optimal |
-| 10 | 100 | 1,800 | Often valid, good heuristic tours |
-| 20 | 400 | 9,500 | Mixed validity, useful exploratory tours |
+Run from the repository root with `python -m benchmarks.run_benchmarks`. The script writes `benchmarks/results/raw.csv` and `benchmarks/results/summary.md`. Each size uses one seeded uniform 2D Euclidean instance and ten annealing seeds (0–9). "Best known" is the best of a deterministic multi-start nearest-neighbor tour improved with 2-opt and all feasible benchmark runs; it is **not a certified optimum**. Objective and gap averages use feasible runs only; runtime averages use every run. An invalid run has no tour objective.
+
+The following measurements are from Python 3.14.4 on Intel64 Family 6 Model 186 Stepping 3, GenuineIntel, Windows 11. Runtime will vary by machine. The exact instance coordinates, run parameters, and per-seed outputs are defined by the script and recorded in the CSV.
+
+| Cities | Runs | Feasible | Mean objective (feasible) | Mean runtime (s) | Best known | Mean gap vs best known (feasible) |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 6 | 10 | 100.0% | 2.5517 | 0.0332 | 2.2917 | 11.3421% |
+| 10 | 10 | 100.0% | 4.0248 | 0.0525 | 2.7555 | 46.0658% |
+| 15 | 10 | 60.0% | 6.1029 | 0.0981 | 2.9346 | 107.9599% |
+| 20 | 10 | 0.0% | — | 0.1969 | 3.9030 | — |
+
