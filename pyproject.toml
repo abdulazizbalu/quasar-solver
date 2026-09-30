@@ -7,6 +7,7 @@ dependencies = ["numpy", "matplotlib"]
 [project.optional-dependencies]
 dev = ["pytest"]
 vrp = ["ortools>=9.10,<10"]
+external = ["dwave-samplers>=1.4,<2", "openjij>=0.9,<1"]
 
 [build-system]
 requires = ["setuptools>=61.0"]

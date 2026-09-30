@@ -29,11 +29,13 @@ class QuboSASolver:
     name = "qubo_sa"
 
     def __init__(self, num_reads: int = 8, num_sweeps: int = 100, penalty: float | None = None,
-                 penalty_alpha: float | None = 1.0):
+                 penalty_alpha: float | None = 1.0,
+                 schedule: Literal["coefficient_scaled_linear", "penalty_scaled_geometric"] = "coefficient_scaled_linear"):
         self.num_reads = num_reads
         self.num_sweeps = num_sweeps
         self.penalty = penalty
         self.penalty_alpha = penalty_alpha
+        self.schedule = schedule
 
     def build_qubo(self, problem: TSPInstance):
         """Build this adapter's TSP QUBO, applying its configured penalty scale."""
@@ -50,7 +52,9 @@ class QuboSASolver:
         start = perf_counter()
         qubo, penalty = self.build_qubo(problem)
         remaining = max(1e-9, time_limit - (perf_counter() - start)) if time_limit is not None else None
-        result = SimulatedAnnealingSolver(num_reads=self.num_reads, num_sweeps=self.num_sweeps, seed=seed).solve(
+        result = SimulatedAnnealingSolver(num_reads=self.num_reads, num_sweeps=self.num_sweeps, seed=seed,
+                                          schedule=self.schedule,
+                                          schedule_scale=penalty if self.schedule == "penalty_scaled_geometric" else None).solve(
             qubo, time_limit=remaining, budget_mode=budget_mode)
         route = decode_tsp(result.best_sample, problem.size)
         feasible = is_feasible_tsp(route, problem)
@@ -58,6 +62,7 @@ class QuboSASolver:
                         perf_counter() - start, self.name,
                         {"qubo_energy": result.best_energy, "penalty": penalty, "penalty_alpha": self.penalty_alpha,
                          "seed": seed, "budget_mode": budget_mode, "num_sweeps": self.num_sweeps,
+                         "schedule": self.schedule,
                          "num_reads": self.num_reads, "flips_attempted": result.flips_attempted,
                          "qubo_variables": qubo.num_vars(),
                          "sweeps_completed": result.sweeps_completed,

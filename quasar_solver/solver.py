@@ -35,6 +35,8 @@ class SimulatedAnnealingSolver:
         beta_start: float = 0.1,
         beta_end: float = 10.0,
         seed: int | None = None,
+        schedule: Literal["coefficient_scaled_linear", "penalty_scaled_geometric"] = "coefficient_scaled_linear",
+        schedule_scale: float | None = None,
     ) -> None:
         """Initialize the solver; one sweep attempts one flip for every variable."""
         if num_reads <= 0:
@@ -43,12 +45,18 @@ class SimulatedAnnealingSolver:
             raise ValueError("num_sweeps must be positive.")
         if beta_start < 0 or beta_end < 0:
             raise ValueError("Beta values must be non-negative.")
+        if schedule not in ("coefficient_scaled_linear", "penalty_scaled_geometric"):
+            raise ValueError("unknown annealing schedule")
+        if schedule == "penalty_scaled_geometric" and (schedule_scale is None or schedule_scale <= 0):
+            raise ValueError("penalty_scaled_geometric requires a positive schedule_scale")
 
         self.num_reads = int(num_reads)
         self.num_sweeps = int(num_sweeps)
         self.beta_start = float(beta_start)
         self.beta_end = float(beta_end)
         self.seed = seed
+        self.schedule = schedule
+        self.schedule_scale = float(schedule_scale) if schedule_scale is not None else None
 
     def solve(
         self,
@@ -73,8 +81,14 @@ class SimulatedAnnealingSolver:
         coefficient_scale = float(np.max(np.abs(matrix))) if matrix.size else 1.0
         if coefficient_scale == 0.0:
             coefficient_scale = 1.0
-        effective_beta_start = self.beta_start / coefficient_scale
-        effective_beta_end = self.beta_end / coefficient_scale
+        if self.schedule == "coefficient_scaled_linear":
+            # Historical schedule retained verbatim for TSP reproducibility.
+            effective_beta_start = self.beta_start / coefficient_scale
+            effective_beta_end = self.beta_end / coefficient_scale
+        else:
+            # beta=1/T: cool geometrically from T=8P to T=0.05P.
+            effective_beta_start = 1.0 / (8.0 * self.schedule_scale)
+            effective_beta_end = 1.0 / (0.05 * self.schedule_scale)
         rng = np.random.default_rng(self.seed)
         best_sample = np.zeros(n, dtype=int)
         best_energy = float("inf")
@@ -96,7 +110,8 @@ class SimulatedAnnealingSolver:
 
             for sweep in range(self.num_sweeps):
                 complete_sweep = True
-                beta = self._beta_for_sweep(sweep, effective_beta_start, effective_beta_end)
+                beta = self._beta_for_sweep(sweep, effective_beta_start, effective_beta_end,
+                                            geometric=self.schedule == "penalty_scaled_geometric")
                 # A permutation guarantees exactly one attempted flip per variable.
                 for bit_value in rng.permutation(n):
                     if deadline is not None and perf_counter() >= deadline:
@@ -133,13 +148,16 @@ class SimulatedAnnealingSolver:
             effective_beta_end=effective_beta_end,
         )
 
-    def _beta_for_sweep(self, sweep: int, beta_start: float | None = None, beta_end: float | None = None) -> float:
+    def _beta_for_sweep(self, sweep: int, beta_start: float | None = None, beta_end: float | None = None,
+                        geometric: bool = False) -> float:
         """Return the linearly interpolated inverse temperature for one sweep."""
         beta_start = self.beta_start if beta_start is None else beta_start
         beta_end = self.beta_end if beta_end is None else beta_end
         if self.num_sweeps == 1:
             return beta_end
         fraction = sweep / (self.num_sweeps - 1)
+        if geometric:
+            return beta_start * (beta_end / beta_start) ** fraction
         return beta_start + fraction * (beta_end - beta_start)
 
     def _flip_delta(self, matrix: np.ndarray, sample: np.ndarray, bit: int) -> float:

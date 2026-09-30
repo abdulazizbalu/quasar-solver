@@ -62,14 +62,17 @@ class ORToolsVRPSolver:
                 dimension.CumulVar(model.Start(vehicle)).SetRange(int(math.ceil(lo * scale)), int(math.floor(hi * scale)))
                 dimension.CumulVar(model.End(vehicle)).SetRange(int(math.ceil(lo * scale)), int(math.floor(hi * scale)))
         params = pywrapcp.DefaultRoutingSearchParameters()
-        params.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+        strategies = [routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC,
+                      routing_enums_pb2.FirstSolutionStrategy.SAVINGS,
+                      routing_enums_pb2.FirstSolutionStrategy.PARALLEL_CHEAPEST_INSERTION,
+                      routing_enums_pb2.FirstSolutionStrategy.LOCAL_CHEAPEST_INSERTION,
+                      routing_enums_pb2.FirstSolutionStrategy.CHRISTOFIDES,
+                      routing_enums_pb2.FirstSolutionStrategy.PATH_MOST_CONSTRAINED_ARC]
+        strategy_index = 0 if seed is None else int(seed) % len(strategies)
+        params.first_solution_strategy = strategies[strategy_index]
         params.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
         params.time_limit.FromMilliseconds(max(1, int(1000 * time_limit)))
         params.log_search = False
-        if seed is not None:
-            # RoutingSearchParameters has no top-level random_seed in OR-Tools
-            # 9.15; seed the SAT component when it is used by the search.
-            params.sat_parameters.random_seed = int(seed)
         assignment = model.SolveWithParameters(params)
         routes: list[list[int]] = []
         if assignment:
@@ -84,7 +87,8 @@ class ORToolsVRPSolver:
                     routes.append(route + [0])
         return _solution(self.name, routes, problem, start,
                          {"seed": seed, "time_limit_seconds": time_limit, "integer_scale": scale,
-                          "search": "guided_local_search", "status": int(model.status())})
+                          "search": "guided_local_search", "first_solution_strategy": int(strategies[strategy_index]),
+                          "status": int(model.status())})
 
 
 class ExactSmallCVRPSolver:
@@ -196,8 +200,20 @@ class VRPSASolver:
                 else:
                     trial[b].insert(int(rng.integers(1, len(trial[b]))), node)
             elif move == 1:  # swap
-                a, b = rng.integers(len(trial), size=2)
-                i, j = int(rng.integers(1, len(trial[a]) - 1)), int(rng.integers(1, len(trial[b]) - 1))
+                # Resample the second customer position so this move always
+                # exchanges two distinct slots (including across routes).
+                slots = [(route_index, pos)
+                         for route_index, route in enumerate(trial)
+                         for pos in range(1, len(route) - 1)]
+                if len(slots) < 2:
+                    attempts += 1
+                    continue
+                first_index = int(rng.integers(len(slots)))
+                second_index = int(rng.integers(len(slots) - 1))
+                if second_index >= first_index:
+                    second_index += 1
+                a, i = slots[first_index]
+                b, j = slots[second_index]
                 trial[a][i], trial[b][j] = trial[b][j], trial[a][i]
             else:  # intra-route 2-opt
                 a = int(rng.integers(len(trial)))

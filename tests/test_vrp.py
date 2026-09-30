@@ -1,4 +1,5 @@
 from pathlib import Path
+from itertools import permutations, combinations
 
 import numpy as np
 import pytest
@@ -52,6 +53,43 @@ def test_all_solvers_tiny(tiny):
             assert result.metadata["proven"] and result.objective == 4
 
 
+def test_vrp_sa_objective_matches_independent_brute_force():
+    coords = np.arange(4)[:, None]
+    distances = np.abs(coords[:, None, :] - coords[None, :, :]).squeeze()
+    problem = CVRPInstance("line", distances, [0, 1, 1, 1], 2, 2)
+    customers = range(1, 4)
+    optimum = float("inf")
+    # Enumerate every ordering and every two-route split, without using the
+    # production feasibility checker or its objective routine.
+    for order in permutations(customers):
+        for cut in range(1, len(order)):
+            routes = (order[:cut], order[cut:])
+            if all(sum(problem.demands[i] for i in route) <= problem.capacity for route in routes):
+                cost = sum(problem.distance_matrix[a, b]
+                           for route in routes for a, b in zip((0,) + route, route + (0,)))
+                optimum = min(optimum, float(cost))
+    result = VRPSASolver(500).solve(problem, seed=3, budget_mode="iterations")
+    assert result.routes is not None
+    visited = [node for route in result.routes for node in route[1:-1]]
+    assert sorted(visited) == [1, 2, 3]
+    assert all(sum(problem.demands[i] for i in route[1:-1]) <= problem.capacity for route in result.routes)
+    independently_measured = sum(problem.distance_matrix[a, b]
+                                 for route in result.routes for a, b in zip(route, route[1:]))
+    assert independently_measured == optimum == result.objective
+
+
+def test_external_sampler_adapters_when_installed(tiny):
+    pytest.importorskip("dwave.samplers")
+    pytest.importorskip("openjij")
+    from quasar_solver.external_samplers import DWaveSimulatedAnnealingSolver, OpenJijSASolver
+
+    qubo, _ = build_cvrp_qubo(tiny)
+    for sampler in (DWaveSimulatedAnnealingSolver(), OpenJijSASolver()):
+        result = sampler.solve(qubo, num_sweeps=5, num_reads=2, seed=9)
+        assert result.flips_attempted == 2 * 5 * qubo.num_vars()
+        assert result.best_energy == qubo.energy(result.best_sample)
+
+
 def test_parsers(tmp_path: Path):
     vrp = tmp_path / "A-n3-k2.vrp"
     vrp.write_text("NAME : A-n3-k2\nTYPE : CVRP\nDIMENSION : 3\nEDGE_WEIGHT_TYPE : EUC_2D\nCAPACITY : 2\nNODE_COORD_SECTION\n1 0 0\n2 1 0\n3 2 0\nDEMAND_SECTION\n1 0\n2 1\n3 1\nDEPOT_SECTION\n1\n-1\nEOF\n")
@@ -73,6 +111,12 @@ def test_benchmark_seed_separation_and_summary():
     a = tiny_instance(4, 10)
     b = tiny_instance(4, 11)
     assert not np.array_equal(a.distance_matrix, b.distance_matrix)
+    from benchmarks.run_vrp_benchmarks import tiny_instance
+    generated = [tiny_instance(5, 203100 + i) for i in range(10)]
+    assert all(p.capacity == p.demands.sum() if i % 2 else
+               p.capacity == max(p.demands[1:].max(), (p.demands.sum()+1)//2)
+               for i, p in enumerate(generated))
+    assert len({tuple(p.demands) for p in generated}) > 1
     rows = [dict(group="tiny", size=4, instance="a", solver="vrp_sa", feasible=1,
                  gap_percent=0.0, routes=2, runtime_seconds=.1, attempts=400, variable_count=""),
             dict(group="tiny", size=4, instance="b", solver="vrp_sa", feasible=1,
