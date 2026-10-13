@@ -23,6 +23,11 @@ class SolverResult:
     coefficient_scale: float = 1.0
     effective_beta_start: float = 0.0
     effective_beta_end: float = 0.0
+    # Final state of the read whose final energy is lowest. ``best_sample`` is the
+    # best state seen anywhere along the trajectories; samplers that return only
+    # their final state should be compared with ``final_sample``.
+    final_sample: np.ndarray | None = None
+    final_energy: float | None = None
 
 
 class SimulatedAnnealingSolver:
@@ -92,6 +97,8 @@ class SimulatedAnnealingSolver:
         rng = np.random.default_rng(self.seed)
         best_sample = np.zeros(n, dtype=int)
         best_energy = float("inf")
+        final_sample: np.ndarray | None = None
+        final_energy = float("inf")
         all_energies: list[float] = []
 
         if n == 0:
@@ -133,6 +140,9 @@ class SimulatedAnnealingSolver:
 
             all_energies.append(float(read_best_energy))
             reads += 1
+            if energy < final_energy:
+                final_energy = energy
+                final_sample = sample.copy()
             if read_best_energy < best_energy:
                 best_energy = read_best_energy
                 best_sample = read_best_sample.copy()
@@ -146,6 +156,8 @@ class SimulatedAnnealingSolver:
             coefficient_scale=coefficient_scale,
             effective_beta_start=effective_beta_start,
             effective_beta_end=effective_beta_end,
+            final_sample=final_sample,
+            final_energy=float(final_energy) if final_sample is not None else None,
         )
 
     def _beta_for_sweep(self, sweep: int, beta_start: float | None = None, beta_end: float | None = None,

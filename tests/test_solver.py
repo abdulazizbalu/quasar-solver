@@ -46,3 +46,18 @@ def test_old_schedule_is_the_default():
                                         schedule="coefficient_scaled_linear").solve(qubo)
     np.testing.assert_array_equal(default.best_sample, explicit.best_sample)
     assert default.best_energy == explicit.best_energy
+
+
+def test_final_sample_is_reported_alongside_best_seen():
+    from quasar_solver.qubo import QUBO
+    from quasar_solver.solver import SimulatedAnnealingSolver
+
+    rng = np.random.default_rng(1)
+    qubo = QUBO()
+    for i in range(12):
+        for j in range(i, 12):
+            qubo.add(i, j, float(rng.normal()))
+    result = SimulatedAnnealingSolver(num_reads=3, num_sweeps=20, seed=4).solve(qubo)
+    assert result.final_sample is not None
+    assert abs(result.final_energy - qubo.energy(result.final_sample)) < 1e-9
+    assert result.best_energy <= result.final_energy + 1e-9
