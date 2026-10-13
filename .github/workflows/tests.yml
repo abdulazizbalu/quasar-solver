@@ -31,3 +31,23 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -q
+
+  external-samplers:
+    runs-on: ubuntu-latest
+    env:
+      QUASAR_REQUIRE_EXTERNAL: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies with external samplers
+        run: pip install -e ".[dev,vrp,external]"
+
+      - name: Run external sampler adapter tests
+        run: python -m pytest -q -rs -k external

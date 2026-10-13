@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from itertools import permutations, combinations
 
@@ -79,6 +80,9 @@ def test_vrp_sa_objective_matches_independent_brute_force():
 
 
 def test_external_sampler_adapters_when_installed(tiny):
+    if os.environ.get("QUASAR_REQUIRE_EXTERNAL") == "1":
+        import dwave.samplers  # noqa: F401  # fail, not skip, in the external CI job
+        import openjij  # noqa: F401
     pytest.importorskip("dwave.samplers")
     pytest.importorskip("openjij")
     from quasar_solver.external_samplers import DWaveSimulatedAnnealingSolver, OpenJijSASolver
