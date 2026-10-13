@@ -96,17 +96,17 @@ def test_external_sampler_adapters_when_installed(tiny):
 
 def test_parsers(tmp_path: Path):
     vrp = tmp_path / "A-n3-k2.vrp"
-    vrp.write_text("NAME : A-n3-k2\nTYPE : CVRP\nDIMENSION : 3\nEDGE_WEIGHT_TYPE : EUC_2D\nCAPACITY : 2\nNODE_COORD_SECTION\n1 0 0\n2 1 0\n3 2 0\nDEMAND_SECTION\n1 0\n2 1\n3 1\nDEPOT_SECTION\n1\n-1\nEOF\n")
+    vrp.write_text(encoding="utf-8", data="NAME : A-n3-k2\nTYPE : CVRP\nDIMENSION : 3\nEDGE_WEIGHT_TYPE : EUC_2D\nCAPACITY : 2\nNODE_COORD_SECTION\n1 0 0\n2 1 0\n3 2 0\nDEMAND_SECTION\n1 0\n2 1\n3 1\nDEPOT_SECTION\n1\n-1\nEOF\n")
     p = parse_cvrplib(vrp)
     assert p.size == 2 and p.num_vehicles == 2 and p.distance_matrix[0, 2] == 2
     sol = tmp_path / "x.sol"
-    sol.write_text("Route #1: 1 2\nCost 4\n")
+    sol.write_text(encoding="utf-8", data="Route #1: 1 2\nCost 4\n")
     assert parse_cvrplib_solution(sol) == ([[0, 1, 2, 0]], 4)
     txt = tmp_path / "C101.txt"
-    txt.write_text("C101\nVEHICLE\nNUMBER CAPACITY\n2 2\nCUSTOMER\n0 0 0 0 0 10 0\n1 1 0 1 0 10 0\n2 2 0 1 0 10 0\n")
+    txt.write_text(encoding="utf-8", data="C101\nVEHICLE\nNUMBER CAPACITY\n2 2\nCUSTOMER\n0 0 0 0 0 10 0\n1 1 0 1 0 10 0\n2 2 0 1 0 10 0\n")
     assert parse_solomon(txt, 2).size == 2
     # Reference convention truncates Euclidean arc costs to one decimal.
-    txt.write_text(txt.read_text().replace("2 2 0 1", "2 2 1 1"))
+    txt.write_text(txt.read_text(encoding="utf-8").replace("2 2 0 1", "2 2 1 1"), encoding="utf-8")
     assert parse_solomon(txt, 2).distance_matrix[0, 2] == 2.2
 
 
