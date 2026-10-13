@@ -136,3 +136,20 @@ def test_wilson_interval_for_small_counts():
     assert low == 0.0 and abs(high - 0.2775) < 1e-3
     low, high = wilson_interval(9, 10)
     assert abs(low - 0.5958) < 1e-3 and abs(high - 0.9821) < 1e-3
+
+
+def test_external_openjij_reads_differ_with_fixed_seed():
+    if os.environ.get("QUASAR_REQUIRE_EXTERNAL") != "1":
+        pytest.importorskip("openjij")
+        pytest.importorskip("dwave.samplers")
+    from quasar_solver.external_samplers import OpenJijSASolver
+    from quasar_solver.qubo import QUBO
+
+    rng = np.random.default_rng(0)
+    qubo = QUBO()
+    for i in range(30):
+        for j in range(i, 30):
+            qubo.add(i, j, float(rng.normal()))
+    result = OpenJijSASolver().solve(qubo, num_sweeps=5, num_reads=10, seed=3)
+    assert len(result.all_energies) == 10
+    assert len(set(result.all_energies)) > 1
