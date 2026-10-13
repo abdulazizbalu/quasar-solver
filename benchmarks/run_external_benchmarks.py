@@ -5,6 +5,11 @@ Run after ``pip install -e '.[dev,vrp,external]'`` with
 same QUBO coefficients, one read, and 100 full-variable sweeps. TSP also
 includes fixed-effort swap and 2-opt baselines; tiny CVRP uses the same 0.2 s
 wall cap for route-based VRP-SA and OR-Tools.
+
+The in-repository annealer reports two rows per run from the same trajectory:
+``best_seen`` (the lowest-energy state visited, which the main TSP table uses)
+and ``final`` (the state at the end of the schedule). D-Wave and OpenJij
+return final states, so ``final`` is the like-for-like comparison.
 """
 from __future__ import annotations
 
@@ -22,13 +27,13 @@ from benchmarks.run_benchmarks import (SIZES as TSP_SIZES, INSTANCE_SEEDS,
                                        two_opt)
 from benchmarks.run_vrp_benchmarks import tiny_instance
 from quasar_solver.converters.tsp import decode_tsp
+from quasar_solver.solver import SimulatedAnnealingSolver
 from quasar_solver.external_samplers import DWaveSimulatedAnnealingSolver, OpenJijSASolver
 from quasar_solver.problem import is_feasible_tsp, tour_length
 from quasar_solver.tsp_solver import QuboSASolver
 from quasar_solver.swap_solver import QuboSASwapSolver
 from quasar_solver.vrp import is_feasible_vrp, routes_distance
-from quasar_solver.vrp_qubo import (QuboSACVRPSolver, build_cvrp_qubo,
-                                    decode_cvrp_sample)
+from quasar_solver.vrp_qubo import build_cvrp_qubo, decode_cvrp_sample
 from quasar_solver.vrp_solvers import ExactSmallCVRPSolver, ORToolsVRPSolver, VRPSASolver
 
 
@@ -70,7 +75,9 @@ def _mean_ci(rows, key, seed):
 
 def _summarize(rows):
     lines = ["# Optional external annealer comparison", "",
-             "Ten instances per size and ten solver seeds per instance. Confidence intervals bootstrap independent instances. External adapters receive the exact same QUBO coefficients as the in-repository solver, one read and 100 full-variable sweeps. Equivalent sweep counts do not imply equivalent kernels or elapsed time.", "",
+             "Ten instances per size and ten solver seeds per instance. External adapters receive the exact same QUBO coefficients as the in-repository solver, one read and 100 full-variable sweeps. Equivalent sweep counts do not imply equivalent kernels or elapsed time.", "",
+             "Mean gap is computed over feasible runs only (it is conditional on feasibility, so compare it together with the feasible count): runs are first averaged within each instance, then across instances that have at least one feasible run. The main TSP table instead pools all feasible runs, so the same runs can show slightly different means there. The 95% interval bootstraps those instances and is shown only when at least five instances contribute.", "",
+             "`qubo_sa* (best_seen)` is the lowest-energy state visited during the run, as in the main TSP table; `qubo_sa* (final)` is the state at the end of the same run. D-Wave and OpenJij return final states, so the final rows are the like-for-like comparison.", "",
              "| Problem | Size | Solver | Feasible | Optimal hit | Mean gap [95% CI] | Mean runtime | Mean attempts | Variables |",
              "| --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     keys = sorted({(r["group"], r["size"], r["solver"], r["schedule"]) for r in rows})
@@ -79,12 +86,13 @@ def _summarize(rows):
         feas = sum(int(r["feasible"]) for r in cell)
         hits = sum(int(r["optimal_hit"]) for r in cell)
         ci = _mean_ci(cell, "gap_percent", size * 9000 + len(solver))
+        instances = len({r["instance"] for r in cell if r["gap_percent"] != ""})
         if ci is None:
             gap = "n/a"
-        elif np.isfinite(ci[1]):
-            gap = f"{ci[0]:.2f}% [{ci[1]:.2f}, {ci[2]:.2f}]"
+        elif instances >= 5:
+            gap = f"{ci[0]:.2f}% [{ci[1]:.2f}, {ci[2]:.2f}] ({instances} inst.)"
         else:
-            gap = f"{ci[0]:.2f}% [CI unavailable]"
+            gap = f"{ci[0]:.2f}% (no CI; {instances} inst.)"
         label = solver if schedule == "" else f"{solver} ({schedule})"
         attempts = [float(r["attempts"]) for r in cell if r["attempts"] != ""]
         variables = sorted({int(r["variable_count"]) for r in cell if r["variable_count"] != ""})
@@ -103,11 +111,20 @@ def run_tsp(rows):
             qubo, penalty = QuboSASolver(num_reads=1, num_sweeps=SWEEPS).build_qubo(problem)
             for seed in SOLVER_SEEDS:
                 for label, schedule in (("qubo_sa_old", OLD), ("qubo_sa_penalty", NEW)):
-                    result = QuboSASolver(num_reads=1, num_sweeps=SWEEPS,
-                                          schedule=schedule).solve(problem, seed=seed)
-                    rows.append(_row("TSP", size, problem.name, instance_seed, seed,
-                                     label, schedule, result.feasible, result.objective,
-                                     optimum, result.runtime, result.metadata["flips_attempted"], size*size))
+                    # Same QUBO, seed and settings as QuboSASolver.solve, which
+                    # returns only the best-seen state.
+                    started = perf_counter()
+                    result = SimulatedAnnealingSolver(
+                        num_reads=1, num_sweeps=SWEEPS, seed=seed, schedule=schedule,
+                        schedule_scale=penalty if schedule == NEW else None).solve(qubo)
+                    runtime = perf_counter() - started
+                    for state, sample in (("best_seen", result.best_sample), ("final", result.final_sample)):
+                        route = decode_tsp(sample, size)
+                        feasible = is_feasible_tsp(route, problem)
+                        rows.append(_row("TSP", size, problem.name, instance_seed, seed,
+                                         f"{label} ({state})", schedule, feasible,
+                                         tour_length(route, problem) if feasible else None,
+                                         optimum, runtime, result.flips_attempted, size*size))
                 for sampler in EXTERNALS:
                     started = perf_counter()
                     external = sampler.solve(qubo, num_sweeps=SWEEPS, num_reads=1,
@@ -123,9 +140,8 @@ def run_tsp(rows):
                     rows.append(_row("TSP", size, problem.name, instance_seed, seed,
                                      solution.solver_name, "baseline", solution.feasible,
                                      solution.objective, optimum, solution.runtime,
-                                     solution.metadata.get("flips_attempted",
-                                         solution.metadata.get("moves_attempted",
-                                             solution.metadata.get("evaluations", 0))),
+                                     solution.metadata.get("moves_attempted",
+                                         solution.metadata.get("evaluations", "")),
                                      size*size))
 
 
@@ -140,11 +156,19 @@ def run_cvrp(rows):
             qubo, meta = build_cvrp_qubo(problem)
             for seed in SOLVER_SEEDS:
                 for schedule in (OLD, NEW):
-                    result = QuboSACVRPSolver(SWEEPS, 1, schedule).solve(problem, seed=seed)
-                    rows.append(_row("CVRP", size, problem.name, instance_seed, seed,
-                                     "qubo_sa", schedule, result.feasible, result.objective,
-                                     exact.objective, result.runtime, result.metadata["attempts"],
-                                     result.metadata["variable_count"]))
+                    started = perf_counter()
+                    result = SimulatedAnnealingSolver(
+                        num_reads=1, num_sweeps=SWEEPS, seed=seed, schedule=schedule,
+                        schedule_scale=meta["penalty"] if schedule == NEW else None).solve(qubo)
+                    runtime = perf_counter() - started
+                    for state, sample in (("best_seen", result.best_sample), ("final", result.final_sample)):
+                        routes = decode_cvrp_sample(sample, problem)
+                        feasible = is_feasible_vrp(routes, problem)
+                        rows.append(_row("CVRP", size, problem.name, instance_seed, seed,
+                                         f"qubo_sa ({state})", schedule, feasible,
+                                         routes_distance(routes, problem) if feasible else None,
+                                         exact.objective, runtime, result.flips_attempted,
+                                         meta["variable_count"]))
                     for sampler in EXTERNALS:
                         started = perf_counter()
                         external = sampler.solve(qubo, num_sweeps=SWEEPS, num_reads=1,
@@ -182,7 +206,9 @@ def write_results(rows):
             "openjij": version("openjij"), "sweeps": SWEEPS, "reads": 1,
             "solver_seeds": list(SOLVER_SEEDS), "tsp_instance_seeds": list(INSTANCE_SEEDS),
             "cvrp_instance_seeds": list(range(203000, 203010)),
-            "route_solver_time_limit_seconds": 0.2}
+            "route_solver_time_limit_seconds": 0.2,
+            "in_repository_annealer_states": ["best_seen", "final"],
+            "command": "python -m benchmarks.run_external_benchmarks"}
     (OUT / "external_comparison_environment.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     summary = _summarize(rows)
     print(summary)
@@ -196,35 +222,5 @@ def run():
     return write_results(rows)
 
 
-def refresh_cvrp_with_corrected_moves():
-    """Reuse a completed TSP experiment and refresh CVRP route-search rows."""
-    path = OUT / "external_comparison_raw.csv"
-    if not path.exists():
-        raise FileNotFoundError("run the full external comparison before refreshing CVRP")
-    with path.open(newline="", encoding="utf-8") as stream:
-        rows = [row for row in csv.DictReader(stream) if row["group"] == "TSP"]
-    for row in rows:
-        for key in ("size", "instance_seed", "solver_seed", "feasible", "optimal_hit", "attempts", "variable_count"):
-            if row.get(key, "") != "":
-                row[key] = int(float(row[key]))
-        for key in ("objective", "reference", "runtime_seconds", "gap_percent"):
-            if row.get(key, "") != "":
-                row[key] = float(row[key])
-    # The completed swap runs exhausted their fixed 100 x n^2 move budget;
-    # older summary code omitted the solver's `moves_attempted` metadata key.
-    for row in rows:
-        if row["solver"] == "qubo_sa_swap":
-            row["attempts"] = str(SWEEPS * int(row["size"]) ** 2)
-    run_cvrp(rows)
-    return write_results(rows)
-
-
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--refresh-cvrp", action="store_true",
-                        help="reuse completed TSP rows and rerun CVRP rows after a route move fix")
-    if parser.parse_args().refresh_cvrp:
-        refresh_cvrp_with_corrected_moves()
-    else:
-        run()
+    run()
