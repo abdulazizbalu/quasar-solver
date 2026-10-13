@@ -16,11 +16,21 @@ import numpy as np
 from benchmarks.run_benchmarks import INSTANCE_SEEDS, SIZES as TSP_SIZES, make_instance
 from benchmarks.run_vrp_benchmarks import tiny_instance
 from quasar_solver.tsp_solver import QuboSASolver
+from quasar_solver.vrp import CVRPInstance
 from quasar_solver.vrp_qubo import build_cvrp_qubo
 
 OUT = Path(__file__).resolve().parent / "results" / "qubo_scale_diagnostic.md"
 CVRP_SETS = {"tiny benchmark and external comparison": range(203000, 203010),
              "QUBO budget sweep": range(203100, 203110)}
+
+
+def unit_demand_instance(size: int, instance_seed: int) -> CVRPInstance:
+    """Tiny instance generator used before random demands (commit 5283375)."""
+    rng = np.random.default_rng(instance_seed)
+    coords = rng.integers(0, 100, size=(size+1, 2))
+    distances = np.floor(np.linalg.norm(coords[:, None, :] - coords[None, :, :], axis=2) + .5)
+    return CVRPInstance(f"tiny-{size}-{instance_seed}", distances,
+                        np.array([0] + [1]*size), size//2, 2)
 
 
 def _ratio(qubo, penalty: float) -> float:
@@ -49,6 +59,13 @@ def main() -> str:
                 ratios.append(_ratio(qubo, meta["penalty"]))
             lines.append(f"| CVRP | {label} | {size} | {len(ratios)} | {min(ratios):.1f}–{max(ratios):.1f} | "
                          f"{min(ratios)/10:.1f}–{max(ratios)/10:.1f} |")
+    for size in (4, 6):
+        ratios = []
+        for seed in range(203000, 203010):
+            qubo, meta = build_cvrp_qubo(unit_demand_instance(size, seed))
+            ratios.append(_ratio(qubo, meta["penalty"]))
+        lines.append(f"| CVRP | earlier unit-demand instances (commit 5283375) | {size} | {len(ratios)} | "
+                     f"{min(ratios):.1f}–{max(ratios):.1f} | {min(ratios)/10:.1f}–{max(ratios)/10:.1f} |")
     lines += ["", "In the CVRP QUBO, squaring the capacity equation multiplies P by products of demand and binary "
               "slack-bit weights, so max|Q| is far above P and the coefficient-normalized default ends hotter than P."]
     report = "\n".join(lines) + "\n"
