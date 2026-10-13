@@ -114,7 +114,7 @@ def summarize(rows: list[dict]) -> str:
         lines.append(f"| {label if label != 'all' else group} | {size} | {solver} | {feasible}/{len(subset)} | {fleet_match}/{len(subset)} | {gap_text} | {median_all} | {routes:.2f} | "
                      f"{np.mean(runtimes):.3f} s | {runtime_range} | {effort} | "
                      f"{variable_range} |")
-    lines += ["", "For Solomon cases, the mean gap and its interval use feasible runs matching the published fleet; median gap includes every feasible run. Confidence intervals resample independent tiny instances; standard cases each have one instance, so their intervals are unavailable despite ten solver seeds. The comparison table uses a shared wall-clock limit for vrp_sa and OR-Tools."]
+    lines += ["", "For Solomon cases, the mean gap and its interval use feasible runs matching the published fleet. The median gap includes every feasible run, including runs with more vehicles than the reference; under the fleet-first Solomon objective those distances are not comparable with the reference distance. Tiny-instance gaps average per-instance means of feasible runs, and their intervals resample the ten tiny instances; standard cases each have one instance, so their intervals are unavailable despite ten solver seeds. The comparison table uses a shared wall-clock limit for vrp_sa and OR-Tools. OR-Tools seeds select one of six first-solution strategies (seed mod 6), so seeds 6–9 repeat the strategies of seeds 0–3. An infeasible tiny `vrp_sa` run means its greedy construction found no capacity-feasible start (status `construction_failed`); no annealing was run."]
     return "\n".join(lines) + "\n"
 
 
@@ -132,7 +132,10 @@ def chart(rows: list[dict]) -> None:
     for axis in axes:
         axis.set_xticks(sorted({r["size"] for r in rows if r["group"] == "tiny"}))
     axes[0].legend(fontsize=8)
-    fig.text(.5, .01, "Six-customer QUBO gap uses one feasible run; CI unavailable.", ha="center", fontsize=8)
+    qubo_feasible = sum(int(r["feasible"]) for r in rows if r["group"] == "tiny" and r["solver"] == "qubo_sa")
+    qubo_total = sum(1 for r in rows if r["group"] == "tiny" and r["solver"] == "qubo_sa")
+    fig.text(.5, .01, f"qubo_sa (default schedule, 100 sweeps): {qubo_feasible}/{qubo_total} feasible runs; "
+             "gaps use feasible runs only.", ha="center", fontsize=8)
     fig.tight_layout(rect=(0, .04, 1, 1))
     target = ROOT / "docs" / "vrp_benchmark.png"
     target.parent.mkdir(exist_ok=True)
@@ -189,37 +192,78 @@ def run_qubo_budget_sweep(sizes=(4, 5, 6), sweeps=(100, 500, 2000, 10000),
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
+    write_sweep_report(rows)
+    return rows
+
+
+def wilson_interval(successes: int, trials: int, z: float = 1.959964) -> tuple[float, float]:
+    """Wilson score interval for a binomial proportion."""
+    if trials <= 0:
+        raise ValueError("trials must be positive")
+    p = successes / trials
+    denominator = 1 + z * z / trials
+    centre = (p + z * z / (2 * trials)) / denominator
+    half = z * np.sqrt(p * (1 - p) / trials + z * z / (4 * trials * trials)) / denominator
+    return max(0.0, centre - half), min(1.0, centre + half)
+
+
+def _count_cell(count: int, total: int) -> str:
+    low, high = wilson_interval(count, total)
+    return f"{count}/{total} [{100*low:.0f}, {100*high:.0f}]"
+
+
+def _gap_cell(gaps: list[float], seed: int) -> str:
+    """Bootstrap only with at least five feasible instances; otherwise list the values."""
+    if not gaps:
+        return "n/a (0 feasible)"
+    if len(gaps) < 5:
+        values = ", ".join(f"{g:.1f}" for g in sorted(gaps))
+        return f"{np.mean(gaps):.1f}% (n={len(gaps)}: {values}; no CI)"
+    stat = _bootstrap_mean(gaps, seed)
+    return f"{stat[0]:.1f}% (n={len(gaps)}) [{stat[1]:.1f}, {stat[2]:.1f}]"
+
+
+def write_sweep_report(rows: list[dict]) -> str:
+    """Write the sweep markdown and chart from raw sweep rows."""
+    sizes = sorted({int(r["size"]) for r in rows})
+    sweeps = sorted({int(r["sweeps_per_variable"]) for r in rows})
+    schedules = ("coefficient_scaled_linear", "penalty_scaled_geometric")
     report = ["# Tiny CVRP QUBO budget and schedule sweep", "",
-              "Ten independent random instances per size; five use tight and five use loose capacity. One annealer seed is used per instance and cell; confidence intervals bootstrap independent instances, not repeated solver seeds. Every reference was CP-SAT proven optimal. Gaps are conditional on feasible runs.", "",
-              "| Customers | Sweeps / variable | Schedule | Feasible [95% CI] | Optimal hits [95% CI] | Mean gap on feasible [95% CI] | Variables | Mean flips | Mean runtime |",
+              "Ten random instances per size (instance seeds 203100–203109; the same seed is reused across sizes, so instances are independent within a size, not across sizes); five use tight and five use loose capacity. One annealer seed is used per instance and cell, so each cell has ten independent binary outcomes. Feasible and optimal-hit columns show counts with 95% Wilson score intervals. Every reference was CP-SAT proven optimal.", "",
+              "Gaps are conditional on feasibility: they average only the feasible runs, whose number `n` is shown, so a cell with few feasible runs is not comparable with one with many. With fewer than five feasible runs the individual gaps are listed and no interval is given; otherwise the interval is a 95% percentile bootstrap over the feasible instances.", "",
+              "| Customers | Sweeps / variable | Schedule | Feasible [95% Wilson] | Optimal hits [95% Wilson] | Mean gap on feasible runs | Variables | Mean flips | Mean runtime |",
               "| ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     summary_rows = []
     for size in sizes:
         for budget in sweeps:
             for schedule in schedules:
-                cell = [r for r in rows if r["size"] == size and r["sweeps_per_variable"] == budget and r["schedule"] == schedule]
-                feas = _bootstrap_mean([float(r["feasible"]) for r in cell], 7700 + size + budget)
-                hit = _bootstrap_mean([float(r["optimal_hit"]) for r in cell], 8800 + size + budget)
+                cell = [r for r in rows if int(r["size"]) == size and int(r["sweeps_per_variable"]) == budget
+                        and r["schedule"] == schedule]
+                if not cell:
+                    continue
+                feasible = sum(int(r["feasible"]) for r in cell)
+                hits = sum(int(r["optimal_hit"]) for r in cell)
                 gaps = [float(r["gap_percent"]) for r in cell if r["gap_percent"] != ""]
-                gap = _bootstrap_mean(gaps, 9900 + size + budget)
-                def format_ci(stat):
-                    if stat is None: return "n/a"
-                    if not np.isfinite(stat[1]): return f"{100*stat[0]:.1f}% [CI unavailable]"
-                    return f"{100*stat[0]:.1f}% [{100*stat[1]:.1f}, {100*stat[2]:.1f}]"
                 variables = sorted({int(r["variable_count"]) for r in cell})
                 var_text = str(variables[0]) if len(variables) == 1 else f"{variables[0]}–{variables[-1]}"
+                attempts = np.mean([float(r["attempts"]) for r in cell])
+                runtime = np.mean([float(r["runtime_seconds"]) for r in cell])
                 summary_rows.append({"size": size, "sweeps": budget, "schedule": schedule,
-                                     "feasibility": feas, "optimal_hit": hit, "gap": gap,
-                                     "variables": var_text,
-                                     "mean_attempts": float(np.mean([r["attempts"] for r in cell])),
-                                     "mean_runtime": float(np.mean([r["runtime_seconds"] for r in cell]))})
-                report.append(f"| {size} | {budget} | {schedule} | {format_ci(feas)} | {format_ci(hit)} | "
-                              f"{(format_ci((gap[0]/100,gap[1]/100,gap[2]/100)) if gap else 'n/a')} | "
-                              f"{var_text} | {np.mean([r['attempts'] for r in cell]):.0f} | "
-                              f"{np.mean([r['runtime_seconds'] for r in cell]):.3f} s |")
-    (OUT / "vrp_qubo_budget_sweep.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+                                     "feasible": feasible, "total": len(cell),
+                                     "gap": float(np.mean(gaps)) if gaps else None})
+                report.append(f"| {size} | {budget} | {schedule} | {_count_cell(feasible, len(cell))} | "
+                              f"{_count_cell(hits, len(cell))} | {_gap_cell(gaps, 9900 + size + budget)} | "
+                              f"{var_text} | {attempts:.0f} | {runtime:.3f} s |")
+    text = "\n".join(report) + "\n"
+    (OUT / "vrp_qubo_budget_sweep.md").write_text(text, encoding="utf-8")
     _sweep_chart(summary_rows)
-    return rows
+    return text
+
+
+def regenerate_sweep_report(path: Path = OUT / "vrp_qubo_budget_sweep.csv") -> str:
+    """Rebuild the sweep markdown and chart from the saved CSV."""
+    with path.open(newline="", encoding="utf-8") as stream:
+        return write_sweep_report(list(csv.DictReader(stream)))
 
 
 def _sweep_chart(summary_rows: list[dict]) -> None:
@@ -230,19 +274,27 @@ def _sweep_chart(summary_rows: list[dict]) -> None:
             subset = sorted((r for r in summary_rows if r["size"] == size and r["schedule"] == schedule),
                             key=lambda r: r["sweeps"])
             label = f"n={size}, {schedule}"
-            axes[0].plot([r["sweeps"] for r in subset], [100*r["feasibility"][0] for r in subset],
-                         marker="o", color=colors[schedule], linestyle="-" if size == 4 else "--" if size == 5 else ":", label=label)
-            axes[1].plot([r["sweeps"] for r in subset], [r["gap"][0] if r["gap"] else np.nan for r in subset],
-                         marker="o", color=colors[schedule], linestyle="-" if size == 4 else "--" if size == 5 else ":", label=label)
+            style = "-" if size == 4 else "--" if size == 5 else ":"
+            axes[0].plot([r["sweeps"] for r in subset], [r["feasible"] for r in subset],
+                         marker="o", color=colors[schedule], linestyle=style, label=label)
+            axes[1].plot([r["sweeps"] for r in subset], [r["gap"] if r["gap"] is not None else np.nan for r in subset],
+                         marker="o", color=colors[schedule], linestyle=style, label=label)
+            for r in subset:
+                if r["gap"] is not None:
+                    axes[1].annotate(str(r["feasible"]), (r["sweeps"], r["gap"]), fontsize=6,
+                                     textcoords="offset points", xytext=(3, 3))
     for axis in axes:
         axis.set_xscale("log")
         axis.set_xlabel("Sweeps per variable")
         axis.grid(True, alpha=.3)
         axis.legend(fontsize=6)
-    axes[0].set_ylabel("Feasible instances (%)")
-    axes[0].set_ylim(-5, 105)
+    total = max(r["total"] for r in summary_rows)
+    axes[0].set_ylabel(f"Feasible instances (of {total})")
+    axes[0].set_ylim(-0.5, total + 0.5)
     axes[1].set_ylabel("Mean gap on feasible runs (%)")
-    fig.tight_layout()
+    fig.text(.5, .01, "Right panel: labels give the number of feasible runs behind each mean; gaps condition on feasibility.",
+             ha="center", fontsize=8)
+    fig.tight_layout(rect=(0, .04, 1, 1))
     fig.savefig(ROOT / "docs" / "vrp_qubo_budget_sweep.png", dpi=150)
     plt.close(fig)
 
@@ -329,14 +381,17 @@ def regenerate_summary(path: Path = OUT / "vrp_raw.csv") -> str:
                 row[key] = float(row[key])
     report = summarize(rows)
     (OUT / "vrp_summary.md").write_text(report, encoding="utf-8")
+    chart(rows)
     return report
 
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--summary-only", action="store_true")
+    parser.add_argument("--summary-only", action="store_true",
+                        help="rebuild vrp_summary.md, the QUBO sweep report and both charts from saved CSVs")
     if parser.parse_args().summary_only:
         print(regenerate_summary())
+        print(regenerate_sweep_report())
     else:
         run()

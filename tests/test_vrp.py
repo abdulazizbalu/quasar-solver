@@ -127,3 +127,12 @@ def test_benchmark_seed_separation_and_summary():
                  gap_percent=10.0, routes=2, runtime_seconds=.2, attempts=400, variable_count="")]
     summary = summarize(rows)
     assert "5.00%" in summary and "2/2" in summary
+
+
+def test_wilson_interval_for_small_counts():
+    from benchmarks.run_vrp_benchmarks import wilson_interval
+
+    low, high = wilson_interval(0, 10)
+    assert low == 0.0 and abs(high - 0.2775) < 1e-3
+    low, high = wilson_interval(9, 10)
+    assert abs(low - 0.5958) < 1e-3 and abs(high - 0.9821) < 1e-3
