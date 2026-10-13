@@ -1,0 +1,28 @@
+{
+  "command": "python -m benchmarks.run_external_budget_sweep",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "dwave_samplers": "1.8.0",
+  "openjij": "0.12.2",
+  "size": 20,
+  "instance_seeds": [
+    202600,
+    202601,
+    202602,
+    202603,
+    202604,
+    202605,
+    202606,
+    202607,
+    202608,
+    202609
+  ],
+  "solver_seeds": [
+    0,
+    1,
+    2
+  ],
+  "worker_processes": 4
+}

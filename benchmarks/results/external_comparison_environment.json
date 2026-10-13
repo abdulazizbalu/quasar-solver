@@ -1,8 +1,8 @@
 {
-  "python": "3.14.4",
-  "numpy": "2.4.4",
-  "platform": "Windows-11-10.0.26200-SP0",
-  "processor": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+  "processor": "x86_64",
   "dwave_samplers": "1.8.0",
   "openjij": "0.12.2",
   "sweeps": 100,
@@ -43,5 +43,10 @@
     203008,
     203009
   ],
-  "route_solver_time_limit_seconds": 0.2
+  "route_solver_time_limit_seconds": 0.2,
+  "in_repository_annealer_states": [
+    "best_seen",
+    "final"
+  ],
+  "command": "python -m benchmarks.run_external_benchmarks"
 }

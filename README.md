@@ -16,10 +16,10 @@ Quasar Solver is a Python research package for QUBO simulated annealing and smal
 pip install -e .
 ```
 
-For development:
+For development (the test suite needs OR-Tools):
 
 ```bash
-pip install -e ".[dev]"
+pip install -e ".[dev,vrp]"
 ```
 
 ## Route visualization demo
@@ -91,14 +91,14 @@ Run `python -m benchmarks.tune_swap` to reproduce the cooling-schedule experimen
 
 - Swap moves keep the one-hot assignment valid: all 400 swap runs returned feasible tours, compared with 395/400 bit-flip runs. A swap changes four one-hot bits but leaves the constraint penalty constant, so its energy change comes from the affected tour edges.
 - At 20 cities, the swap mean gap is 3.69%, down 82.96 percentage points from bit-flip SA's 86.65%. It remains 3.32 percentage points above 2-opt's 0.37%. At 15 cities, swap is 1.43 percentage points above 2-opt. At 6 cities the two methods tie at the optimum; at 10 cities swap's 0.27% mean gap is 0.14 percentage points below 2-opt's 0.41%, a small difference in these runs.
-- The 20-city bit-flip result changed from Phase 1b's 86.03% gap to 86.65% because the reference is now the proven optimum rather than the experiment's best found tour. The exact reference also exposes 2-opt's 0.37% gap at 20 cities. These are changes in the denominator, not improvements in those solvers.
+- The 20-city bit-flip result changed from Phase 1b's 86.03% gap (commit 7c46285) to 86.65% because the reference is now the proven optimum rather than the experiment's best found tour. The exact reference also exposes 2-opt's 0.37% gap at 20 cities. These are changes in the denominator, not improvements in those solvers.
 - Under equal attempt counts, swap SA took more wall time than 2-opt at every tested size. The QUBO contains `n²` binary variables (400 at 20 cities); the swap solver avoids invalid states but still builds that QUBO once per run. The measured gap and runtime therefore do not establish an advantage over 2-opt.
 
 ### Scope and limits
 
 `qubo_sa_swap` uses the QUBO to define energy, but its moves swap two cities in a tour. Each move flips four one-hot bits at once and leaves the constraint penalty constant. A generic QUBO annealer or quantum hardware running the plain QUBO does not make this move. It is a classical permutation heuristic, so its results do not establish that one-hot QUBO annealing works for TSP.
 
-The `qubo_sa` bit-flip results show what a plain QUBO solver encounters. Handling constraints through penalties is the main obstacle in these runs, and its gap grows quickly with size.
+The `qubo_sa` bit-flip results show what a plain QUBO solver encounters: feasibility below 100% and a gap that grows quickly with size. These runs are consistent with the penalty encoding and one-bit moves being limiting, but they do not isolate the cause.
 
 Multi-start 2-opt remains the stronger routing baseline in these experiments. The swap solver also took more wall time under equal attempt counts.
 
@@ -117,9 +117,11 @@ pip install -e ".[dev,vrp]"
 python -m benchmarks.run_vrp_benchmarks
 ```
 
-The command downloads checksum-verified files to ignored `benchmarks/data/vrp/` and writes raw rows, environment metadata, summaries, and charts. No third-party instance files are redistributed. Tiny cases use 10 independent random Euclidean instances per size (4, 5, 6), integer demands in 1–3, alternating five tight and five loose capacities, and 10 solver seeds per instance. The CP-SAT reference is proven for each generated instance. Tiny route solvers share a 0.2-second deadline; standard `vrp_sa` and OR-Tools share a 1-second deadline. For OR-Tools, `random_seed` does not affect RoutingSearch. The recorded seed instead selects among six first-solution strategies; the search is time limited, so runtime varies slightly across reruns. Each standard instance has one test instance and ten strategy selections/seeds.
+The command downloads checksum-verified files to ignored `benchmarks/data/vrp/` and writes raw rows, environment metadata, summaries, and charts. No third-party instance files are redistributed. Tiny cases use 10 random Euclidean instances per size (4, 5, 6), integer demands in 1–3, alternating five tight and five loose capacities, and 10 solver seeds per instance. Instances are independent within a size; the same instance seed is reused across sizes, so a smaller instance shares its first nodes with the larger one. The CP-SAT reference is proven for each generated instance. Tiny route solvers share a 0.2-second deadline; standard `vrp_sa` and OR-Tools share a 1-second deadline. For OR-Tools, `random_seed` does not affect RoutingSearch. The recorded seed instead selects one of six first-solution strategies (seed mod 6), so seeds 6–9 repeat the strategies of seeds 0–3 and those four strategies carry double weight in OR-Tools means; the search is time limited, so runtime varies slightly across reruns. `vrp_sa` in time mode cools over a fixed 100 attempts per customer and then continues at its final temperature until the deadline, so its attempt counts and results depend on machine speed.
 
 The primary tiny-CVRP QUBO settings use 100 sweeps, or 100 attempted flips per binary variable, with a 5-second secondary cap. `vrp_sa` continues until the same 0.2-second deadline as OR-Tools. This primary comparison shows the 100-sweep setting; the full schedule-by-budget study is in [the QUBO sweep report](benchmarks/results/vrp_qubo_budget_sweep.md), [raw CSV](benchmarks/results/vrp_qubo_budget_sweep.csv), and [chart](docs/vrp_qubo_budget_sweep.png). The historical `coefficient_scaled_linear` schedule remains the default. The explicit `penalty_scaled_geometric` schedule starts at temperature `8P` and cools geometrically to `0.05P`, where `P` is the constraint penalty.
+
+The default schedule does not suit this CVRP encoding. It ends at temperature `max|Q|/10`, and squaring the capacity equation with binary slack bits makes the largest coefficient 10–144 times `P` on these instances, so the run ends at 1.0–14.4 `P`: constraint violations stay thermally accessible to the end. On TSP the same schedule ends at 0.2 `P`. The [scale diagnostic](benchmarks/results/qubo_scale_diagnostic.md) (`python -m benchmarks.qubo_scale_diagnostic`) lists these ratios per instance set. The primary table therefore mostly shows this schedule mismatch, not the best this QUBO can do; the penalty-scaled results are in the sweep and in the external comparison below.
 
 ### Tiny CVRP: 100-sweep primary setting
 
@@ -138,9 +140,11 @@ The primary tiny-CVRP QUBO settings use 100 sweeps, or 100 attempted flips per b
 | 6 | OR-Tools | 100/100 | 0.00% [0.00, 0.00] | — |
 | 6 | `exact_small` | 100/100 | 0.00% [0.00, 0.00] | — |
 
+`qubo_sa` here uses the default `coefficient_scaled_linear` schedule (see above). Every infeasible `vrp_sa` run (9, 3 and 10 runs at 4, 5 and 6 customers) stopped in its randomized greedy construction, which found no capacity-feasible start; no annealing ran in those runs. Gaps average feasible runs within each instance, then across instances.
+
 ### Standard CVRP and VRPTW references
 
-| Instance | Published reference | Solver | Feasible | Fleet matches | Mean distance gap on matching fleet | Median gap across all feasible runs |
+| Instance | Published reference | Solver | Feasible | Fleet matches | Mean distance gap on matching fleet | Median distance gap, all feasible runs (any fleet) |
 | --- | ---: | --- | ---: | ---: | ---: | ---: |
 | A-n32-k5 | 784 | OR-Tools | 10/10 | 10/10 | 1.03% | 0.00% |
 | A-n32-k5 | 784 | `vrp_sa` | 10/10 | 10/10 | 22.72% | 22.58% |
@@ -155,15 +159,19 @@ The primary tiny-CVRP QUBO settings use 100 sweeps, or 100 attempted flips per b
 | RC101-25 | 4 vehicles, 461.1 | OR-Tools | 10/10 | 10/10 | 0.00% | 0.00% |
 | RC101-25 | 4 vehicles, 461.1 | `vrp_sa` | 10/10 | 0/10 | n/a | 7.28% |
 
+The last column ignores fleet size. Solomon references rank fleet size before distance, so a run with more vehicles than the reference is not comparable on distance. `vrp_sa` matched the reference fleet in **no** RC101 run (all used more than 4 vehicles); its 7.28% median compares those larger-fleet solutions with a 4-vehicle reference distance and is not a valid gap under the fleet-first objective. The same caveat applies to the two R101 runs and seven C101 runs that used a different fleet.
+
 The published Augerat CVRP values come from the [CVRPLIB reference table](https://galgos.inf.puc-rio.br/cvrplib/en/instances/1). Solomon’s original VRPTW benchmark is described in [Solomon (1987)](https://doi.org/10.1287/opre.35.2.254). The 25-customer distances here are from [Pisinger and Ropke, Table 19](https://backend.orbit.dtu.dk/ws/portalfiles/portal/3154462/A%20general%20heuristic%20for%20vehicle%20routing%20problems_TechRep_Pisinger_Ropke.pdf), with fleet counts cross-checked against [Table 6 in this comparison](https://pmc.ncbi.nlm.nih.gov/articles/PMC11784799/); the benchmark is also described by [SINTEF](https://www.sintef.no/projectweb/top/vrptw/solomon-benchmark/). These 25-customer references are distance-minimizing values and here coincide with the fleet-first references. They are cited, not re-proven. The Solomon files come from the Solomon100 mirror maintained at [BUAAxyf/Solomon100](https://github.com/BUAAxyf/Solomon100/tree/23f7cf053cc7c0a7740de246791df3ece179c8df/data/solomon_100); the benchmark data originate with Solomon (1987). No files are redistributed, and the downloader pins the mirror revision and verifies each file’s SHA-256.
 
 ![Tiny CVRP feasibility and gap by customer count and solver](docs/vrp_benchmark.png)
 
 ### VRP findings
 
-The primary 100-sweep QUBO configuration produced no feasible route in 300 runs. In the independent budget sweep, at 10,000 sweeps per variable, the penalty-scaled schedule had feasibility of 90%, 70%, and 30% at 4, 5, and 6 customers; the old schedule had 10%, 0%, and 0%. On feasible runs the corresponding penalty-scaled mean gaps were 12.6%, 23.9%, and 18.7%, and optimal-hit rates were 50%, 20%, and 0%. This improves feasibility with more effort and the penalty-scaled temperature, but leaves weak tour quality and high cost: the 10,000-sweep cells took a mean 6.5, 9.3, and 12.9 seconds. The sweep uses one annealer seed per independent instance and reports instance-bootstrap intervals; its full cell-level values and intervals are linked above.
+The primary 100-sweep QUBO configuration with the default schedule produced no feasible route in 300 runs; as explained above, that schedule ends hotter than the penalty on every instance. Before random demands were introduced (commit 5283375: unit demands, capacity `⌊m/2⌋`), the same configuration was feasible in 40/100 runs at 4 customers and 1/100 at 6; on those instances the default ended at 0.5–0.8 `P` (scale diagnostic). The default schedule's code did not change between the two releases; the drop to 0/100 coincides with the new instances and their larger coefficient ratio.
 
-On the three Augerat instances, under equal one-second deadlines, OR-Tools’ mean distance gaps were 1.03–3.69%, while `vrp_sa`’s were 17.66–27.62%. On the Solomon instances, OR-Tools matched the reference fleet in every run. `vrp_sa` matched in 3/10 C101, 8/10 R101, and 0/10 RC101 runs. For those single standard instances, ten seeds do not provide an instance-level confidence interval. The swap proposal now excludes selecting the same customer slot twice; as expected, this changed the route annealer’s seeded outcomes. These measurements show where this implementation performed in this run; they do not establish general solver rankings.
+In the independent budget sweep (one annealer seed per instance, 10 instances per cell), at 10,000 sweeps per variable the penalty-scaled schedule was feasible on 9/10, 7/10 and 3/10 instances at 4, 5 and 6 customers (95% Wilson intervals 60–98%, 40–89%, 11–60%); the default schedule on 1/10, 0/10 and 0/10. Gaps on the feasible penalty-scaled runs averaged 12.6% (n=9), 23.9% (n=7) and 18.7% (n=3), and 5/10, 2/10 and 0/10 runs hit the proven optimum. Because these gaps average different numbers of feasible runs, they are not comparable across cells. More effort and the penalty-scaled temperature raised feasibility, but tour quality stayed weak and the 10,000-sweep cells took a mean 6.5, 9.3 and 12.9 seconds per run.
+
+On the three Augerat instances, under equal one-second deadlines, OR-Tools’ mean distance gaps were 1.03–3.69%, while `vrp_sa`’s were 17.66–27.62%. On the Solomon instances, OR-Tools matched the reference fleet in every run. `vrp_sa` matched in 3/10 C101, 8/10 R101 and 0/10 RC101 runs. For those single standard instances, ten seeds do not provide an instance-level confidence interval. The `vrp_sa` values differ from the previous release because three things changed together: its swap move no longer picks the same slot twice, it now runs to the shared deadline instead of a fixed iteration budget, and the tiny instances were regenerated with random demands. The effect of each change was not measured separately. These measurements show where this implementation performed in this run; they do not establish general solver rankings.
 
 ### VRP scope and limits
 
@@ -178,6 +186,17 @@ pip install -e ".[dev,vrp,external]"
 python -m benchmarks.run_external_benchmarks
 ```
 
-The D-Wave `SimulatedAnnealingSampler` and OpenJij `SASampler` receive the exact same QUBO matrices as `qubo_sa`, with one read and 100 full-variable sweeps. Equal sweep counts match attempted-flip counts, not implementation speed. TSP additionally compares bit-flip `qubo_sa`, its penalty-scaled schedule, `qubo_sa_swap`, and multi-start 2-opt. Tiny CVRP compares both annealers and schedules against `vrp_sa`, OR-Tools, and the CP-SAT optimum; the two routing heuristics receive the same 0.2-second deadline. See [raw results](benchmarks/results/external_comparison_raw.csv), [summary](benchmarks/results/external_comparison_summary.md), and [environment](benchmarks/results/external_comparison_environment.json) after running the command. These optional solvers are not core dependencies.
+The D-Wave `SimulatedAnnealingSampler` and OpenJij `SASampler` receive the exact same QUBO matrices as `qubo_sa` (checked by identical energies for shared samples), use the same decoders and feasibility checks, and run one read of 100 full-variable sweeps with the same inverse-temperature endpoints and interpolation. Equal sweep counts match attempted-flip counts, not update order or implementation speed. One difference matters: the in-repository annealer returns the lowest-energy state visited during the run (`best_seen`, as in the main TSP table), while D-Wave and OpenJij return the state at the end of the run. The comparison therefore reports both states of each in-repository run; the `final` row is the like-for-like one. TSP additionally compares the penalty-scaled schedule, `qubo_sa_swap` and multi-start 2-opt. Tiny CVRP compares the annealers against `vrp_sa`, OR-Tools and the CP-SAT optimum; the two routing heuristics receive the same 0.2-second deadline. See [raw results](benchmarks/results/external_comparison_raw.csv), [summary](benchmarks/results/external_comparison_summary.md) and [environment](benchmarks/results/external_comparison_environment.json). These optional solvers are not core dependencies. OpenJij runs are seeded but were not reproducible across platforms here: rerun on Linux, 169 of its 400 TSP runs differed from an earlier Windows run.
 
-Both external annealers also struggled with the plain bit-flip QUBOs: at 20-city TSP, D-Wave was feasible in 82/100 runs with an average gap of 98.41%, and OpenJij was feasible in 81/100 runs with a 98.53% gap; the in-repository bit-flip solver was feasible in 98/100 runs with an 86.60% gap under the same flip count. For tiny CVRP’s 100-sweep penalty-scaled schedule, feasibility at 4/5/6 customers was 16/2/1 runs for native `qubo_sa`, 9/0/3 for D-Wave, and 5/3/3 for OpenJij, out of 100 each. This evidence shows the weakness is not unique to our annealer, while the performance differences show that annealing kernels matter. It is consistent with the penalty encoding and one-bit moves being limiting, but it does not isolate either as the cause.
+At the matched budget of 100 sweeps and one read with the default inverse-temperature range, 20-city TSP gave:
+
+| Solver | Feasible | Mean gap on feasible runs |
+| --- | ---: | ---: |
+| D-Wave | 82/100 | 98.41% |
+| OpenJij | 83/100 | 98.33% |
+| in-repository, final state | 86/100 | 97.14% |
+| in-repository, best seen | 98/100 | 86.60% |
+
+These gaps average feasible runs within each instance and then across instances; pooling all feasible runs gives the 86.65% shown for the same best-seen runs in the main TSP table. The in-repository annealer's lower best-seen gap comes from returning its best visited state; its final state is close to the two external samplers. For tiny CVRP with the 100-sweep penalty-scaled schedule, feasibility at 4/5/6 customers was 16/2/1 runs (best seen) and 10/2/1 (final) for the in-repository annealer, 9/0/3 for D-Wave and 5/3/3 for OpenJij, out of 100 each; with the default schedule, all three produced no feasible route.
+
+A separate [budget sweep](benchmarks/results/external_budget_sweep.md) (`python -m benchmarks.run_external_budget_sweep`; 30 runs per configuration on the ten 20-city instances) checks whether this is only a matter of effort. With more sweeps, ten reads and a range that cools further, the external samplers improve substantially: the lowest mean gaps were 32.5% (D-Wave, 100,000 sweeps, 10 reads, penalty-scaled range, 30/30 feasible) and 37.7% (OpenJij, 10,000 sweeps, 10 reads, its default range, 30/30 feasible). These remain far above the 3.69% of `qubo_sa_swap` and the 0.37% of 2-opt at 100 sweeps. In these runs, the large gap of the plain one-hot QUBO is therefore not specific to the in-repository annealer; larger budgets and cooler ranges reduced it from about 98% to 32.5–37.7%, but not to the level of the permutation-move baselines. The runs are consistent with the penalty encoding and one-bit moves being limiting, but they do not isolate either as the cause.

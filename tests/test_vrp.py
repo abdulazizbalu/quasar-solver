@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from itertools import permutations, combinations
 
@@ -79,6 +80,9 @@ def test_vrp_sa_objective_matches_independent_brute_force():
 
 
 def test_external_sampler_adapters_when_installed(tiny):
+    if os.environ.get("QUASAR_REQUIRE_EXTERNAL") == "1":
+        import dwave.samplers  # noqa: F401  # fail, not skip, in the external CI job
+        import openjij  # noqa: F401
     pytest.importorskip("dwave.samplers")
     pytest.importorskip("openjij")
     from quasar_solver.external_samplers import DWaveSimulatedAnnealingSolver, OpenJijSASolver
@@ -92,17 +96,17 @@ def test_external_sampler_adapters_when_installed(tiny):
 
 def test_parsers(tmp_path: Path):
     vrp = tmp_path / "A-n3-k2.vrp"
-    vrp.write_text("NAME : A-n3-k2\nTYPE : CVRP\nDIMENSION : 3\nEDGE_WEIGHT_TYPE : EUC_2D\nCAPACITY : 2\nNODE_COORD_SECTION\n1 0 0\n2 1 0\n3 2 0\nDEMAND_SECTION\n1 0\n2 1\n3 1\nDEPOT_SECTION\n1\n-1\nEOF\n")
+    vrp.write_text(encoding="utf-8", data="NAME : A-n3-k2\nTYPE : CVRP\nDIMENSION : 3\nEDGE_WEIGHT_TYPE : EUC_2D\nCAPACITY : 2\nNODE_COORD_SECTION\n1 0 0\n2 1 0\n3 2 0\nDEMAND_SECTION\n1 0\n2 1\n3 1\nDEPOT_SECTION\n1\n-1\nEOF\n")
     p = parse_cvrplib(vrp)
     assert p.size == 2 and p.num_vehicles == 2 and p.distance_matrix[0, 2] == 2
     sol = tmp_path / "x.sol"
-    sol.write_text("Route #1: 1 2\nCost 4\n")
+    sol.write_text(encoding="utf-8", data="Route #1: 1 2\nCost 4\n")
     assert parse_cvrplib_solution(sol) == ([[0, 1, 2, 0]], 4)
     txt = tmp_path / "C101.txt"
-    txt.write_text("C101\nVEHICLE\nNUMBER CAPACITY\n2 2\nCUSTOMER\n0 0 0 0 0 10 0\n1 1 0 1 0 10 0\n2 2 0 1 0 10 0\n")
+    txt.write_text(encoding="utf-8", data="C101\nVEHICLE\nNUMBER CAPACITY\n2 2\nCUSTOMER\n0 0 0 0 0 10 0\n1 1 0 1 0 10 0\n2 2 0 1 0 10 0\n")
     assert parse_solomon(txt, 2).size == 2
     # Reference convention truncates Euclidean arc costs to one decimal.
-    txt.write_text(txt.read_text().replace("2 2 0 1", "2 2 1 1"))
+    txt.write_text(txt.read_text(encoding="utf-8").replace("2 2 0 1", "2 2 1 1"), encoding="utf-8")
     assert parse_solomon(txt, 2).distance_matrix[0, 2] == 2.2
 
 
@@ -123,3 +127,29 @@ def test_benchmark_seed_separation_and_summary():
                  gap_percent=10.0, routes=2, runtime_seconds=.2, attempts=400, variable_count="")]
     summary = summarize(rows)
     assert "5.00%" in summary and "2/2" in summary
+
+
+def test_wilson_interval_for_small_counts():
+    from benchmarks.run_vrp_benchmarks import wilson_interval
+
+    low, high = wilson_interval(0, 10)
+    assert low == 0.0 and abs(high - 0.2775) < 1e-3
+    low, high = wilson_interval(9, 10)
+    assert abs(low - 0.5958) < 1e-3 and abs(high - 0.9821) < 1e-3
+
+
+def test_external_openjij_reads_differ_with_fixed_seed():
+    if os.environ.get("QUASAR_REQUIRE_EXTERNAL") != "1":
+        pytest.importorskip("openjij")
+        pytest.importorskip("dwave.samplers")
+    from quasar_solver.external_samplers import OpenJijSASolver
+    from quasar_solver.qubo import QUBO
+
+    rng = np.random.default_rng(0)
+    qubo = QUBO()
+    for i in range(30):
+        for j in range(i, 30):
+            qubo.add(i, j, float(rng.normal()))
+    result = OpenJijSASolver().solve(qubo, num_sweeps=5, num_reads=10, seed=3)
+    assert len(result.all_energies) == 10
+    assert len(set(result.all_energies)) > 1
